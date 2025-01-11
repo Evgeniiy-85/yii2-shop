@@ -51,7 +51,8 @@ $config = [
             'showScriptName' => false,
             'rules' => [ // переопределение контроллеров для страниц
                 '/admin' => 'admin/admin',
-                '/catalog' => 'products/catalog',
+                '/catalog' => 'products',
+                '/products/<alias:>' => 'products/product',
                 '/admin/products/<ID:\d+>' => 'admin/products/edit'
             ],
         ],

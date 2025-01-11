@@ -11,7 +11,7 @@ use yii\widgets\ActiveForm;
                     <div class="box-body row">
                         <div class="col-xs-12">
                             <h4 class="box-title"><span><?=$product['prod_title'];?></span>
-                                <a class="fa fa-external-link" target="_blank" href="/catalog/product/<?=$product['prod_id'];?>"></a>
+                                <a class="fa fa-external-link" target="_blank" href="/products/<?=$product['prod_alias'];?>"></a>
                             </h4>
 
                             <a class="product-card_cover" href="/admin/products/<?=$product['prod_id'];?>">

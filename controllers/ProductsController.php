@@ -5,15 +5,11 @@ namespace app\controllers;
 use app\models\Products;
 use yii\data\Pagination;
 use yii\web\Controller;
+use yii\web\HttpException;
 
 class ProductsController extends Controller {
 
     public function actionIndex() {
-        return $this->render('index');
-    }
-
-
-    public function actionCatalog() {
         $pageSize = 36;
 
         $query = Products::find()->where(['prod_status' => [Products::STATUS_ACTIVE]]);
@@ -28,8 +24,20 @@ class ProductsController extends Controller {
             ->offset($pages->offset)
             ->limit($pages->limit);
 
-        return $this->render('catalog', [
+        return $this->render('products', [
             'products' => $query->all(),
+        ]);
+    }
+
+
+    public function actionProduct($alias) {
+        $product = Products::find()->where(['prod_alias' => $alias])->one();
+        if (!$product) {
+            throw new HttpException(404, "Страница не найдена.");
+        }
+
+        return $this->render('product', [
+            'product' => $product,
         ]);
     }
 
