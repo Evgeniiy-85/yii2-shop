@@ -6,7 +6,7 @@ use yii\widgets\ActiveForm;
 <div class="row product-list">
     <?php if($products):
         foreach ($products as $product):?>
-            <div class="col-lg-3 col-xs-12 col-sm-6 col-md-4 col-xl-3">
+            <div class="col-lg-2 col-xs-12 col-sm-6 col-md-4 col-xl-3">
                 <div class="box box-primary box-product">
                     <div class="box-body row">
                         <div class="col-xs-12">

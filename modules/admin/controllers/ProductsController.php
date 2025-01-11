@@ -33,6 +33,12 @@ class ProductsController extends AdminController {
     }
 
 
+    /**
+     * @param $ID
+     * @return string
+     * @throws HttpException
+     * @throws \yii\db\Exception
+     */
     public function actionEdit($ID = false) {
         $model = is_numeric($ID) ? Products::findOne((int) $ID) : false;
         if (!$model) {
@@ -40,11 +46,26 @@ class ProductsController extends AdminController {
         }
 
         if ($post = Yii::$app->request->post('Products')) {
-            $model->load( Yii::$app->request->post() );
+            $model->load(Yii::$app->request->post());
             $model->save() ? $model->addSuccess('Успешно') : $model->addWarning('Укажите категорию/ии для товара');
         }
 
         return $this->render('edit', [
+            'model' => $model,
+        ]);
+    }
+
+
+    public function actionAdd() {
+        $model = new Products();
+
+        if ($post = Yii::$app->request->post('Products')) {
+            $model->load(Yii::$app->request->post());
+            $model->save() ? $model->addSuccess('Успешно') : $model->addWarning('Укажите категорию/ии для товара');
+            return $this->redirect(['/admin/products']);
+        }
+
+        return $this->render('add', [
             'model' => $model,
         ]);
     }

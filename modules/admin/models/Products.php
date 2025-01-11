@@ -4,6 +4,7 @@ namespace app\modules\admin\models;
 
 use Yii;
 use yii\db\ActiveRecord;
+use app\components\Helpers;
 
 class Products extends ActiveRecord {
     use ModelExtentions;
@@ -17,7 +18,7 @@ class Products extends ActiveRecord {
      */
     public function rules() {
         return [
-            [['prod_alias', 'prod_title',], 'required'],
+            [['prod_title',], 'required'],
             [['prod_title', 'prod_image'], 'string'],
             [['prod_status', 'prod_price',], 'integer'],
             [['prod_title', 'prod_alias',], 'trim'],
@@ -44,6 +45,14 @@ class Products extends ActiveRecord {
      * @return bool
      */
     public function beforeSave($insert) {
+        if (!$this->prod_id) {
+            if (!$this->prod_alias) {
+                $this->prod_alias = Helpers::Translit($this->prod_title);
+            }
+
+            $this->prod_alias = Helpers::generateUniqueAlias($this->prod_alias, $this, 'prod_alias');
+        }
+
         if (parent::beforeSave($insert)) {
             return true;
         }

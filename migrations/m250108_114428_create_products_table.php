@@ -20,7 +20,7 @@ class m250108_114428_create_products_table extends Migration
         $this->createTable('{{%products}}', [
             'prod_id' => $this->primaryKey(),
             'prod_alias' => $this->string()->notNull()->unique(),
-            'prod_title' => $this->string()->notNull()->unique(),
+            'prod_title' => $this->string()->notNull(),
             'prod_image' => $this->string(),
             'prod_status' => $this->integer()->notNull()->defaultValue(1),
             'prod_price' => $this->integer(),
