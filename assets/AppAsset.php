@@ -22,14 +22,12 @@ class AppAsset extends AssetBundle
     public $css = [
         'css/site.css',
         'css/product/catalog.css',
-        'css/admin/AdminLTE.min.css'
     ];
     public $js = [
-        'js/admin/adminlte.min.js'
+
     ];
     public $depends = [
         'yii\web\YiiAsset',
         'yii\bootstrap4\BootstrapAsset',
-//        'yii\bootstrap\BootstrapPluginAsset'
     ];
 }

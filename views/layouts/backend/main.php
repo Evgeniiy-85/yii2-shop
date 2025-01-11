@@ -9,9 +9,11 @@ use yii\bootstrap4\Breadcrumbs;
 use yii\bootstrap4\Html;
 use yii\bootstrap4\Nav;
 use yii\bootstrap4\NavBar;
+use dmstr\web\AdminLteAsset;
+use app\assets\AdminLtePluginAsset;
 
-AppAsset::register($this);
-?>
+AdminLteAsset::register($this);?>
+
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>" class="h-100">
@@ -22,7 +24,8 @@ AppAsset::register($this);
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 </head>
-<body class="d-flex flex-column h-100">
+
+<body class="<?= \dmstr\helpers\AdminLteHelper::skinClass() ?>">
 <?php $this->beginBody() ?>
 
 <header>
@@ -67,7 +70,7 @@ AppAsset::register($this);
         ]) ?>
         <?= Alert::widget() ?>
         <?= $content ?>
-    </div>1111111111111111
+    </div>
 </main>
 
 <footer class="footer mt-auto py-3 text-muted">

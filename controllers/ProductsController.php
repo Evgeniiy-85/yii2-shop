@@ -1,6 +1,6 @@
 <?php
 
-namespace app\controllers\frontend;
+namespace app\controllers;
 
 use app\models\Products;
 use yii\data\Pagination;

@@ -12,7 +12,7 @@ $config = [
         '@npm'   => '@vendor/npm-asset',
     ],
 //    'layout' => 'backend/main',
-    'defaultRoute' => 'frontend/products/catalog',
+    'defaultRoute' => 'products/catalog',
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
@@ -24,7 +24,7 @@ $config = [
         'user' => [
             'identityClass' => 'app\models\User',
             'enableAutoLogin' => true,
-            'loginUrl' => '/admin/login',
+            'loginUrl' => ['login'],
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
@@ -50,10 +50,15 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [ // переопределение контроллеров для страниц
-                '/catalog' => 'frontend/products/catalog',
-                '/admin' => 'backend/site/admin',
-                '/admin/login' => 'backend/users/login',
-                '/admin/products' => 'backend/products/index',
+                '/catalog' => 'products/catalog',
+                '/admin/products/<ID:\d+>' => 'admin/products/edit'
+            ],
+        ],
+        'assetManager' => [
+            'bundles' => [
+                'dmstr\web\AdminLteAsset' => [
+                    'skin' => 'skin-blue',
+                ],
             ],
         ],
     ],
@@ -61,16 +66,13 @@ $config = [
         'users' => [ // Fixture generation command line.
             'class' => 'app\controllers\backend\UsersController',
         ],
-//        'products' => [ // Fixture generation command line.
-//            'class' => 'app\controllers\backend\ProductsController',
-//        ],
-//        'site' => [ // Fixture generation command line.
-//            'class' => 'app\controllers\backend\SiteController',
-//        ],
     ],
     'params' => $params,
     'modules' => [
-        'admin' => [ 'class' => 'app\modules\admin\Module', 'layout' => 'main']
+        'admin' => [
+            'class' => 'app\modules\admin\Module',
+            'layout' => 'main'
+        ]
     ]
 ];
 
