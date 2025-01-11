@@ -9,7 +9,7 @@ $this->params['breadcrumbs'][] = $this->title;?>
     <div class="catalog-list">
         <div class="product-card">
             <a class="product-card_cover" href="/product/<?=$product['prod_alias'];?>">
-                <img src="images/product/<?=$product['prod_image'];?>";?>
+                <img src="/images/product/<?=$product['prod_image'];?>";?>
             </a>
 
             <div class="product-card_main">

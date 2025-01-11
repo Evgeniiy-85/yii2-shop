@@ -10,8 +10,8 @@ $this->params['breadcrumbs'][] = $this->title;?>
         <?if($products):
             foreach ($products as $product):?>
                 <div class="product-card">
-                    <a class="product-card_cover" href="/product/<?=$product['prod_alias'];?>">
-                        <img src="images/product/<?=$product['prod_image'];?>";?>
+                    <a class="product-card_cover" href="/products/<?=$product['prod_alias'];?>">
+                        <img src="/images/product/<?=$product['prod_image'];?>";?>
                     </a>
 
                     <div class="product-card_main">
