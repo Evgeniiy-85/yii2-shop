@@ -7,6 +7,10 @@
     justify-items: center;
     row-gap: 40px;
 }
+.catalog-list-wrap {
+    margin-left: -20px;
+    margin-right: -20px;
+}
 .product-card {
     width: 200px;
     padding: 0 20px;

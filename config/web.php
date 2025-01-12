@@ -53,7 +53,8 @@ $config = [
                 '/admin' => 'admin/admin',
                 '/catalog' => 'products',
                 '/products/<alias:>' => 'products/product',
-                '/admin/products/<ID:\d+>' => 'admin/products/edit'
+                '/admin/products/<ID:\d+>' => 'admin/products/edit',
+                '/admin/users/<ID:\d+>' => 'admin/users/edit'
             ],
         ],
         'assetManager' => [

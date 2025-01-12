@@ -39,21 +39,23 @@
                         'items' => [
                             ['label' => 'Список продуктов', 'icon' => 'file-code-o', 'url' => ['/admin/products'],],
                             ['label' => 'Акции', 'icon' => 'file-code-o', 'url' => ['/admin/products/actions'],],
+                        ],
+                    ],
+                    [
+                        'label' => 'Пользователи',
+                        'icon' => 'share',
+                        'url' => '#',
+                        'items' => [
+                            ['label' => 'Список пользователей', 'icon' => 'file-code-o', 'url' => ['/admin/users'],],
+                            ['label' => 'Группы', 'icon' => 'file-code-o', 'url' => ['/admin/users/groups'],],
+                            ['label' => 'Подписки', 'icon' => 'file-code-o', 'url' => ['/admin/users/members'],],
                             [
-                                'label' => 'Level One',
-                                'icon' => 'circle-o',
+                                'label' => 'Действия',
+                                'icon' => 'share',
                                 'url' => '#',
                                 'items' => [
-                                    ['label' => 'Level Two', 'icon' => 'circle-o', 'url' => '#',],
-                                    [
-                                        'label' => 'Level Two',
-                                        'icon' => 'circle-o',
-                                        'url' => '#',
-                                        'items' => [
-                                            ['label' => 'Level Three', 'icon' => 'circle-o', 'url' => '#',],
-                                            ['label' => 'Level Three', 'icon' => 'circle-o', 'url' => '#',],
-                                        ],
-                                    ],
+                                    ['label' => 'Импорт', 'icon' => 'circle-o', 'url' => '/admin/users/import',],
+                                    ['label' => 'Экспорт', 'icon' => 'circle-o', 'url' => '/admin/users/export',],
                                 ],
                             ],
                         ],

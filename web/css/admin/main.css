@@ -30,4 +30,109 @@
     font-size: 14px;
 }
 
+a.add-new-item, .add-new-item {
+    font-size: 19px;
+    font-weight: 300;
+    font-family: Roboto;
+    display: block;
+    color: #607d8b;
+    border: dashed 1px #CFD8DC;
+    text-align: center;
+    padding: 16px 0;
+    margin: 0 0 24px 0;
+    box-sizing: border-box;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    background-color: rgba(255, 255, 255, 0.57);
+}
 
+/**
+ *  Выпадающее меню (контекстное)
+*/
+.context-menu {
+    position: relative;
+    width: 26px;
+    height: 26px;
+    overflow: visible;
+    font-size: 14px;
+    display: inline-block;
+}
+.context-button {
+    position: absolute;
+    box-sizing: border-box;
+    padding: 1px;
+    width: 26px;
+    height: 26px;
+    cursor: pointer;
+    left: 0;
+    top: 0;
+    z-index: 7;
+    border-radius: 3px 3px 0 0;
+    border: solid 1px transparent;
+}
+.context-button span  {
+    content: "";
+    width: 3px;
+    display: block;
+    clear: both;
+    height: 3px;
+    margin: 3px auto 0 auto;
+    background-color: #aaa;
+}
+.context-menu .context-menu-list {
+    text-align: left;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    right: 0;
+    top: 25px;
+    padding: 12px;
+    background-color: #fff;
+    z-index: 3;
+    border: solid 1px #eee;
+    visibility: hidden;
+    opacity: 0;
+    border-radius: 3px;
+    -moz-transition: 0.3s;
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+    -moz-box-shadow: 3px 3px 0 0 rgba(0,0,0,0.1);
+    -webkit-box-shadow: 3px 3px 0 0 rgba(0,0,0,0.1);
+    box-shadow: 3px 3px 0 0 rgba(0,0,0,0.1);
+}
+.context-menu .context-menu-list li {
+    white-space: nowrap;
+    padding: 5px;
+}
+.context-menu .context-menu-list a {
+    color: #333;
+}
+.context-menu .context-menu-list .fa {
+    font-size: 14px !important;
+    margin: 0 4px 0 0 !important;
+}
+.context-menu .context-menu-list a:hover {
+    color: #3c8dbc;
+}
+.context-menu.show-dmenu {
+    z-index: 9;
+    -moz-box-shadow: 3px 3px 0 0 rgba(0,0,0,0.1);
+    -webkit-box-shadow: 3px 3px 0 0 rgba(0,0,0,0.1);
+    box-shadow: 3px 3px 0 0 rgba(0,0,0,0.1);
+}
+.context-menu.show-dmenu .context-menu-list  {
+    opacity: 1;
+    visibility: visible;
+}
+.context-menu.show-dmenu .context-button {
+    background-color: #fff;
+    border-color: #eee;
+    border-bottom-color: #fff;
+}
+
+.context-button:hover span,
+.context-menu.show-dmenu .context-button span {
+    background-color: #3c8dbc;
+}

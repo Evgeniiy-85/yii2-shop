@@ -2,7 +2,7 @@
 
 namespace app\modules\admin\controllers;
 
-use app\modules\admin\models\Products;
+use app\models\Products;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
@@ -47,7 +47,8 @@ class ProductsController extends AdminController {
 
         if ($post = Yii::$app->request->post('Products')) {
             $model->load(Yii::$app->request->post());
-            $model->save() ? $model->addSuccess('Успешно') : $model->addWarning('Укажите категорию/ии для товара');
+            $model->save() ? $model->addSuccess('Успешно') : $model->addWarning('Ошибка при сохранении');
+            return $this->redirect(['/admin/products']);
         }
 
         return $this->render('edit', [
@@ -61,7 +62,7 @@ class ProductsController extends AdminController {
 
         if ($post = Yii::$app->request->post('Products')) {
             $model->load(Yii::$app->request->post());
-            $model->save() ? $model->addSuccess('Успешно') : $model->addWarning('Укажите категорию/ии для товара');
+            $model->save() ? $model->addSuccess('Успешно') : $model->addWarning('Ошибка при сохранении');
             return $this->redirect(['/admin/products']);
         }
 

@@ -3,30 +3,69 @@
 namespace app\modules\admin\controllers;
 
 use app\models\LoginForm;
+use app\models\Products;
+use app\models\Users;
 use Yii;
+use yii\data\Pagination;
 use yii\web\Controller;
+use yii\web\HttpException;
 
 class UsersController extends Controller {
 
     public function actionIndex() {
-        if (Yii::$app->user->isGuest) {
-            return $this->actionLogin();
-        }
+        $pageSize = 36;
+
+        $query = Users::find();
+        $pages = new Pagination([
+            'pageSize' => $pageSize,
+            'defaultPageSize' => $pageSize,
+            'totalCount' => $query->count()
+        ]);
+
+        $query
+            ->orderBy(['user_id' => SORT_DESC])
+            ->offset($pages->offset)
+            ->limit($pages->limit);
+
+        return $this->render('index', [
+            'users' => $query->all(),
+        ]);
     }
 
-    public function actionLogin() {
-        if (!Yii::$app->user->isGuest) {
-            return $this->goBack();
+
+    public function actionAdd() {
+        $model = new Users();
+
+        if ($post = Yii::$app->request->post('Users')) {
+            $model->load(Yii::$app->request->post());
+            $model->save() ? $model->addSuccess('Успешно') : $model->addWarning('Ошибка при сохранении');
+            return $this->redirect(['/admin/users']);
         }
 
-        $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
+        return $this->render('add', [
+            'model' => $model,
+        ]);
+    }
 
-            return $this->goBack();
+    /**
+     * @param $ID
+     * @return string
+     * @throws HttpException
+     * @throws \yii\db\Exception
+     */
+    public function actionEdit($ID = false) {
+        $model = is_numeric($ID) ? Users::findOne((int) $ID) : false;
+        if (!$model) {
+            throw new HttpException(404, "Страница не найдена.");
         }
 
-        $model->password = '';
-        return $this->render('/backend/users/login', [
+        if ($post = Yii::$app->request->post('Users')) {
+            $model->load(Yii::$app->request->post());
+            $model->save() ? $model->addSuccess('Успешно') : $model->addWarning('Ошибка при сохранении');
+            return $this->redirect(['/admin/users']);
+        }
+
+        return $this->render('edit', [
             'model' => $model,
         ]);
     }

@@ -20,7 +20,7 @@ class AuthController extends Controller {
                 if (Yii::$app->params['adminEmail'] == $model->email
                     && Yii::$app->params['adminPassword'] == $model->password) {
                     LoginForm::login();
-                    return $this->redirect('/admin/default/index');
+                    return $this->redirect('/admin');
                 } else {
                     return $this->refresh();
                 }

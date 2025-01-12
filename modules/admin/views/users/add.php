@@ -14,10 +14,13 @@ $form = ActiveForm::begin([
 
 <div class="row">
     <div class="col-xs-4">
-        <?= $form->field($model, 'prod_title')->input('text'); ?>
-        <?= $form->field($model, 'prod_alias')->input('text'); ?>
-        <?= $form->field($model, 'prod_image')->input('text'); ?>
-        <?= $form->field($model, 'prod_price')->input('text'); ?>
+        <?= $form->field($model, 'user_email')->input('text'); ?>
+        <?= $form->field($model, 'user_name')->input('text'); ?>
+        <?= $form->field($model, 'user_surname')->input('text'); ?>
+        <?= $form->field($model, 'user_patronymic')->input('text'); ?>
+        <?= $form->field($model, 'user_phone')->input('text'); ?>
+        <?= $form->field($model, 'user_photo')->input('text'); ?>
+        <?= $form->field($model, 'user_password')->input('text'); ?>
         <?= Html::submitButton('Сохранить', ['class' => 'btn btn-primary btn-block btn-flat', 'name' => 'add']) ?>
     </div>
 </div>
