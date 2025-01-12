@@ -19,8 +19,9 @@ $form = ActiveForm::begin([
         <?= $form->field($model, 'user_surname')->input('text'); ?>
         <?= $form->field($model, 'user_patronymic')->input('text'); ?>
         <?= $form->field($model, 'user_phone')->input('text'); ?>
-        <?= $form->field($model, 'user_photo')->input('text'); ?>
+        <?= $form->field($model, 'user_role')->input('number'); ?>
         <?= $form->field($model, 'user_password')->input('text'); ?>
+        <?= $form->field($model, 'user_status')->input('number'); ?>
         <?= Html::submitButton('Сохранить', ['class' => 'btn btn-primary btn-block btn-flat', 'name' => 'save']) ?>
     </div>
 </div>

@@ -21,9 +21,9 @@ class Users extends ActiveRecord {
      */
     public function rules() {
         return [
-            [['user_email', 'user_name', 'user_status'], 'required'],
+            [['user_email', 'user_name', 'user_status', 'user_status','user_role'], 'required'],
             [['user_email', 'user_name','user_surname','user_patronymic', 'user_phone','user_photo','user_auth_key','user_password'], 'string'],
-            [['user_role', 'user_status'], 'integer'],
+            [['user_role', 'user_status', 'user_status','user_role'], 'integer'],
             [['user_email', 'user_name','user_patronymic','user_phone','user_password'], 'trim'],
         ];
     }
@@ -41,6 +41,8 @@ class Users extends ActiveRecord {
             'user_phone' => 'Телефон',
             'user_photo' => 'Фото',
             'user_password' => 'Пароль',
+            'user_status' => 'Статус',
+            'user_role' => 'Роль',
         ];
     }
 
@@ -59,6 +61,10 @@ class Users extends ActiveRecord {
             $this->user_password = password_hash($this->user_password, PASSWORD_DEFAULT);
         } else {
             $this->user_password = $this->getOldAttribute('user_password');
+        }
+
+        if (!$this->user_id) {
+            $this->user_create_date = time();
         }
 
         if (parent::beforeSave($insert)) {
