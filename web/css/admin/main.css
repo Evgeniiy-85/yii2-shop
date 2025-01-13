@@ -48,6 +48,13 @@ a.add-new-item, .add-new-item {
 }
 
 /**
+ *  Хлебные крошки
+*/
+.breadcrumb li .fa {
+    margin: 0 5px 0 0;
+}
+
+/**
  *  Выпадающее меню (контекстное)
 */
 .context-menu {

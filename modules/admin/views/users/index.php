@@ -13,23 +13,27 @@ $this->title = 'Список пользователей';
 $this->params['breadcrumbs'][] = strip_tags($this->title);?>
 
 <div class="row">
-    <div class="col-md-3">
-        <a href="<?="/admin/{$this->context->id}/add"?>" class="add-new-item ">
-            <span>
-                <span class="fa fa-plus"></span> Добавить нового пользователя
-            </span>
-        </a>
-    </div><!--.col-md-3-->
-
     <div class="col-md-9">
+        <div class="row">
+            <div class="col-md-3">
+                <a href="<?="/admin/{$this->context->id}/add"?>" class="add-new-item ">
+                    <span>
+                        <span class="fa fa-plus"></span> Добавить нового пользователя
+                    </span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12">
         <?php if($users):?>
             <div class="box box-primary" id="user-list">
                 <div class="box-body" style="padding: 0">
                     <table class="table table-hover table-striped">
                         <thead>
                             <tr style="background: #3c8dbc; color: #fff; font-size: 11px;">
-                                <th align="center" width="42">ID</th>
-                                <th width="48">Фото</th>
+                                <th width="80">ID</th>
+                                <th width="90">Фото</th>
                                 <th width="20%">ФИО</th>
                                 <th>E-mail</th>
                                 <th>Телефон</th>
@@ -42,8 +46,8 @@ $this->params['breadcrumbs'][] = strip_tags($this->title);?>
                         <tbody>
                             <?foreach($users as $user):?>
                                 <tr>
-                                    <td align="center"><a href="<?="/admin/{$this->context->id}/{$user->user_id}";?>"><?=$user->user_id?></a></td>
-                                    <td align="center">
+                                    <td><a href="<?="/admin/{$this->context->id}/{$user->user_id}";?>"><?=$user->user_id?></a></td>
+                                    <td>
                                         <img width="32" height="32" class="img-circle img-bordered-sm" src="<?=$user->user_photo ? $user->user_photo : '/dist/img/guest.jpg';?>"/>
                                     </td>
                                     <td>

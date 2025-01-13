@@ -10,7 +10,7 @@ use yii\data\Pagination;
 use yii\web\Controller;
 use yii\web\HttpException;
 
-class UsersController extends Controller {
+class UsersController extends AdminController {
 
     public function actionIndex() {
         $pageSize = 36;

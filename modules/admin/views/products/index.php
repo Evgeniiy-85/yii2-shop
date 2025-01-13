@@ -1,19 +1,26 @@
 <?php
-use yii\widgets\ActiveForm;?>
+use yii\widgets\ActiveForm;
+
+$this->title = 'Список продуктов';
+$this->params['breadcrumbs'][] = strip_tags($this->title);?>
 
 <div class="row product-list">
-    <div class="col-md-3">
-        <a href="<?="/admin/{$this->context->id}/add"?>" class="add-new-item ">
-            <span>
-                <span class="fa fa-plus"></span> Добавить новый продукт
-            </span>
-        </a>
-    </div><!--.col-md-3-->
+    <div class="col-md-9">
+        <div class="row">
+            <div class="col-md-3">
+                <a href="<?="/admin/{$this->context->id}/add"?>" class="add-new-item ">
+                    <span>
+                        <span class="fa fa-plus"></span> Добавить новый продукт
+                    </span>
+                </a>
+            </div>
+        </div>
+    </div>
 
     <div class="col-md-9">
         <?php if($products):
             foreach ($products as $product):?>
-                <div class="col-lg-2 col-xs-12 col-sm-6 col-md-4 col-xl-3">
+                <div class="col-lg-3 col-xs-12 col-sm-6 col-md-4 col-xl-3">
                     <div class="box box-primary box-product">
                         <div class="box-body row">
                             <div class="col-xs-12">

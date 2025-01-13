@@ -46,7 +46,7 @@
                         'icon' => 'share',
                         'url' => '#',
                         'items' => [
-                            ['label' => 'Список пользователей', 'icon' => 'file-code-o', 'url' => ['/admin/users'],],
+                            ['label' => 'Список пользователей', 'icon' => 'male', 'url' => ['/admin/users'],],
                             ['label' => 'Группы', 'icon' => 'file-code-o', 'url' => ['/admin/users/groups'],],
                             ['label' => 'Подписки', 'icon' => 'file-code-o', 'url' => ['/admin/users/members'],],
                             [

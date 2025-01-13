@@ -10,7 +10,8 @@ class Users extends ActiveRecord {
     use ModelExtentions;
 
     const ROLE_USER = 1;
-    const ROLE_ADMIN = 2;
+    const ROLE_MANAGER = 2;
+    const ROLE_ADMIN = 3;
 
     const STATUS_OFF = 0;
     const STATUS_ACTIVE = 1;
@@ -74,8 +75,22 @@ class Users extends ActiveRecord {
         return false;
     }
 
+    /**
+     * @param $insert
+     * @param $changedAttributes
+     * @return void
+     */
     public function afterSave($insert, $changedAttributes) {
         $this->user_password = '';
         parent::afterSave($insert, $changedAttributes);
+    }
+
+
+    public static function getRoles() {
+        return [
+            self::ROLE_USER => 'Пользователь',
+            self::ROLE_MANAGER => 'Менеджер',
+            self::ROLE_ADMIN => 'Админ',
+        ];
     }
 }
