@@ -9,8 +9,7 @@ use Yii;
 /**
  * Default controller for the `admin` module
  */
-class AdminController extends Controller
-{
+class AdminController extends Controller {
 
     /**
      * @param $action

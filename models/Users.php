@@ -5,8 +5,9 @@ namespace app\models;
 use app\components\Helpers;
 use app\modules\admin\models\ModelExtentions;
 use yii\db\ActiveRecord;
+use yii\web\IdentityInterface;
 
-class Users extends ActiveRecord {
+class Users extends ActiveRecord implements IdentityInterface {
     use ModelExtentions;
 
     const ROLE_USER = 1;
@@ -83,11 +84,57 @@ class Users extends ActiveRecord {
     }
 
 
+    /**
+     * @param $email
+     * @return Users|null
+     */
+    public static function findByEmail($email) {
+        return static::findOne(['user_email' => $email, 'user_status' => self::STATUS_ACTIVE]);
+    }
+
+
     public static function getRoles() {
         return [
             self::ROLE_USER => 'Пользователь',
             self::ROLE_MANAGER => 'Менеджер',
             self::ROLE_ADMIN => 'Админ',
         ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function findIdentity($id) {
+        $user = self::findOne(['user_id' => $id, 'status' => self::STATUS_ACTIVE]);
+
+        return $user;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function findIdentityByAccessToken($token, $type = null) {
+        return self::findOne(['auth_key' => $token, 'status' => self::STATUS_ACTIVE]);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getId() {
+        return $this->user_id;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getAuthKey() {
+        return $this->authKey;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function validateAuthKey($authKey) {
+        return $this->authKey === $authKey;
     }
 }
