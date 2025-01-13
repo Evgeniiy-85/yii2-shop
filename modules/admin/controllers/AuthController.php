@@ -1,6 +1,7 @@
 <?php
 namespace app\modules\admin\controllers;
 
+use app\models\Users;
 use Yii;
 use yii\web\Controller;
 use app\modules\admin\models\LoginForm;
@@ -10,23 +11,17 @@ class AuthController extends Controller {
     public function actionLogin() {
         $this->layout = 'main-login';
         $model = new LoginForm();
-        /*
-         * Если пришли post-данные, загружаем их в модель...
-         */
-        if ($model->load(Yii::$app->request->post())) {
-            // ...и проверяем эти данные
-            if ($model->validate()) {
-                // данные корректные, пробуем авторизовать
-                if (Yii::$app->params['adminEmail'] == $model->email
-                    && Yii::$app->params['adminPassword'] == $model->password) {
-                    LoginForm::login();
-                    return $this->redirect('/admin');
-                } else {
-                    return $this->refresh();
-                }
+        if ($model->load($post = Yii::$app->request->post()) && $model->validate()) {
+            $user = Users::find()->where(['user_email' => $model->email])->one();
+            if (!$user || !password_verify($model->password, $user['user_password_hash'])) {
+                return $this->refresh();
             }
+
+            LoginForm::login();
+            return $this->redirect('/admin');
         }
-        return $this->render('login', ['model' => $model]);;
+
+        return $this->render('login', ['model' => $model]);
     }
 
     public function actionLogout() {

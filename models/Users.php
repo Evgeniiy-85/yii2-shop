@@ -16,6 +16,7 @@ class Users extends ActiveRecord {
     const STATUS_OFF = 0;
     const STATUS_ACTIVE = 1;
 
+    public $user_password;
 
     /**
      * @inheritdoc
@@ -50,7 +51,6 @@ class Users extends ActiveRecord {
 
     public function afterFind() {
         parent::afterFind();
-        $this->user_password = '';
     }
 
     /**
@@ -59,9 +59,7 @@ class Users extends ActiveRecord {
      */
     public function beforeSave($insert) {
         if ($this->user_password) {
-            $this->user_password = password_hash($this->user_password, PASSWORD_DEFAULT);
-        } else {
-            $this->user_password = $this->getOldAttribute('user_password');
+            $this->user_password_hash = password_hash($this->user_password, PASSWORD_DEFAULT);
         }
 
         if (!$this->user_id) {
@@ -81,7 +79,6 @@ class Users extends ActiveRecord {
      * @return void
      */
     public function afterSave($insert, $changedAttributes) {
-        $this->user_password = '';
         parent::afterSave($insert, $changedAttributes);
     }
 

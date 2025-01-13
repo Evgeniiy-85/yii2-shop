@@ -8,20 +8,12 @@ class LoginForm extends Model {
 
     public $email;
     public $password;
+    public $password_hash;
 
     public function rules() {
         return [
-            // удалим случайные пробелы для двух полей
             [['email', 'password'], 'trim'],
-            // email и пароль обязательны для заполнения
-            [
-                ['email', 'password'],
-                'required',
-                'message' => 'Это поле обязательно для заполнения'
-            ],
-            // поле email должно быть адресом почты
-            ['email', 'email'],
-            // пароль не может быть короче 12 символов
+            [['email', 'password'], 'required','message' => 'Это поле обязательно для заполнения'],
             [['password'], 'string', 'min' => 6],
         ];
     }
@@ -45,5 +37,14 @@ class LoginForm extends Model {
         if ($session->has('auth_site_admin')) {
             $session->remove('auth_site_admin');
         }
+    }
+
+
+    /**
+     * @return void
+     */
+    public function afterValidate() {
+        parent::afterValidate();
+        $this->password_hash = password_hash($this->password, PASSWORD_DEFAULT);
     }
 }

@@ -29,7 +29,11 @@ $this->params['breadcrumbs'][] = strip_tags($this->title);?>
                                 </h4>
 
                                 <a class="product-card_cover" href="/admin/products/<?=$product['prod_id'];?>">
-                                    <img src="/images/product/<?=$product['prod_image'];?>";?>
+                                    <?if($product['prod_image']):?>
+                                        <img src="/images/product/<?=$product['prod_image'];?>";?>
+                                    <?else:?>
+                                        <span class="fa fa-file-image-o" style="font-size: 100px; padding: 24px 0"></span>
+                                    <?endif;?>
                                 </a>
 
                                 <div style="white-space: normal;"> </div>

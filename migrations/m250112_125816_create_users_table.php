@@ -29,7 +29,7 @@ class m250112_125816_create_users_table extends Migration
                 'user_photo' => $this->string(),
                 'user_role' => $this->integer()->notNull()->defaultValue(\app\models\Users::ROLE_USER),
                 'user_auth_key' => $this->string(),
-                'user_password' => $this->string()->notNull(),
+                'user_password_hash' => $this->string()->notNull(),
                 'user_status' => $this->integer()->notNull()->defaultValue(\app\models\Users::STATUS_ACTIVE),
                 'user_create_date' => $this->integer()->notNull(),
                 'user_last_visit_date' => $this->integer(),
