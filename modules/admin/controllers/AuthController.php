@@ -13,19 +13,15 @@ class AuthController extends Controller {
         $this->layout = 'main-login';
         $model = new LoginForm();
 
-        if ($model->load(Yii::$app->request->post())) {
-            if ($model->login()) {
-                return $this->redirect('/admin');
-            }
-
-            return $this->refresh();
+        if ($model->load(Yii::$app->request->post()) && $model->login()) {
+            return $this->redirect('/admin');
         }
 
         return $this->render('login', ['model' => $model]);
     }
 
     public function actionLogout() {
-        LoginForm::logout();
+        Yii::$app->user->logout();
         return $this->redirect('/admin/auth/login');
     }
 }

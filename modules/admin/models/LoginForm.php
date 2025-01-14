@@ -2,7 +2,6 @@
 namespace app\modules\admin\models;
 
 use app\models\Users;
-use common\models\User;
 use Yii;
 use yii\base\Model;
 
@@ -12,7 +11,7 @@ class LoginForm extends Model {
     public $password;
     public $password_hash;
     public $_user;
-    public $remember_me;
+    public $rememberMe;
 
     public function rules() {
         return [
@@ -35,14 +34,7 @@ class LoginForm extends Model {
      */
     public function login() {
         if ($this->validate()) {
-            $user = $this->getUser();
-            if ($user && $user['user_role'] == Users::ROLE_ADMIN) {
-                $session = Yii::$app->session;
-                $session->open();
-                $session->set('auth_site_admin', true);
-                
-                return Yii::$app->user->login($user, $this->remember_me ? 3600*24*30 : 0);
-            }
+            return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600*24*30 : 0);
         }
 
         return false;

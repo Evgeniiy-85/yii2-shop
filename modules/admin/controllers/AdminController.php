@@ -12,27 +12,27 @@ use Yii;
 class AdminController extends Controller {
 
     /**
-     * @param $action
-     * @return bool
-     * @throws \yii\web\BadRequestHttpException
+     * {@inheritdoc}
      */
-    public function beforeAction($action) {
-        $session = Yii::$app->session;
-        $session->open();
-
-        if (!$session->has('auth_site_admin')) {
-            $this->redirect('/admin/auth/login');
-            return false;
-        }
-
-        return parent::beforeAction($action);
+    public function behaviors() {
+        return [
+            'access' => [
+                'class' => AccessControl::class,
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['admin'],
+                    ],
+                ],
+            ],
+        ];
     }
 
-
     /**
-     * @return array[]
+     * {@inheritdoc}
      */
-    public function actions() {
+    public function actions()
+    {
         return [
             'error' => [
                 'class' => 'yii\web\ErrorAction',
@@ -40,13 +40,21 @@ class AdminController extends Controller {
         ];
     }
 
+    /**
+     * @param $action
+     * @return bool
+     * @throws \yii\web\BadRequestHttpException
+     */
+    public function beforeAction($action) {
+        return parent::beforeAction($action);
+    }
+
 
     /**
      * Renders the index view for the module
      * @return string
      */
-    public function actionIndex()
-    {
+    public function actionIndex() {
         return $this->render('index');
     }
 }

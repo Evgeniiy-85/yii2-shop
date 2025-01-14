@@ -15,16 +15,24 @@ $config = [
     'defaultRoute' => 'products/catalog',
     'components' => [
         'request' => [
-            // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
+            'csrfParam' => '_csrf-yii2_shop',
             'cookieValidationKey' => '2P8R7szlWv_lN7mgDMFRnS7hfLcharV5',
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
         'user' => [
-            'identityClass' => 'app\models\User',
+            'identityClass' => 'app\models\Users',
             'enableAutoLogin' => true,
-            'loginUrl' => ['login'],
+            'loginUrl' => '/admin/auth/login',
+            'identityCookie' => [
+                'name' => "_identity-yii2_shop",
+                'httpOnly' => true,
+            ],
+        ],
+        'session' => [
+            // this is the name of the session cookie used for login on the backend
+            'name' => "advanced-yii2_shop",
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
@@ -64,6 +72,9 @@ $config = [
                 ],
             ],
         ],
+        'authManager' => [
+            'class' => 'app\components\AuthManager'
+        ],
     ],
     'controllerMap' => [
         'users' => [ // Fixture generation command line.
@@ -75,7 +86,7 @@ $config = [
         'admin' => [
             'class' => 'app\modules\admin\Module',
             'layout' => 'main'
-        ]
+        ],
     ]
 ];
 
