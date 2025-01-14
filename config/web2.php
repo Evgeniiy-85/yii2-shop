@@ -11,10 +11,12 @@ $config = [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
     ],
+    //'layout' => '',
     'defaultRoute' => 'products/index',
     'components' => [
         'request' => [
-            'cookieValidationKey' => '2P8R7szlWv_lN7mgDMFRnS7hfLcharV5',
+            // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
+            'cookieValidationKey' => 'NgvARQw40rQ804NENLP0d2HsRzU1-PKd',
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
@@ -27,10 +29,9 @@ $config = [
             'errorAction' => 'site/error',
         ],
         'mailer' => [
-            'class' => 'yii\swiftmailer\Mailer',
-            // send all mails to a file by default. You have to set
-            // 'useFileTransport' to false and configure transport
-            // for the mailer to send real emails.
+            'class' => \yii\symfonymailer\Mailer::class,
+            'viewPath' => '@app/mail',
+            // send all mails to a file by default.
             'useFileTransport' => true,
         ],
         'log' => [
@@ -47,37 +48,14 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [ // переопределение контроллеров для страниц
-                '/admin' => 'admin/admin',
-                '/catalog' => 'products',
-                '/products/<alias:>' => 'products/product',
-                '/admin/products/<ID:\d+>' => 'admin/products/edit',
-                '/admin/users/<ID:\d+>' => 'admin/users/edit',
-                '/login' => 'site/login',
-            ],
-        ],
-        'assetManager' => [
-            'bundles' => [
-                'dmstr\web\AdminLteAsset' => [
-                    'skin' => 'skin-blue',
+                [
+                    'pattern' => "/catalog",
+                    'route' => 'products/catalog'
                 ],
             ],
         ],
-        'authManager' => [
-            'class' => 'app\components\AuthManager'
-        ],
-    ],
-    'controllerMap' => [
-        'users' => [ // Fixture generation command line.
-            'class' => 'app\controllers\backend\UsersController',
-        ],
     ],
     'params' => $params,
-    'modules' => [
-        'admin' => [
-            'class' => 'app\modules\admin\Module',
-            'layout' => 'main'
-        ],
-    ]
 ];
 
 if (YII_ENV_DEV) {

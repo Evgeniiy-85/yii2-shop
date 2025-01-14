@@ -6,14 +6,12 @@ use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
 use Yii;
+
 /**
  * Default controller for the `admin` module
  */
 class AdminController extends Controller {
 
-    /**
-     * {@inheritdoc}
-     */
     public function behaviors() {
         return [
             'access' => [
@@ -21,9 +19,15 @@ class AdminController extends Controller {
                 'rules' => [
                     [
                         'allow' => true,
-                        'roles' => ['admin'],
-                    ],
-                ],
+                        'roles' => [
+                            'admin', '@'
+                        ],
+                        'denyCallback' => function ($rule, $action) {
+                            return $this->redirect([
+                                'site/login'
+                            ]);
+                        }]
+                ]
             ],
         ];
     }
@@ -47,6 +51,10 @@ class AdminController extends Controller {
      */
     public function beforeAction($action) {
         return parent::beforeAction($action);
+    }
+
+    public function afterAction($action, $result){
+        return parent::afterAction($action, $result);
     }
 
 

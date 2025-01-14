@@ -52,7 +52,6 @@ class Users extends ActiveRecord implements IdentityInterface {
         ];
     }
 
-
     public function afterFind() {
         parent::afterFind();
     }
@@ -77,12 +76,6 @@ class Users extends ActiveRecord implements IdentityInterface {
         return false;
     }
 
-    /**
-     * @inheritdoc
-     */
-    public static function tableName() {
-        return '{{%users}}';
-    }
     /**
      * @inheritdoc
      */
@@ -143,8 +136,7 @@ class Users extends ActiveRecord implements IdentityInterface {
     }
 
 
-    public function setRole($name)
-    {
+    public function setRole($name) {
         $auth = Yii::$app->authManager;
 
         if (!empty($name)) {
@@ -163,20 +155,17 @@ class Users extends ActiveRecord implements IdentityInterface {
         }
     }
 
-    public function getRole()
-    {
+    public function getRole() {
         $auth = Yii::$app->authManager;
         $roles = $auth->getRolesByUser($this->id);
         return !empty($roles) ? array_keys($roles)[0] : null;
     }
 
-    public static function getRoleList()
-    {
+    public static function getRoleList() {
         $data = Yii::$app->authManager->getRoles();
         $roles = ArrayHelper::getColumn($data, 'description');
         return $roles;
     }
-
 
     /**
      * @param $email
@@ -186,6 +175,13 @@ class Users extends ActiveRecord implements IdentityInterface {
         return static::findOne(['user_email' => $email, 'user_status' => self::STATUS_ACTIVE]);
     }
 
+    /**
+     * @param $username
+     * @return Users|null
+     */
+    public static function findByUsername($username) {
+        return Users::findOne(['user_name' => $username, 'user_status' => Users::STATUS_ACTIVE]);
+    }
 
     public static function getRoles() {
         return [
@@ -213,20 +209,28 @@ class Users extends ActiveRecord implements IdentityInterface {
      * {@inheritdoc}
      */
     public function getId() {
-        return $this->user_id;
+        return $this->primaryKey;
     }
 
     /**
      * {@inheritdoc}
      */
     public function getAuthKey() {
-        return $this->authKey;
+        return '';
     }
 
     /**
      * {@inheritdoc}
      */
     public function validateAuthKey($authKey) {
-        return $this->authKey === $authKey;
+        return true;
+    }
+
+    /**
+     * @param $password
+     * @return bool
+     */
+    public function validatePassword($password) {
+        return Yii::$app->security->validatePassword($password, $this->user_password_hash);
     }
 }
