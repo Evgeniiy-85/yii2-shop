@@ -8,6 +8,7 @@
 namespace app\assets;
 
 use yii\web\AssetBundle;
+use Yii;
 
 /**
  * Main application asset bundle.
@@ -17,17 +18,17 @@ use yii\web\AssetBundle;
  */
 class AdminLtePluginAsset extends AssetBundle
 {
-    public $sourcePath = '@vendor/almasaeed2010/adminlte/plugins';
+    public $publishedRes;
+
+    public $sourcePath = '@vendor/almasaeed2010/adminlte/dist';
     public $js = [
-        'datatables/dataTables.bootstrap.min.js',
         '/js/admin/main.js',
     ];
     public $css = [
-        'datatables/dataTables.bootstrap.css',
+        'https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback)',
         '/css/admin/main.css',
-        // more plugin CSS here
     ];
     public $depends = [
-        'dmstr\web\AdminLteAsset',
+        '\hail812\adminlte3\assets\AdminLteAsset'
     ];
 }

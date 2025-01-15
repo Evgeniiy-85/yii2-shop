@@ -27,8 +27,8 @@ $this->params['breadcrumbs'][] = strip_tags($this->title);?>
 
     <div class="col-md-12">
         <?php if($users):?>
-            <div class="box box-primary" id="user-list">
-                <div class="box-body" style="padding: 0">
+            <div class="box card-primary" id="user-list">
+                <div class="card-body" style="padding: 0">
                     <table class="table table-hover table-striped">
                         <thead>
                             <tr style="background: #3c8dbc; color: #fff; font-size: 11px;">
@@ -77,7 +77,7 @@ $this->params['breadcrumbs'][] = strip_tags($this->title);?>
                                                 'href' => "/admin/{$this->context->id}/delete/{$user->user_id}",
                                                 'onclick' => 'return confirm(\'Точно удалить?\')',
                                             ]
-                                        ], ['class' => 'pull-right'])?>
+                                        ], ['class' => 'float-right'])?>
                                     </td>
                                 </tr>
                             <?php endforeach;?>

@@ -55,13 +55,6 @@ $config = [
                 '/login' => 'site/login',
             ],
         ],
-        'assetManager' => [
-            'bundles' => [
-                'dmstr\web\AdminLteAsset' => [
-                    'skin' => 'skin-blue',
-                ],
-            ],
-        ],
         'authManager' => [
             'class' => 'yii\rbac\DbManager'
         ],

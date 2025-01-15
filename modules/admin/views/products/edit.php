@@ -9,10 +9,10 @@ $this->params['breadcrumbs'][] = strip_tags($this->title);?>
 <?=$model->showNotices();?>
 
 <div class="row">
-    <div class="col-xs-4">
-        <div class="box box-primary">
-            <div class="box-header with-border">
-                <h3 class="box-title">Редактировать продукт</h3>
+    <div class="col-md-5">
+        <div class="box card-primary">
+            <div class="card-header with-border">
+                <h3 class="card-title">Редактировать продукт</h3>
             </div>
 
             <?$form = ActiveForm::begin([
@@ -23,7 +23,7 @@ $this->params['breadcrumbs'][] = strip_tags($this->title);?>
                 ]
             ]);?>
 
-            <div class="box-body">
+            <div class="card-body">
                 <?= $form->field($model, 'prod_title')->input('text'); ?>
                 <?= $form->field($model, 'prod_alias')->input('text'); ?>
                 <?= $form->field($model, 'prod_image')->input('text'); ?>
@@ -31,8 +31,8 @@ $this->params['breadcrumbs'][] = strip_tags($this->title);?>
                 <?=Html::activeInput('hidden', $model, 'prod_id');?>
             </div>
 
-            <div class="box-footer">
-                <?= Html::submitButton('Сохранить', ['class' => 'btn btn-primary pull-right', 'name' => 'save']) ?>
+            <div class="card-footer">
+                <?= Html::submitButton('Сохранить', ['class' => 'btn btn-primary float-right', 'name' => 'save']) ?>
             </div>
 
             <?ActiveForm::end();?>

@@ -158,7 +158,7 @@ use yii\helpers\Html;
                                     <a href="#">
                                         <h3>
                                             Design some buttons
-                                            <small class="pull-right">20%</small>
+                                            <small class="float-right">20%</small>
                                         </h3>
                                         <div class="progress xs">
                                             <div class="progress-bar progress-bar-aqua" style="width: 20%"
@@ -174,7 +174,7 @@ use yii\helpers\Html;
                                     <a href="#">
                                         <h3>
                                             Create a nice theme
-                                            <small class="pull-right">40%</small>
+                                            <small class="float-right">40%</small>
                                         </h3>
                                         <div class="progress xs">
                                             <div class="progress-bar progress-bar-green" style="width: 40%"
@@ -190,7 +190,7 @@ use yii\helpers\Html;
                                     <a href="#">
                                         <h3>
                                             Some task I need to do
-                                            <small class="pull-right">60%</small>
+                                            <small class="float-right">60%</small>
                                         </h3>
                                         <div class="progress xs">
                                             <div class="progress-bar progress-bar-red" style="width: 60%"
@@ -206,7 +206,7 @@ use yii\helpers\Html;
                                     <a href="#">
                                         <h3>
                                             Make beautiful transitions
-                                            <small class="pull-right">80%</small>
+                                            <small class="float-right">80%</small>
                                         </h3>
                                         <div class="progress xs">
                                             <div class="progress-bar progress-bar-yellow" style="width: 80%"
@@ -245,13 +245,13 @@ use yii\helpers\Html;
                         </li>
                         <!-- Menu Body -->
                         <li class="user-body">
-                            <div class="col-xs-4 text-center">
+                            <div class="col-md-6 text-center">
                                 <a href="#">Followers</a>
                             </div>
-                            <div class="col-xs-4 text-center">
+                            <div class="col-md-6 text-center">
                                 <a href="#">Sales</a>
                             </div>
-                            <div class="col-xs-4 text-center">
+                            <div class="col-md-6 text-center">
                                 <a href="#">Friends</a>
                             </div>
                         </li>
@@ -260,7 +260,7 @@ use yii\helpers\Html;
                             <div class="pull-left">
                                 <a href="#" class="btn btn-default btn-flat">Profile</a>
                             </div>
-                            <div class="pull-right">
+                            <div class="float-right">
                                 <?= Html::a(
                                     'Выход',
                                     ['/admin/auth/logout'],

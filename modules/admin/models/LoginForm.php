@@ -9,6 +9,7 @@ class LoginForm extends Model {
 
     public $email;
     public $password;
+    public $username;
     public $password_hash;
     public $_user;
     public $rememberMe;
