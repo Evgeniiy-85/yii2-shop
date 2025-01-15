@@ -27,7 +27,7 @@ $this->params['breadcrumbs'][] = strip_tags($this->title);?>
 
     <div class="col-md-12">
         <?php if($users):?>
-            <div class="box card-primary" id="user-list">
+            <div class="card card-primary" id="user-list">
                 <div class="card-body" style="padding: 0">
                     <table class="table table-hover table-striped">
                         <thead>
