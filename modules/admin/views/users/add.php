@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = strip_tags($this->title);?>
 
                 <?= $form
                     ->field($model, "user_role")
-                    ->dropDownList(Users::getRoles(), ['class' => 'form-control',]);
+                    ->dropDownList($model->getRoles(), ['class' => 'form-control',]);
                 ?>
                 <?= $form->field($model, 'user_password')->input('text'); ?>
                 <?= $form->field($model, 'user_status')->input('number'); ?>

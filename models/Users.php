@@ -2,25 +2,38 @@
 
 namespace app\models;
 
-use app\components\Helpers;
 use app\modules\admin\models\ModelExtentions;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
 use Yii;
-use yii\helpers\ArrayHelper;
+
+
+/**
+ * User model
+ * @property integer $user_id
+ * @property integer $user_status
+ * @property integer $user_create_date
+ * @property integer $user_last_visit_date
+ * @property string $user_email
+ * @property string $user_surname
+ * @property string $user_patronymic
+ * @property string $user_phone
+ * @property string $user_photo
+ * @property string $user_name
+ * @property integer $created_at
+ * @property string $user_auth_key
+ * @property string $user_password_hash
+ */
 class Users extends ActiveRecord implements IdentityInterface {
     use ModelExtentions;
-
-    const ROLE_USER = 1;
-    const ROLE_MANAGER = 2;
-    const ROLE_ADMIN = 3;
 
     const STATUS_OFF = 0;
     const STATUS_ACTIVE = 1;
 
     public $user_password;
-    private $user_id;
+    public $updated_at;
+    public $user_role;
 
     /**
      * @inheritdoc
@@ -28,8 +41,8 @@ class Users extends ActiveRecord implements IdentityInterface {
     public function rules() {
         return [
             [['user_email', 'user_name', 'user_status', 'user_status','user_role'], 'required'],
-            [['user_email', 'user_name','user_surname','user_patronymic', 'user_phone','user_photo','user_auth_key','user_password'], 'string'],
-            [['user_role', 'user_status', 'user_status','user_role'], 'integer'],
+            [['user_email', 'user_name','user_surname','user_patronymic', 'user_phone','user_photo','user_auth_key','user_password','user_role'], 'string'],
+            [['user_status', 'user_status'], 'integer'],
             [['user_email', 'user_name','user_patronymic','user_phone','user_password'], 'trim'],
         ];
     }
@@ -52,8 +65,12 @@ class Users extends ActiveRecord implements IdentityInterface {
         ];
     }
 
+    /**
+     * @return void
+     */
     public function afterFind() {
         parent::afterFind();
+        $this->user_role = $this->getUserRoleName();
     }
 
     /**
@@ -79,14 +96,10 @@ class Users extends ActiveRecord implements IdentityInterface {
     /**
      * @inheritdoc
      */
-    public function behaviors()
-    {
+    public function behaviors() {
         return [
             TimestampBehavior::className(),
         ];
-    }
-    public function init(){
-        // $this->on($this::EVENT_AFTER_LOGIN, [$this, 'afterLogin']);
     }
 
     /**
@@ -102,69 +115,83 @@ class Users extends ActiveRecord implements IdentityInterface {
 
 
     /**
-     * @return true|\yii\rbac\Assignment
+     * @param $role_name
+     * @param $user_id
+     * @return false|\yii\rbac\Assignment
+     * @throws \Exception
+     */
+    public static function setNewRole($role_name, $user_id) {
+        $auth = Yii::$app->authManager;
+        $auth->revokeAll($user_id);
+        $role = $auth->getRole($role_name);
+
+        return $role ? $auth->assign($role, $user_id) : false;
+    }
+
+
+    /**
+     * @return bool|\yii\rbac\Assignment
      * @throws \Exception
      */
     public function saveRole() {
-        $role = null;
-
-        switch ($this->user_role) {
-            case self::ROLE_MANAGER:
-                $role = Yii::$app->authManager->getRole('manager');
-                if (!$role) {
-                    $role = Yii::$app->authManager->createRole('manager');
-                    $role->description = 'Менеджер';
-                    Yii::$app->authManager->add($role);
-                }
-                break;
-            case self::ROLE_ADMIN:
-                $role = Yii::$app->authManager->getRole('admin');
-                if (!$role) {
-                    $role = Yii::$app->authManager->createRole('admin');
-                    $role->description = 'Администратор';
-                    Yii::$app->authManager->add($role);
-                }
-                break;
-        }
-
-        Yii::$app->authManager->revokeAll($this->user_id);
-        if ($role) {
-            return Yii::$app->authManager->assign($role, $this->user_id);
+        $role_name = $this->getUserRoleName();
+        if ($role_name !== $this->user_role) {
+            return self::setNewRole($this->user_role, $this->user_id);
         }
 
         return true;
     }
 
-
-    public function setRole($name) {
+    /**
+     * @return false|mixed|null
+     */
+    public function getUserRole() {
         $auth = Yii::$app->authManager;
+        $roles = $auth->getRolesByUser($this->user_id);
 
-        if (!empty($name)) {
-            $userRoles = array_keys($auth->getRolesByUser($this->id));
-            if (!isset($userRoles[0]) || $userRoles[0] != $name) {
-                $role = $auth->getRole($name);
-                $event = $this->getIsNewRecord() ? self::EVENT_AFTER_INSERT : self::EVENT_AFTER_UPDATE;
+        return $roles ? array_shift($roles) : false;
+    }
 
-                $this->on($event, function () use ($auth, $role) {
-                    $auth->revokeAll($this->id);
-                    $auth->assign($role, $this->id);
-                });
+    /**
+     * @return string
+     */
+    public function getUserRoleName() {
+        $role = $this->getUserRole();
+        return $role ? $role->name : '';
+    }
+
+    /**
+     * @return array
+     */
+    public function getRoles() {
+        $roles = [];
+        if ($_roles = Yii::$app->authManager->getRoles()) {
+            foreach ($_roles as $role) {
+                $roles[$role->name] = $role->description;
             }
-        } elseif ($this->getIsNewRecord() === false) {
-            $auth->revokeAll($this->id);
         }
-    }
 
-    public function getRole() {
-        $auth = Yii::$app->authManager;
-        $roles = $auth->getRolesByUser($this->id);
-        return !empty($roles) ? array_keys($roles)[0] : null;
-    }
-
-    public static function getRoleList() {
-        $data = Yii::$app->authManager->getRoles();
-        $roles = ArrayHelper::getColumn($data, 'description');
         return $roles;
+    }
+
+    /**
+     * @param $status
+     * @return int|int[]
+     */
+    public static function getStatuses($status = false) {
+        $statuses = [
+              self::STATUS_ACTIVE => 'Активен',
+              self::STATUS_OFF => 'Отключен',
+        ];
+
+        return $status ? $statuses[$status] : $statuses;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getId() {
+        return $this->primaryKey;
     }
 
     /**
@@ -183,14 +210,6 @@ class Users extends ActiveRecord implements IdentityInterface {
         return Users::findOne(['user_name' => $username, 'user_status' => Users::STATUS_ACTIVE]);
     }
 
-    public static function getRoles() {
-        return [
-            self::ROLE_USER => 'Пользователь',
-            self::ROLE_MANAGER => 'Менеджер',
-            self::ROLE_ADMIN => 'Админ',
-        ];
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -202,28 +221,21 @@ class Users extends ActiveRecord implements IdentityInterface {
      * {@inheritdoc}
      */
     public static function findIdentityByAccessToken($token, $type = null) {
-        return self::findOne(['auth_key' => $token, 'user_status' => self::STATUS_ACTIVE]);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getId() {
-        return $this->primaryKey;
+        return self::findOne(['user_auth_key' => $token, 'user_status' => self::STATUS_ACTIVE]);
     }
 
     /**
      * {@inheritdoc}
      */
     public function getAuthKey() {
-        return '';
+        return $this->user_auth_key;
     }
 
     /**
      * {@inheritdoc}
      */
     public function validateAuthKey($authKey) {
-        return true;
+        return $this->getAuthKey() === $authKey;
     }
 
     /**

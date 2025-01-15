@@ -14,21 +14,33 @@ class AdminController extends Controller {
 
     public function behaviors() {
         return [
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'delete' => ['post'],
+                ],
+            ],
             'access' => [
                 'class' => AccessControl::class,
                 'rules' => [
                     [
                         'allow' => true,
-                        'roles' => [
-                            'admin', '@'
-                        ],
-                        'denyCallback' => function ($rule, $action) {
-                            return $this->redirect([
-                                'site/login'
-                            ]);
-                        }]
+                        'roles' => ['admin', 'manager']
+                    ],
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                        'actions' => ['admin/auth/logout'],
+                    ],
+                    [
+                        'allow' => true,
+                        'roles' => ['?'],
+                        'matchCallback' => function ($rule, $action) {
+                            return $this->redirect(['/admin/auth/login'])->send();
+                        }
+                    ]
                 ]
-            ],
+            ]
         ];
     }
 

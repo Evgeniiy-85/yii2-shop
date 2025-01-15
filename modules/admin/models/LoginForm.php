@@ -40,14 +40,6 @@ class LoginForm extends Model {
         return false;
     }
 
-    public static function logout() {
-        $session = Yii::$app->session;
-        $session->open();
-        if ($session->has('auth_site_admin')) {
-            $session->remove('auth_site_admin');
-        }
-    }
-
 
     /**
      * @return Users|null

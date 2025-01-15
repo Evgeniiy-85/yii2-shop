@@ -27,7 +27,7 @@ class m250112_125816_create_users_table extends Migration
                 'user_patronymic' => $this->string(),
                 'user_phone' => $this->string(),
                 'user_photo' => $this->string(),
-                'user_role' => $this->integer()->notNull()->defaultValue(\app\models\Users::ROLE_USER),
+                'created_at' => $this->integer(),
                 'user_auth_key' => $this->string(),
                 'user_password_hash' => $this->string()->notNull(),
                 'user_status' => $this->integer()->notNull()->defaultValue(\app\models\Users::STATUS_ACTIVE),
