@@ -3,9 +3,7 @@
 namespace app\modules\admin\controllers;
 
 use app\models\Products;
-use yii\filters\AccessControl;
-use yii\filters\VerbFilter;
-use yii\web\Controller;
+use app\modules\admin\models\ProductsFilter;
 use yii\data\Pagination;
 use Yii;
 use yii\web\HttpException;
@@ -22,6 +20,9 @@ class ProductsController extends AdminController {
             'totalCount' => $query->count()
         ]);
 
+        $filter = new ProductsFilter();
+        $filter->add($query);
+
         $query
             ->orderBy(['prod_id' => SORT_DESC])
             ->offset($pages->offset)
@@ -29,6 +30,7 @@ class ProductsController extends AdminController {
 
         return $this->render('index', [
             'products' => $query->all(),
+            'filter' => $filter,
         ]);
     }
 

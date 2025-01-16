@@ -60,4 +60,17 @@ class Products extends ActiveRecord {
 
         return false;
     }
+
+    /**
+     * @param $status
+     * @return int|int[]
+     */
+    public static function getStatuses($status = false) {
+        $statuses = [
+            self::STATUS_DISABLED => 'Отключен',
+            self::STATUS_ACTIVE => 'Активен',
+        ];
+
+        return $status ? $statuses[$status] : $statuses;
+    }
 }

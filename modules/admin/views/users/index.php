@@ -1,13 +1,8 @@
 <?php
 
 /* @var $this yii\web\View */
-
-use yii\helpers\Html;
-use yii\widgets\ActiveForm;
-use yii\widgets\LinkPager;
-use app\components\UI;
 use app\components\Helpers;
-use app\models\Users;
+use app\components\UI;
 
 $this->title = 'Список пользователей';
 $this->params['breadcrumbs'][] = strip_tags($this->title);?>
@@ -15,56 +10,19 @@ $this->params['breadcrumbs'][] = strip_tags($this->title);?>
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-3">
-            <a href="<?="/admin/{$this->context->id}/add"?>" class="btn btn-block btn-default mb-3">
-                Добавить пользователя
+            <a href="<?="/admin/{$this->context->id}/add"?>" class="add-new-item mb-3">
+                <span>
+                    <span class="fa fa-plus"></span> Добавить пользователя
+                </span>
             </a>
         </div>
     </div>
 
     <div class="row">
         <div class="col-md-3">
-            <div class="card card-default">
-                <div class="card-header">
-                    <h3 class="card-title">Фильтр</h3>
-                </div>
-
-                <?$form = ActiveForm::begin([
-                    'id' => 'form-user',
-                    'action' => "/admin/{$this->context->id}",
-                    'options' => [
-                        'enctype' => 'multipart/form-data'
-                    ]
-                ]);?>
-
-                <div class="card-body">
-                    <?= $form->field($filter, 'user_email')->input('text'); ?>
-                    <?= $form->field($filter, 'full_name')->input('text'); ?>
-                    <?= $form
-                        ->field($filter, "user_role")
-                        ->dropDownList($filter->getRoles(), ['class' => 'form-control', 'prompt' => '-']);
-                    ?>
-                    <?= $form
-                        ->field($filter, "user_status")
-                        ->dropDownList(Users::getStatuses(), ['class' => 'form-control', 'prompt' => '-']);
-                    ?>
-                </div>
-
-                <div class="card-footer text-right">
-                    <div class="margin">
-                        <div class="btn-group">
-                            <a class="btn btn-default" href="/admin/users?reset_filter=1">
-                                <span class="fa fa-close"></span> Сбросить
-                            </a>
-                        </div>
-
-                        <div class="btn-group">
-                            <?= Html::submitButton('Применить', ['class' => 'btn btn-primary', 'name' => 'apply']) ?>
-                        </div>
-                    </div>
-
-                </div>
-                <?ActiveForm::end();?>
-            </div>
+            <?=$this->render('filter', [
+                'filter' => $filter,
+            ]);?>
         </div>
 
         <div class="col-md-9">
