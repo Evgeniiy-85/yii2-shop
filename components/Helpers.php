@@ -129,4 +129,31 @@ class Helpers extends Component {
 
         return $new_alias;
     }
+
+
+    /**
+     * @param $time
+     * @return false|string
+     */
+    public static function getDate($time) {
+        return $time ? date('d.m.Y H:i:s', $time) : '--';
+    }
+
+
+    /**
+     * @param $phrase
+     * @return array
+     */
+    public static function splitWords($phrase) {
+        $phrase = preg_replace('#\\s+#ui', ' ', $phrase);
+        $data = [];
+
+        foreach(explode(' ', $phrase) as $a){
+            if ($tpm = trim($a)) {
+                $data[] = $tpm;
+            }
+        }
+
+        return $data;
+    }
 }

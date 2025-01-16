@@ -5,6 +5,7 @@ namespace app\modules\admin\controllers;
 use app\models\LoginForm;
 use app\models\Products;
 use app\models\Users;
+use app\modules\admin\models\UsersFilter;
 use Yii;
 use yii\data\Pagination;
 use yii\web\Controller;
@@ -22,6 +23,9 @@ class UsersController extends AdminController {
             'totalCount' => $query->count()
         ]);
 
+        $filter = new UsersFilter();
+        $filter->add($query);
+
         $query
             ->orderBy(['user_id' => SORT_DESC])
             ->offset($pages->offset)
@@ -29,6 +33,7 @@ class UsersController extends AdminController {
 
         return $this->render('index', [
             'users' => $query->all(),
+            'filter' => $filter,
         ]);
     }
 

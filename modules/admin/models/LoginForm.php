@@ -19,6 +19,8 @@ class LoginForm extends Model {
             [['email', 'password'], 'trim'],
             [['email', 'password'], 'required','message' => 'Это поле обязательно для заполнения'],
             [['password'], 'string', 'min' => 6],
+            ['rememberMe', 'boolean'],
+            ['password', 'validatePassword'],
         ];
     }
 
@@ -27,6 +29,16 @@ class LoginForm extends Model {
             'username' => 'E-mail',
             'password' => 'Пароль',
         ];
+    }
+
+
+    public function validatePassword($attribute, $params) {
+        if (!$this->hasErrors()) {
+            $user = $this->getUser();
+            if (!$user || !$user->validatePassword($this->password)) {
+                $this->addError($attribute, 'Неверные логин или пароль');
+            }
+        }
     }
 
 
@@ -41,6 +53,21 @@ class LoginForm extends Model {
         return false;
     }
 
+
+    /**
+     * @param $token
+     * @return bool
+     */
+    public function loginByToken($token) {
+        $user = Users::findIdentityByAccessToken($token);
+        if (empty($user)) {
+            return false;
+        }
+
+        Yii::$app->user->logout();
+
+        return Yii::$app->user->login($user, 3600 * 24 * 30);
+    }
 
     /**
      * @return Users|null

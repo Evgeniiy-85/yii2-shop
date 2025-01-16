@@ -10,11 +10,13 @@ class AdminLteAsset extends AssetBundle
     public $css = [
         'css/adminlte.min.css',
         '/css/admin/main.css',
+        '/css/admin/AdminLTE_fonts.css?family=Source+Sans+Pro:300,400,400i,700&display=fallback'
     ];
 
     public $js = [
         'js/adminlte.min.js',
         '/js/admin/main.js',
+        '/assets/b7eb1763/control_sidebar.js'
     ];
 
     public $depends = [

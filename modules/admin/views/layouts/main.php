@@ -4,17 +4,11 @@
 /* @var $content string */
 
 use yii\helpers\Html;
-use app\assets\AdminLtePluginAsset;
-use app\assets\PluginAsset;
-PluginAsset::register($this);
+use app\assets\AdminLteAsset;
 
-
-\hail812\adminlte3\assets\PluginAsset::register($this)->add('sweetalert2');
+AdminLteAsset::register($this);
 \hail812\adminlte3\assets\FontAwesomeAsset::register($this);
-
-$assetDir = Yii::$app->assetManager->getPublishedUrl('@vendor/almasaeed2010/adminlte/dist');
-$publishedRes = Yii::$app->assetManager->publish('@vendor/hail812/yii2-adminlte3/src/web/js');
-$this->registerJsFile($publishedRes[1].'/control_sidebar.js', ['depends' => '\hail812\adminlte3\assets\AdminLteAsset']);?>
+$assetDir = Yii::$app->assetManager->getPublishedUrl('@vendor/almasaeed2010/adminlte/dist');?>
 
 <?php $this->beginPage() ?>
 <!DOCTYPE html>

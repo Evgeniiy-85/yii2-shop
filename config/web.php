@@ -59,11 +59,6 @@ $config = [
             'class' => 'yii\rbac\DbManager'
         ],
     ],
-    'controllerMap' => [
-        'users' => [ // Fixture generation command line.
-            'class' => 'app\controllers\backend\UsersController',
-        ],
-    ],
     'params' => $params,
     'modules' => [
         'admin' => [

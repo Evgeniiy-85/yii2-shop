@@ -31,13 +31,15 @@ $this->params['breadcrumbs'][] = strip_tags($this->title);?>
                     <?= $form->field($model, 'user_surname')->input('text'); ?>
                     <?= $form->field($model, 'user_patronymic')->input('text'); ?>
                     <?= $form->field($model, 'user_phone')->input('text'); ?>
-
                     <?= $form
                         ->field($model, "user_role")
                         ->dropDownList($model->getRoles(), ['class' => 'form-control',]);
                     ?>
                     <?= $form->field($model, 'user_password')->input('text'); ?>
-                    <?= $form->field($model, 'user_status')->input('number'); ?>
+                    <?= $form
+                        ->field($model, "user_status")
+                        ->dropDownList(Users::getStatuses(), ['class' => 'form-control']);
+                    ?>
                 </div>
 
                 <div class="card-footer">
