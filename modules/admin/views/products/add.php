@@ -14,7 +14,7 @@ $this->params['breadcrumbs'][] = strip_tags($this->title);?>
         <div class="col-md-5">
             <div class="card card-primary">
                 <div class="card-header with-border">
-                    <h3 class="card-title">Добавить продукт</h3>
+                    <h3 class="card-title">Новый продукт</h3>
                 </div>
 
                 <?$form = ActiveForm::begin([

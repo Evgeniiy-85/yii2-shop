@@ -1,7 +1,7 @@
 <?php
 use yii\widgets\ActiveForm;
 
-$this->title = 'Список продуктов';
+$this->title = 'Список категорий';
 $this->params['breadcrumbs'][] = strip_tags($this->title);?>
 
 <div class="container-fluid">

@@ -25,7 +25,7 @@ $categories = Categories::find()
         <div class="col-md-5">
             <div class="card card-primary">
                 <div class="card-header with-border">
-                    <h3 class="card-title">Добавить категорию</h3>
+                    <h3 class="card-title">Новая категория</h3>
                 </div>
 
                 <?$form = ActiveForm::begin([
