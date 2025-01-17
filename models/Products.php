@@ -13,10 +13,6 @@ class Products extends ActiveRecord {
 
     const STATUS_DISABLED = 0;
     const STATUS_ACTIVE = 1;
-    /**
-     * @var mixed|string
-     */
-    private $prod_image;
 
 
     /**
@@ -52,18 +48,18 @@ class Products extends ActiveRecord {
      * @return bool
      */
     public function beforeSave($insert) {
-        $files = new Files();
-        $this->prod_image = $files->upload('products') ?: $this->prod_image;
+        if (parent::beforeSave($insert)) {
+            $files = new Files();
+            $this->prod_image = $files->upload('products') ?: $this->prod_image;
 
-        if (!$this->prod_id) {
-            if (!$this->prod_alias) {
-                $this->prod_alias = Helpers::Translit($this->prod_title);
+            if (!$this->prod_id) {
+                if (!$this->prod_alias) {
+                    $this->prod_alias = Helpers::Translit($this->prod_title);
+                }
+
+                $this->prod_alias = Helpers::generateUniqueAlias($this->prod_alias, $this, 'prod_alias');
             }
 
-            $this->prod_alias = Helpers::generateUniqueAlias($this->prod_alias, $this, 'prod_alias');
-        }
-
-        if (parent::beforeSave($insert)) {
             return true;
         }
 

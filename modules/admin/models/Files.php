@@ -30,15 +30,15 @@ class Files extends Model {
 
     /**
      * @param $path
-     * @return mixed
+     * @return false|string
      */
     public function upload($path) {
         $this->image = UploadedFile::getInstance($this, 'image');
         if (!empty($this->image) && $this->validate()) {
             $path = Yii::getAlias("@webroot/load/$path/{$this->image->name}");
-            return $this->image->saveAs($path) ? $this->image->name : '';
+            return $this->image->saveAs($path) ? $this->image->name : false;
         }
 
-        return '';
+        return false;
     }
 }

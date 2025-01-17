@@ -29,7 +29,7 @@ $this->params['breadcrumbs'][] = strip_tags($this->title);?>
                     <?= $form->field($model, 'prod_title')->input('text'); ?>
                     <?= $form->field($model, 'prod_alias')->input('text'); ?>
                     <div class="form-group">
-                        <label for="exampleInputFile">Обложка</label>
+                        <label for="input_file">Обложка</label>
                         <div class="input-group">
                             <div class="custom-file">
                                 <?=Html::activeFileInput($files, 'image', ['class' => 'custom-file-input', 'id' => 'input_file']) ?>

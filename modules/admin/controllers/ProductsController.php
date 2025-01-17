@@ -53,7 +53,6 @@ class ProductsController extends AdminController {
 
         if ($post = Yii::$app->request->post('Products')) {
             $model->load(Yii::$app->request->post());
-            //$model->prod_image = $files->upload('products');
             $model->save() ? $model->addSuccess('Успешно') : $model->addWarning('Ошибка при сохранении');
             return $this->redirect(['/admin/products']);
         }
@@ -71,7 +70,6 @@ class ProductsController extends AdminController {
 
         if ($post = Yii::$app->request->post('Products')) {
             $model->load(Yii::$app->request->post());
-           // $model->prod_image = $files->upload('products');
             $model->save() ? $model->addSuccess('Успешно') : $model->addWarning('Ошибка при сохранении');
             return $this->redirect(['/admin/products']);
         }
