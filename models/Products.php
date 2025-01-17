@@ -3,6 +3,7 @@
 namespace app\models;
 
 use app\components\Helpers;
+use app\modules\admin\models\Files;
 use app\modules\admin\models\ModelExtentions;
 use Yii;
 use yii\db\ActiveRecord;
@@ -12,6 +13,10 @@ class Products extends ActiveRecord {
 
     const STATUS_DISABLED = 0;
     const STATUS_ACTIVE = 1;
+    /**
+     * @var mixed|string
+     */
+    private $prod_image;
 
 
     /**
@@ -37,6 +42,7 @@ class Products extends ActiveRecord {
             'prod_alias' => 'Алиас',
             'prod_image' => 'Обложка',
             'prod_price' => 'Цена',
+            'prod_status' => 'Статус',
         ];
     }
 
@@ -46,6 +52,9 @@ class Products extends ActiveRecord {
      * @return bool
      */
     public function beforeSave($insert) {
+        $files = new Files();
+        $this->prod_image = $files->upload('products') ?: $this->prod_image;
+
         if (!$this->prod_id) {
             if (!$this->prod_alias) {
                 $this->prod_alias = Helpers::Translit($this->prod_title);

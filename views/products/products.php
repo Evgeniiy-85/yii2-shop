@@ -14,7 +14,7 @@ $this->params['breadcrumbs'][] = $this->title;?>
                     <div class="product-card">
                         <a class="product-card_cover" href="/products/<?=$product['prod_alias'];?>">
                             <?if($product['prod_image']):?>
-                                <img src="/images/product/<?=$product['prod_image'];?>";?>
+                                <img src="/load/products/<?=$product['prod_image'];?>";?>
                             <?endif;?>
                         </a>
 

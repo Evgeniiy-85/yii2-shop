@@ -37,7 +37,7 @@ $this->params['breadcrumbs'][] = strip_tags($this->title);?>
                                 <div class="card-body">
                                     <a class="product-card_cover" href="/admin/products/<?=$product['prod_id'];?>">
                                         <?if($product['prod_image']):?>
-                                            <img src="/load/product/<?=$product['prod_image'];?>";?>
+                                            <img src="/load/products/<?=$product['prod_image'];?>";?>
                                         <?else:?>
                                             <span class="fa fa-file-image-o" style="font-size: 100px; padding: 24px 0"></span>
                                         <?endif;?>

@@ -37,7 +37,7 @@ $this->params['breadcrumbs'][] = strip_tags($this->title);?>
                     <?= $form->field($model, 'user_password')->input('text'); ?>
                     <?= $form
                         ->field($model, "user_status")
-                        ->dropDownList($model::getStatuses(), ['class' => 'form-control',]);
+                        ->dropDownList(Users::getStatuses(), ['class' => 'form-control',]);
                     ?>
 
                     <?=Html::activeInput('hidden', $model, 'user_id');?>
