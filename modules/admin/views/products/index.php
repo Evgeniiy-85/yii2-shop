@@ -29,14 +29,12 @@ $this->params['breadcrumbs'][] = strip_tags($this->title);?>
                         <div class="col-md-3">
                             <div class="card card-default card-product">
                                 <div class="card-header">
-                                    <h3 class="card-title"><?=$product['prod_title'];?></h3>
+                                    <h3 class="card-title">
+                                        <?=$product['prod_title'];?></h3>
+                                    <a class="external-link fa fa-external-link-alt" target="_blank" href="/products/<?=$product['prod_alias'];?>"></a>
                                 </div>
 
                                 <div class="card-body">
-                                    <h4 class="card-title"><span></span>
-                                        <a class="fa fa-external-link" target="_blank" href="/products/<?=$product['prod_alias'];?>"></a>
-                                    </h4>
-
                                     <a class="product-card_cover" href="/admin/products/<?=$product['prod_id'];?>">
                                         <?if($product['prod_image']):?>
                                             <img src="/load/product/<?=$product['prod_image'];?>";?>

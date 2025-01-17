@@ -21,11 +21,11 @@
     border-radius: 5px;
     margin-bottom: 5px;
 }
-.product-list .card-title {
+.product-list .card-header {
     display: flex;
     align-items: center;
 }
-.product-list .fa-external-link {
+.product-list .external-link {
     margin-left: auto;
     font-size: 14px;
 }
