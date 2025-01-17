@@ -15,11 +15,6 @@ class Categories extends ActiveRecord {
 
     const STATUS_DISABLED = 0;
     const STATUS_ACTIVE = 1;
-    /**
-     * @var int
-     */
-    private $cat_parent;
-
 
     /**
      * @inheritdoc
@@ -55,6 +50,8 @@ class Categories extends ActiveRecord {
      * @return bool
      */
     public function beforeSave($insert) {
+        $this->cat_parent = (int)$this->cat_parent;
+
         if (parent::beforeSave($insert)) {
             $files = new Files();
             $this->cat_image = $files->upload('categories') ?: $this->cat_image;
