@@ -52,6 +52,7 @@ $config = [
                 '/products/<alias:>' => 'products/product',
                 '/admin/products/<ID:\d+>' => 'admin/products/edit',
                 '/admin/users/<ID:\d+>' => 'admin/users/edit',
+                '/admin/categories/<ID:\d+>' => 'admin/categories/edit',
                 '/login' => 'site/login',
             ],
         ],

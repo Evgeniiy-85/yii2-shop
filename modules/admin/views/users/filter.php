@@ -31,12 +31,13 @@ use app\models\Users;?>
 
     <div class="card-footer text-right">
         <div class="margin">
-            <div class="btn-group">
-                <a class="btn btn-default" href="/admin/users?reset_filter=1">
-                    <span class="fa fa-close"></span> Сбросить
-                </a>
-            </div>
-
+            <?if($filter->is_filter):?>
+                <div class="btn-group">
+                    <a class="btn btn-default" href="/admin/users?reset_filter=1">
+                        <span class="fa fa-close"></span> Сбросить
+                    </a>
+                </div>
+            <?endif;?>
             <div class="btn-group">
                 <?= Html::submitButton('Применить', ['class' => 'btn btn-primary', 'name' => 'apply']) ?>
             </div>

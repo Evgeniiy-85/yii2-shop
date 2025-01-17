@@ -9,7 +9,7 @@ use app\models\Products;?>
     </div>
 
     <?$form = ActiveForm::begin([
-        'id' => 'form-products',
+        'id' => 'form-categories',
         'action' => "/admin/{$this->context->id}",
         'options' => [
             'enctype' => 'multipart/form-data'
@@ -17,9 +17,9 @@ use app\models\Products;?>
     ]);?>
 
     <div class="card-body">
-        <?= $form->field($filter, 'prod_title')->input('text'); ?>
+        <?= $form->field($filter, 'cat_title')->input('text'); ?>
         <?= $form
-            ->field($filter, "prod_status")
+            ->field($filter, "cat_status")
             ->dropDownList(Products::getStatuses(), ['class' => 'form-control', 'prompt' => '-']);
         ?>
     </div>
@@ -28,7 +28,7 @@ use app\models\Products;?>
         <div class="margin">
             <?if($filter->is_filter):?>
                 <div class="btn-group">
-                    <a class="btn btn-default" href="/admin/products?reset_filter=1">
+                    <a class="btn btn-default" href="/admin/categories?reset_filter=1">
                         <span class="fa fa-close"></span> Сбросить
                     </a>
                 </div>
@@ -36,6 +36,7 @@ use app\models\Products;?>
 
             <div class="btn-group">
                 <?= Html::submitButton('Применить', ['class' => 'btn btn-primary', 'name' => 'apply']) ?>
+                <input type="hidden" name="is_filter" value="1"/>
             </div>
         </div>
 

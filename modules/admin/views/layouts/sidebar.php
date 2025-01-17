@@ -24,6 +24,15 @@
                 'items' => [
                     ['label' => 'Заказы', 'iconStyle' => 'far', 'url' => ['/admin/orders'], 'active' => $this->context->route == 'admin/orders/index'],
                     [
+                        'label' => 'Категории',
+                        'icon' => 'tachometer-alt',
+                        'url' => '#',
+                        'active' => strpos($this->context->route, 'admin/categories') === 0,
+                        'items' => [
+                            ['label' => 'Список категорий', 'iconStyle' => 'far', 'url' => ['/admin/categories'], 'active' => $this->context->route == 'admin/categories/index',],
+                        ],
+                    ],
+                    [
                         'label' => 'Продукты',
                         'icon' => 'tachometer-alt',
                         'url' => '#',

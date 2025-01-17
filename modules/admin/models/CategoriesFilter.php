@@ -2,16 +2,16 @@
 namespace app\modules\admin\models;
 
 use app\components\Helpers;
-use app\models\Products;
+use app\models\Categories;
 use Yii;
 
-class ProductsFilter extends Products {
+class CategoriesFilter extends Categories {
     public $is_filter;
 
     public function rules() {
         return [
-            [['prod_title', 'prod_status',], 'safe'],
-            [['prod_title',], 'trim'],
+            [['cat_title', 'cat_status',], 'safe'],
+            [['cat_title',], 'trim'],
         ];
     }
 
@@ -20,7 +20,7 @@ class ProductsFilter extends Products {
      * @return void
      */
     public function init() {
-        $key = 'ProductsFilter';
+        $key = 'CategoriesFilter';
         if (Yii::$app->request->get('reset_filter')) {
             Yii::$app->session->remove($key);
         } else {
@@ -45,16 +45,16 @@ class ProductsFilter extends Products {
      * @inheritdoc
      */
     public static function tableName() {
-        return 'products';
+        return 'categories';
     }
 
     public function add(&$query) {
-        if ($this->prod_title && $this->is_filter = 1) {
-            $query->andWhere(['like', 'prod_title', $this->prod_title]);
+        if ($this->cat_title && $this->is_filter = 1) {
+            $query->andWhere(['like', 'cat_title', $this->cat_title]);
         }
 
-        if ($this->prod_status != '' && $this->is_filter = 1) {
-            $query->andWhere(['prod_status' => $this->prod_status]);
+        if ($this->cat_status != '' && $this->is_filter = 1) {
+            $query->andWhere(['cat_status' => $this->cat_status]);
         }
     }
 }

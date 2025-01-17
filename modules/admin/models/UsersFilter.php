@@ -6,8 +6,8 @@ use \app\models\Users;
 use Yii;
 
 class UsersFilter extends Users {
-
     public $full_name;
+    public $is_filter;
 
     public function rules() {
         return [
@@ -52,11 +52,11 @@ class UsersFilter extends Users {
     }
 
     public function add(&$query) {
-        if ($this->user_email) {
+        if ($this->user_email && $this->is_filter = 1) {
             $query->andWhere(['like', 'users.user_email', $this->user_email]);
         }
 
-        if ($this->full_name) {
+        if ($this->full_name && $this->is_filter = 1) {
             $data = explode(' ', $this->full_name);
             if (count($data) > 1) {
                 $query->andWhere(['OR',
@@ -72,13 +72,13 @@ class UsersFilter extends Users {
 
         }
 
-        if ($this->user_role) {
+        if ($this->user_role && $this->is_filter = 1) {
             $query
                 ->leftJoin('auth_assignment', 'auth_assignment.user_id = users.user_id')
                 ->andWhere(['auth_assignment.item_name' => $this->user_role]);
         }
 
-        if ($this->user_status != '') {
+        if ($this->user_status != '' && $this->is_filter = 1) {
             $query->andWhere(['user_status' => $this->user_status]);
         }
     }
