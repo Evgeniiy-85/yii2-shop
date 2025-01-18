@@ -10,8 +10,8 @@ class ProductsFilter extends Products {
 
     public function rules() {
         return [
-            [['prod_title', 'prod_status',], 'safe'],
-            [['prod_title',], 'trim'],
+            [['prod_title', 'prod_status','prod_category','prod_article'], 'safe'],
+            [['prod_title', 'prod_article',], 'trim'],
         ];
     }
 
@@ -55,6 +55,14 @@ class ProductsFilter extends Products {
 
         if ($this->prod_status != '' && $this->is_filter = 1) {
             $query->andWhere(['prod_status' => $this->prod_status]);
+        }
+
+        if ($this->prod_category != '' && $this->is_filter = 1) {
+            $query->andWhere(['prod_category' => $this->prod_category]);
+        }
+
+        if ($this->prod_article != '' && $this->is_filter = 1) {
+            $query->andWhere(['prod_article' => $this->prod_article]);
         }
     }
 }

@@ -39,6 +39,8 @@ class Products extends ActiveRecord {
             'prod_image' => 'Обложка',
             'prod_price' => 'Цена',
             'prod_status' => 'Статус',
+            'prod_category' => 'Категория',
+            'prod_article' => 'Артикл'
         ];
     }
 

@@ -1,7 +1,17 @@
 <?php
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use app\models\Products;?>
+use app\models\Products;
+use app\models\Categories;
+
+$categories = Categories::find()
+    ->select(['cat_title'])
+    ->where([
+        'cat_status' => Categories::STATUS_ACTIVE,
+    ])
+    ->indexBy('cat_id')
+    ->column();
+?>
 
 <div class="card card-default">
     <div class="card-header">
@@ -18,6 +28,10 @@ use app\models\Products;?>
 
     <div class="card-body">
         <?= $form->field($filter, 'cat_title')->input('text'); ?>
+        <?= $form
+            ->field($filter, "cat_parent")
+            ->dropDownList($categories, ['class' => 'form-control', 'prompt' => '-']);
+        ?>
         <?= $form
             ->field($filter, "cat_status")
             ->dropDownList(Products::getStatuses(), ['class' => 'form-control', 'prompt' => '-']);

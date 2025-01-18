@@ -11,6 +11,7 @@ class CategoriesFilter extends Categories {
     public function rules() {
         return [
             [['cat_title', 'cat_status',], 'safe'],
+            [['cat_parent',], 'integer'],
             [['cat_title',], 'trim'],
         ];
     }
@@ -55,6 +56,10 @@ class CategoriesFilter extends Categories {
 
         if ($this->cat_status != '' && $this->is_filter = 1) {
             $query->andWhere(['cat_status' => $this->cat_status]);
+        }
+
+        if ($this->cat_parent != '' && $this->is_filter = 1) {
+            $query->andWhere(['cat_parent' => $this->cat_parent]);
         }
     }
 }
