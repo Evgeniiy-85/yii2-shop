@@ -24,8 +24,11 @@ class m250108_114428_create_products_table extends Migration
                 'prod_alias' => $this->string()->notNull()->unique(),
                 'prod_title' => $this->string()->notNull(),
                 'prod_image' => $this->string(),
-                'prod_status' => $this->integer()->notNull()->defaultValue(1),
                 'prod_price' => $this->integer(),
+                'prod_category' => $this->integer()->defaultValue(0),
+                'prod_article' => $this->string(),
+                'prod_quantity' => $this->integer()->defaultValue(null),
+                'prod_status' => $this->integer()->notNull()->defaultValue(1),
             ], $table_options);
         }
     }

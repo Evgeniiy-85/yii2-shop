@@ -1,5 +1,8 @@
 <?php
 use yii\widgets\ActiveForm;
+use app\models\Products;
+use app\components\UI;
+use app\components\Helpers;
 
 $this->title = 'Список продуктов';
 $this->params['breadcrumbs'][] = strip_tags($this->title);?>
@@ -23,37 +26,76 @@ $this->params['breadcrumbs'][] = strip_tags($this->title);?>
         </div>
 
         <div class="col-md-9">
-            <div class="row product-list">
-                <?php if($products):
-                    foreach ($products as $product):?>
-                        <div class="col-md-3">
-                            <div class="card card-default card-product">
-                                <div class="card-header">
-                                    <h3 class="card-title">
-                                        <?=$product['prod_title'];?></h3>
-                                    <a class="external-link fa fa-external-link-alt" target="_blank" href="/products/<?=$product['prod_alias'];?>"></a>
-                                </div>
+            <div class="card card-default" id="products">
+                <div class="card-body overflow-auto" style="padding: 0">
+                    <table class="table text-nowrap">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Изобржение</th>
+                                <th>Название</th>
+                                <th>Артикул</th>
+                                <th>Категория</th>
+                                <th>Цена, руб.</th>
+                                <th>Кол-во</th>
+                                <th>Статус</th>
+                                <th style="width: 30px"></th>
+                            </tr>
+                        </thead>
 
-                                <div class="card-body">
-                                    <a class="product-card_cover" href="/admin/products/<?=$product['prod_id'];?>">
-                                        <?if($product['prod_image']):?>
-                                            <img src="/load/products/<?=$product['prod_image'];?>";?>
-                                        <?else:?>
-                                            <span class="fa fa-file-image-o" style="font-size: 100px; padding: 24px 0"></span>
-                                        <?endif;?>
-                                    </a>
+                        <tbody class="product-list">
+                            <?php if($products):?>
+                                <?foreach($products as $product):?>
+                                    <tr>
+                                        <td><a href="<?="/admin/{$this->context->id}/{$product->prod_id}";?>"><?=$product->prod_id?></a></td>
+                                        <td>
+                                            <div class="card_cover">
+                                                <img src="<?=$product->prod_image ? "/load/products/{$product['prod_image']}" : '/images/no-img.png';?>"/>
+                                            </div>
+                                        </td>
+                                        <td width="300">
+                                            <a href="<?="/admin/{$this->context->id}/{$product->prod_id}";?>"><?=$product->prod_title?></a>
+                                        </td>
+                                        <td><?=$product->prod_article;?></td>
+                                        <td>
+                                            <a href="/admin/categories/<?=$product->prod_category;?>" target="_blank"><?=$product->categories->cat_title;?></a>
+                                        </td>
+                                        <td><?=Helpers::formatPrice($product->prod_price);?></td>
+                                        <td><?=$product->prod_quantity;?></td>
+                                        <td><?=Products::getStatuses($product->prod_status);?></td>
+                                        <td class="user-action-buttons text-right">
+                                            <?=UI::contextMenu([
+                                                [
+                                                    'icon' => 'fa-external-link-alt',
+                                                    'text' => 'Перейти на страницу товара',
+                                                    'href' => "/products/{$product->prod_alias}",
+                                                    'class' => 'dont-replace-href',
+                                                    'target' => '_blank',
+                                                ],
+                                                [
+                                                    'icon' => 'fa-pencil',
+                                                    'text' => 'Редактировать',
+                                                    'href' => "/admin/{$this->context->id}/{$product->prod_id}",
+                                                    'class' => 'dont-replace-href',
+                                                ],
+                                                [
+                                                    'icon' => 'fa-remove',
+                                                    'text' => 'Удалить',
+                                                    'href' => "/admin/{$this->context->id}/delete/{$product->prod_id}",
+                                                    'onclick' => 'return confirm(\'Точно удалить?\')',
+                                                ]
+                                            ], ['class' => 'float-right'])?>
+                                        </td>
+                                    </tr>
+                                <?php endforeach;?>
+                            <?endif;?>
+                        </tbody>
+                    </table>
+                </div>
 
-                                    <div style="white-space: normal;"> </div>
-                                    <div class="fab-info">Мембершип</div>
-                                </div>
-
-                                <div class="card-footer" style="color: #aaa; font-size: 12px;">
-                                    <span class="fa fa-clock-o"></span> 22 февраля 2018 г. в 10:04
-                                </div>
-                            </div>
-                        </div>
-                    <?endforeach;?>
-                <?endif;?>
+                <div class="card-footer">
+                    <?=!$products ? 'Ничего не найдено' : '';?>
+                </div>
             </div>
         </div>
     </div>

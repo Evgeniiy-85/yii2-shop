@@ -21,7 +21,6 @@ class m250117_115223_create_categories_table extends Migration
                 'cat_alias' => $this->string()->notNull(),
                 'cat_image' => $this->string(),
                 'cat_parent' => $this->integer()->defaultValue(0),
-                'cat_section' => $this->integer()->defaultValue(0),
                 'cat_status' => $this->integer()->defaultValue(1),
                 'cat_sort' => $this->integer()->notNull(),
             ]);

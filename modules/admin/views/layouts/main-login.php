@@ -1,14 +1,12 @@
 <?php
 
-/* @var $this \yii\web\View */
-/* @var $content string */
-
-adminlte3\src\assets\AdminLteAsset::register($this);
-$this->registerCssFile('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700');
-$this->registerCssFile('https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css');
+use app\assets\AdminLoginAsset;
 use yii\helpers\Html;
-adminlte3\src\assets\PluginAsset::register($this)->add(['fontawesome', 'icheck-bootstrap']);
+use hail812\adminlte3\assets\AdminLteAsset;
+
+AdminLoginAsset::register($this);
 ?>
+
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
 <html>

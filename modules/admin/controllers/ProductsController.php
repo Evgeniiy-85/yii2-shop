@@ -28,7 +28,8 @@ class ProductsController extends AdminController {
         $query
             ->orderBy(['prod_id' => SORT_DESC])
             ->offset($pages->offset)
-            ->limit($pages->limit);
+            ->limit($pages->limit)
+            ->joinWith('categories');
 
         return $this->render('index', [
             'products' => $query->all(),

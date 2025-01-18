@@ -43,6 +43,10 @@ class Products extends ActiveRecord {
     }
 
 
+    public function getCategories() {
+        return $this->hasOne(Categories::class, ['cat_id' => 'prod_category']);
+    }
+
     /**
      * @param $insert
      * @return bool

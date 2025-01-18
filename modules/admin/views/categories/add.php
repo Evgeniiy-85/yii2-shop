@@ -13,7 +13,6 @@ $categories = Categories::find()
     ->select(['cat_title'])
     ->where([
         'cat_status' => Categories::STATUS_ACTIVE,
-        'cat_parent' => '0',
     ])
     ->indexBy('cat_id')
     ->column();?>

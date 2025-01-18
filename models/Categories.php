@@ -29,6 +29,10 @@ class Categories extends ActiveRecord {
     }
 
 
+    public function getParentCategory() {
+        return $this->hasOne(Categories::class, ['cat_id' => 'cat_parent']);
+    }
+
     /**
      * @return string[]
      */

@@ -27,15 +27,11 @@ $this->params['breadcrumbs'][] = strip_tags($this->title);?>
 
         <div class="col-md-9">
             <div class="card card-default" id="user-list">
-                <div class="card-header">
-                    <h3 class="card-title">Пользователи</h3>
-                </div>
-
                 <div class="card-body" style="padding: 0">
-                    <table class="table table-bordered">
+                    <table class="table text-nowrap">
                         <thead>
                             <tr>
-                                <th style="width: 10px">ID</th>
+                                <th>ID</th>
                                 <th>Фото</th>
                                 <th>ФИО</th>
                                 <th>E-mail</th>
@@ -52,7 +48,7 @@ $this->params['breadcrumbs'][] = strip_tags($this->title);?>
                                     <tr>
                                         <td><a href="<?="/admin/{$this->context->id}/{$user->user_id}";?>"><?=$user->user_id?></a></td>
                                         <td>
-                                            <img width="32" height="32" class="img-circle img-bordered-sm" src="<?=$user->user_photo ? $user->user_photo : '/dist/img/guest.jpg';?>"/>
+                                            <img width="32" height="32" class="img-circle img-bordered-sm" src="<?=$user->user_photo ?: '/images/avatars/no-avatar.png';?>"/>
                                         </td>
                                         <td>
                                             <?=$user->user_surname, ' ', $user->user_name, ' ', $user->user_patronymic?>
