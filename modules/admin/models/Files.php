@@ -14,7 +14,7 @@ class Files extends Model {
      */
     public function rules() {
         return [
-            [['image'], 'file', 'extensions' => 'jpg,jpeg,webp', 'maxFiles' => 1, 'skipOnEmpty' => false]
+            [['image'], 'file', 'extensions' => 'jpg,jpeg,webp,png', 'maxFiles' => 1, 'skipOnEmpty' => false]
         ];
     }
 

@@ -51,10 +51,10 @@ $this->params['breadcrumbs'][] = strip_tags($this->title);?>
                                         </div>
                                     </td>
                                     <td width="300">
-                                        <a href="/admin/categories/<?=$category->cat_id;?>" target="_blank"><?=$category->cat_title;?></a>
+                                        <a href="/admin/categories/<?=$category->cat_id;?>"><?=$category->cat_title;?></a>
                                     </td>
                                     <td>
-                                        <a href="/admin/categories/<?=$category->cat_parent;?>" target="_blank"><?=$category->parentCategory->cat_title;?></a>
+                                        <a href="/admin/categories/<?=$category->cat_parent;?>"><?=$category->parentCategory->cat_title;?></a>
                                     </td>
                                     <td><?=Categories::getStatuses($category->cat_status);?></td>
                                     <td class="user-action-buttons text-right">

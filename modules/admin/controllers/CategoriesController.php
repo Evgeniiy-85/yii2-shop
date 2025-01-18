@@ -11,12 +11,12 @@ use yii\web\HttpException;
 class CategoriesController extends AdminController {
 
     public function actionIndex() {
-        $pageSize = 36;
+        $page_size = 36;
 
         $query = Categories::find()->where(['cat_status' => [Categories::STATUS_ACTIVE]]);
         $pages = new Pagination([
-            'pageSize' => $pageSize,
-            'defaultPageSize' => $pageSize,
+            'pageSize' => $page_size,
+            'defaultPageSize' => $page_size,
             'totalCount' => $query->count()
         ]);
 

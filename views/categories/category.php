@@ -1,8 +1,9 @@
 <?php
 use yii\helpers\Html;
+use app\models\Categories;
 
 $this->title = $category['cat_title'];
-$this->params['breadcrumbs'][] = $this->title;?>
+$this->params['breadcrumbs'] = Categories::getBreadCrumbs($category);?>
 
 <div class="site-catalog">
     <h1><?= Html::encode($this->title) ?></h1>

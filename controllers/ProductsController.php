@@ -10,12 +10,12 @@ use yii\web\HttpException;
 class ProductsController extends Controller {
 
     public function actionIndex() {
-        $pageSize = 36;
+        $page_size = 36;
 
         $query = Products::find()->where(['prod_status' => [Products::STATUS_ACTIVE]]);
         $pages = new Pagination([
-            'pageSize' => $pageSize,
-            'defaultPageSize' => $pageSize,
+            'pageSize' => $page_size,
+            'defaultPageSize' => $page_size,
             'totalCount' => $query->count()
         ]);
 

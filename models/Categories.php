@@ -95,4 +95,28 @@ class Categories extends ActiveRecord {
         parent::afterFind();
         $this->cat_sort = (int)self::find()->max('cat_sort') + 1;
     }
+
+
+    /**
+     * @param $category
+     * @param $categories
+     * @return array|mixed
+     */
+    public static function getBreadCrumbs($category, &$categories = []) {
+        $categories[] = ['label' => $category->cat_title, 'url' => $category->cat_alias];
+
+        if (!$category->cat_parent) {
+            unset($categories[0]['url']);
+            return array_reverse($categories);
+        }
+
+        $category = Categories::find()
+            ->where([
+                'cat_status' => [Categories::STATUS_ACTIVE],
+                'cat_id' => $category->cat_parent,
+            ])
+            ->one();
+
+        return self::getBreadCrumbs($category, $categories);
+    }
 }

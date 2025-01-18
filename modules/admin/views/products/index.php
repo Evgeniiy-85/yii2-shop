@@ -58,7 +58,7 @@ $this->params['breadcrumbs'][] = strip_tags($this->title);?>
                                         </td>
                                         <td><?=$product->prod_article;?></td>
                                         <td>
-                                            <a href="/admin/categories/<?=$product->prod_category;?>" target="_blank"><?=$product->categories->cat_title;?></a>
+                                            <a href="/admin/categories/<?=$product->prod_category;?>"><?=$product->categories->cat_title;?></a>
                                         </td>
                                         <td><?=Helpers::formatPrice($product->prod_price);?></td>
                                         <td><?=$product->prod_quantity;?></td>

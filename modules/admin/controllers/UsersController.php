@@ -14,12 +14,12 @@ use yii\web\HttpException;
 class UsersController extends AdminController {
 
     public function actionIndex() {
-        $pageSize = 36;
+        $page_size = 36;
 
         $query = Users::find();
         $pages = new Pagination([
-            'pageSize' => $pageSize,
-            'defaultPageSize' => $pageSize,
+            'pageSize' => $page_size,
+            'defaultPageSize' => $page_size,
             'totalCount' => $query->count()
         ]);
 
