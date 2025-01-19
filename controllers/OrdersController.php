@@ -39,6 +39,8 @@ class OrdersController extends Controller {
             throw new HttpException(404, "Страница не найдена.");
         }
 
-
+        return $this->render('pay', [
+            'order' => $order,
+        ]);
     }
 }
