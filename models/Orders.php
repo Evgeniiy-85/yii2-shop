@@ -63,6 +63,6 @@ class Orders extends ActiveRecord {
             self::STATUS_NO_PAID => 'Не оплачен',
         ];
 
-        return $status ? $statuses[$status] : $statuses;
+        return $status !== false ? $statuses[$status] : $statuses;
     }
 }

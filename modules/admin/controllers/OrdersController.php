@@ -2,6 +2,7 @@
 
 namespace app\modules\admin\controllers;
 
+use app\models\Orders;
 use app\models\Products;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
@@ -14,7 +15,7 @@ class OrdersController extends AdminController {
     public function actionIndex() {
         $page_size = 36;
 
-        $query = Products::find()->where(['prod_status' => [Products::STATUS_ACTIVE]]);
+        $query = Orders::find();
         $pages = new Pagination([
             'pageSize' => $page_size,
             'defaultPageSize' => $page_size,
@@ -22,12 +23,12 @@ class OrdersController extends AdminController {
         ]);
 
         $query
-            ->orderBy(['prod_id' => SORT_DESC])
+            ->orderBy(['order_id' => SORT_DESC])
             ->offset($pages->offset)
             ->limit($pages->limit);
 
         return $this->render('index', [
-            'products' => $query->all(),
+            'orders' => $query->all(),
         ]);
     }
 }

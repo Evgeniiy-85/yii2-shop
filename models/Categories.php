@@ -83,7 +83,7 @@ class Categories extends ActiveRecord {
             self::STATUS_ACTIVE => 'Активен',
         ];
 
-        return $status ? $statuses[$status] : $statuses;
+        return $status !== false ? $statuses[$status] : $statuses;
     }
 
 

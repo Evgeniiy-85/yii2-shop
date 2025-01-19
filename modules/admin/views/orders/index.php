@@ -1,53 +1,71 @@
 <?php
 use yii\widgets\ActiveForm;
+use app\components\Helpers;
+use app\models\Orders;
+use app\components\UI;
 
-$this->title = 'Список продуктов';
+$this->title = 'Список заказов';
 $this->params['breadcrumbs'][] = strip_tags($this->title);?>
 
 <div class="row product-list">
-    <div class="col-md-9">
-        <div class="row">
-            <div class="col-md-3">
-                <a href="<?="/admin/{$this->context->id}/add"?>" class="add-new-item ">
-                    <span>
-                        <span class="fa fa-plus"></span> Добавить новый продукт
-                    </span>
-                </a>
+    <div class="col-md-12">
+        <div class="card card-default" id="products">
+            <div class="card-body overflow-auto" style="padding: 0">
+                <table class="table text-nowrap table-bordered">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Дата</th>
+                        <th>Имя клиента</th>
+                        <th>Фамилия клиента</th>
+                        <th>E-mail клиента</th>
+                        <th>Телефон клиента</th>
+                        <th>Стоимость, руб.</th>
+                        <th>Статус</th>
+                        <th style="width: 30px"></th>
+                    </tr>
+                    </thead>
+
+                    <tbody class="product-list">
+                    <?php if($orders):?>
+                        <?foreach($orders as $order):?>
+                            <tr>
+                                <td><?=$order->order_id?></td>
+                                <td><?=Helpers::getDate($order->order_date)?></td>
+                                <td><?=$order->client_name;?></td>
+                                <td><?=$order->client_surname;?></td>
+                                <td><?=$order->client_email;?></td>
+                                <td><?=$order->client_phone;?></td>
+                                <td><?=Helpers::formatPrice($order->order_sum);?></td>
+                                <td><?=Orders::getStatuses($order->order_status);?></td>
+                                <td class="user-action-buttons text-right">
+                                    <?=UI::contextMenu([
+                                        [
+                                            'icon' => 'fa-external-link-alt',
+                                            'text' => 'Перейти на страницу заказа',
+                                            'href' => "/pay/{$order->order_id}",
+                                            'class' => 'dont-replace-href',
+                                            'target' => '_blank',
+                                        ],
+                                        [
+                                            'icon' => 'fa-pencil',
+                                            'text' => 'Редактировать',
+                                            'href' => "/admin/{$this->context->id}/{$order->order_id}",
+                                            'class' => 'dont-replace-href',
+                                        ],
+                                    ], ['class' => 'float-right'])?>
+                                </td>
+                            </tr>
+                        <?php endforeach;?>
+                    <?endif;?>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="card-footer">
+                <?=!$orders ? 'Ничего не найдено' : '';?>
             </div>
         </div>
-    </div>
-
-    <div class="col-md-9">
-        <?php if($products):
-            foreach ($products as $product):?>
-                <div class="col-lg-3 col-xs-12 col-sm-6 col-md-4 col-xl-3">
-                    <div class="card card-primary card-product">
-                        <div class="card-body row">
-                            <div class="col-xs-12">
-                                <h4 class="card-title"><span><?=$product['prod_title'];?></span>
-                                    <a class="fa fa-external-link" target="_blank" href="/products/<?=$product['prod_alias'];?>"></a>
-                                </h4>
-
-                                <a class="product-card_cover" href="/admin/products/<?=$product['prod_id'];?>">
-                                    <?if($product['prod_image']):?>
-                                        <img src="/images/product/<?=$product['prod_image'];?>";?>
-                                    <?else:?>
-                                        <span class="fa fa-file-image-o" style="font-size: 100px; padding: 24px 0"></span>
-                                    <?endif;?>
-                                </a>
-
-                                <div style="white-space: normal;"> </div>
-                                <div class="fab-info">Мембершип</div>
-                            </div>
-                        </div>
-
-                        <div class="card-footer" style="color: #aaa; font-size: 12px;">
-                            <span class="fa fa-clock-o"></span> 22 февраля 2018 г. в 10:04
-                        </div>
-                    </div>
-                </div>
-            <?endforeach;?>
-        <?endif;?>
     </div>
 </div>
 

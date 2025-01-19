@@ -184,7 +184,7 @@ class Users extends ActiveRecord implements IdentityInterface {
               self::STATUS_OFF => 'Отключен',
         ];
 
-        return $status ? $statuses[$status] : $statuses;
+        return $status !== false ? $statuses[$status] : $statuses;
     }
 
     /**

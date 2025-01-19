@@ -20,6 +20,8 @@ class m250119_110401_create_orders_table extends Migration
                 'prod_id' => $this->integer(),
                 'order_date' => $this->integer()->notNull(),
                 'payment_date' => $this->integer(),
+                'order_sum' => $this->integer(),
+                'order_status' => $this->integer()->defaultValue(0),
                 'client_email' => $this->string()->notNull(),
                 'client_name' => $this->string()->notNull(),
                 'client_surname' => $this->string(),
