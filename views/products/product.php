@@ -1,28 +1,28 @@
 <?php
 use yii\helpers\Html;
+use app\components\Helpers;
 
 $this->title = $product['prod_title'];
 $this->params['breadcrumbs'][] = $this->title;?>
 
-<div class="site-catalog">
-    <h1><?= Html::encode($this->title) ?></h1>
-    <div class="catalog-list">
-        <div class="product-card">
-            <a class="product-card_cover" href="/product/<?=$product['prod_alias'];?>">
-                <?if($product['prod_image']):?>
-                    <img src="/load/products/<?=$product['prod_image'];?>";?>
-                <?endif;?>
-            </a>
+<div class="product-card">
+    <div class="product_cover">
+        <img src="/load/products/<?=$product['prod_image'];?>">
+    </div>
 
-            <div class="product-card_main">
-                <div class="product-card_price"><?=$product['prod_price'];?></div>
-                <div class="product-card_title"><?=$product['prod_title'];?></div>
+    <div class="product-card_center">
+        <a class="product-card_title" href="/products/<?=$product['prod_alias'];?>"><?=$product['prod_title'];?></a>
 
-                <div class="product-card_button_wrap">
-                    <button class="product-card_button">В корзину</button>
-                </div>
-            </div>
+        <div class="card_bottom">Наличите: в наличии</div>
+    </div>
+
+    <div class="product-card_right">
+        <div class="product-price">
+            <?=Helpers::formatPrice($product['prod_price']);?> ₽
+        </div>
+
+        <div class="product-by">
+            <a class="button button-ui" href="/buy/<?=$product['prod_alias'];?>">Купить</a>
         </div>
     </div>
 </div>
-
