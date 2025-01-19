@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = strip_tags($this->title);?>
         <div class="col-md-9">
             <div class="card card-default" id="user-list">
                 <div class="card-body" style="padding: 0">
-                    <table class="table text-nowrap">
+                    <table class="table text-nowrap table-bordered">
                         <thead>
                             <tr>
                                 <th>ID</th>

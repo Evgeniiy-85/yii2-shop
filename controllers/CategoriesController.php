@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\Categories;
+use app\models\Products;
 use yii\data\Pagination;
 use yii\web\Controller;
 use yii\web\HttpException;
@@ -28,45 +29,34 @@ class CategoriesController extends Controller {
             ->offset($pages->offset)
             ->limit($pages->limit);
 
-        return $this->render('categories', [
+        return $this->render('index', [
             'categories' => $query->all(),
         ]);
     }
 
-    public function actionCategory($alias) {
-        $page_size = 36;
-
+    public function actionCategory($parent_cat_alias = '', $alias) {
         $category = Categories::find()->where(['cat_alias' => $alias])->one();
         if (!$category) {
             throw new HttpException(404, "Страница не найдена.");
         }
 
-        $query = Categories::find()->where([
+        $subcategories = Categories::find()->where([
             'cat_status' => [Categories::STATUS_ACTIVE],
             'cat_parent' => $category->cat_id,
-        ]);
+        ])->all();
 
-        $count_subcategories = $query->count();
-        if ($count_subcategories) {
-            $pages = new Pagination([
-                'pageSize' => $page_size,
-                'defaultPageSize' => $page_size,
-                'totalCount' => $count_subcategories
-            ]);
-
-            $query
-                ->orderBy(['cat_id' => SORT_DESC])
-                ->offset($pages->offset)
-                ->limit($pages->limit);
-
-            return $this->render('categories', [
-                'category' => $category,
-                'categories' => $query->all(),
-            ]);
+        $products = null;
+        if (!$subcategories) {
+            $products = Products::find()->where([
+                'prod_status' => [Products::STATUS_ACTIVE],
+                'prod_category' => $category->cat_id,
+            ])->all();
         }
 
         return $this->render('category', [
             'category' => $category,
+            'subcategories' => $subcategories,
+            'products' => $products,
         ]);
     }
 }

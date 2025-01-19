@@ -2,10 +2,20 @@
 use yii\widgets\ActiveForm;
 use yii\helpers\Html;
 use app\models\Products;
+use app\models\Categories;
 
 $this->title = 'Добавить продукт';
 $this->params['breadcrumbs'][] = ['label' => 'Список продуктов', 'url' => ['/admin/'.Yii::$app->controller->id]];
-$this->params['breadcrumbs'][] = strip_tags($this->title);?>
+$this->params['breadcrumbs'][] = strip_tags($this->title);
+
+$categories = Categories::find()
+    ->select(['cat_title'])
+    ->where([
+        'cat_status' => Categories::STATUS_ACTIVE,
+    ])
+    ->indexBy('cat_id')
+    ->column();
+?>
 
 <?=$model->showNotices();?>
 
@@ -37,6 +47,10 @@ $this->params['breadcrumbs'][] = strip_tags($this->title);?>
                             </div>
                         </div>
                     </div>
+                    <?= $form
+                        ->field($model, "prod_category")
+                        ->dropDownList($categories, ['class' => 'form-control', 'prompt' => '-']);
+                    ?>
                     <?= $form->field($model, 'prod_price')->input('text'); ?>
                     <?= $form
                         ->field($model, "prod_status")

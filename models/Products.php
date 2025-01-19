@@ -57,12 +57,11 @@ class Products extends ActiveRecord {
         if (parent::beforeSave($insert)) {
             $files = new Files();
             $this->prod_image = $files->upload('products') ?: $this->prod_image;
+            if (!$this->prod_alias) {
+                $this->prod_alias = Helpers::Translit($this->prod_title);
+            }
 
             if (!$this->prod_id) {
-                if (!$this->prod_alias) {
-                    $this->prod_alias = Helpers::Translit($this->prod_title);
-                }
-
                 $this->prod_alias = Helpers::generateUniqueAlias($this->prod_alias, $this, 'prod_alias');
             }
 

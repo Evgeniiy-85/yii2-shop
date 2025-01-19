@@ -49,7 +49,7 @@ class CategoriesController extends AdminController {
             throw new HttpException(404, "Страница не найдена.");
         }
 
-        if ($post = Yii::$app->request->post('Categories')) {
+        if (Yii::$app->request->post('Categories')) {
             $model->load(Yii::$app->request->post());
             $model->save() ? $model->addSuccess('Успешно') : $model->addWarning('Ошибка при сохранении');
             return $this->redirect(['/admin/categories']);

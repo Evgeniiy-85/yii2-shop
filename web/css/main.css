@@ -4,7 +4,16 @@ main > .container {
 body {
     background-color: #f6f6f6;
 }
+h1, .h1 {
+    font-size: 32px;
+    line-height: 32px;
+    margin-top: 12px;
+    margin-bottom: 20px;
+}
+
+/*Хлебные крошки*/
 .breadcrumb {
+    padding: 0;
     background: none;
     font-size: 13px;
 }
@@ -14,11 +23,15 @@ body {
 .breadcrumb .breadcrumb-item + .breadcrumb-item::before {
     color: #333;
     content: ">";
+    padding-right: 5px;
 }
+
+/*Категории*/
 .categories {
     grid-gap: 20px;
     display: grid;
-    grid-template-columns: repeat(4, 270px);
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    /*grid-template-columns: repeat(4, 270px);*/
 }
 .category-card {
     background: #fff;
@@ -30,6 +43,7 @@ body {
     position: relative;
     vertical-align: top;
 }
+
 .card_cover {
     display: inline-block;
     height: 120px;

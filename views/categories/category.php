@@ -7,22 +7,27 @@ $this->params['breadcrumbs'] = Categories::getBreadCrumbs($category);?>
 
 <div class="site-catalog">
     <h1><?= Html::encode($this->title) ?></h1>
-    <div class="catalog-list">
-        <div class="product-card">
-            <a class="product-card_cover" href="/product/<?=$category['cat_alias'];?>">
-                <?if($category['cat_image']):?>
-                    <img src="/load/products/<?=$category['cat_image'];?>";?>
-                <?endif;?>
-            </a>
+    <div class="categories">
+        <?if($subcategories):
+            foreach ($subcategories as $subcategory):?>
+                <a class="category-card" href="/categories/<?="{$category['cat_alias']}/{$subcategory['cat_alias']}";?>">
+                    <div class="card_cover">
+                        <img src="/load/categories/<?=$subcategory['cat_image'];?>">
+                    </div>
 
-            <div class="product-card_main">
-                <div class="product-card_title"><?=$category['cat_title'];?></div>
+                    <div class="card_title"><?=$subcategory['cat_title'];?></div>
+                </a>
+            <?endforeach;
+        elseif($products):
+            foreach ($products as $product):?>
+                <a class="category-card" href="/products/<?=$product['prod_alias'];?>">
+                    <div class="card_cover">
+                        <img src="/load/products/<?=$product['prod_image'];?>">
+                    </div>
 
-                <div class="product-card_button_wrap">
-                    <button class="product-card_button">В корзину</button>
-                </div>
-            </div>
-        </div>
+                    <div class="card_title"><?=$product['prod_title'];?></div>
+                </a>
+            <?endforeach;
+        endif;?>
     </div>
 </div>
-

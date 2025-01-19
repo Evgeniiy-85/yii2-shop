@@ -8,6 +8,7 @@ use Yii;
 class UsersFilter extends Users {
     public $full_name;
     public $is_filter;
+    private $filter_name = 'UsersFilter';
 
     public function rules() {
         return [
@@ -21,17 +22,13 @@ class UsersFilter extends Users {
      * @return void
      */
     public function init() {
-        $key = 'UsersFilter';
-        if (Yii::$app->request->get('reset_filter')) {
-            Yii::$app->session->remove($key);
-        } else {
-            if (Yii::$app->request->post()) {
-                Yii::$app->session->set($key, Yii::$app->request->post());
-                $this->load(Yii::$app->request->post());
-            }  else {
-                $this->load(Yii::$app->session->get($key));
-            }
+        if ($this->load(Yii::$app->request->post())) {
+            Yii::$app->session->set($this->filter_name, Yii::$app->request->post());
+        } elseif (Yii::$app->request->get('reset_filter')) {
+            Yii::$app->session->remove($this->filter_name);
         }
+
+        $this->load(Yii::$app->session->get($this->filter_name));
     }
 
 

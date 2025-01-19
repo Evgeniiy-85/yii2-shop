@@ -7,6 +7,8 @@ use Yii;
 
 class ProductsFilter extends Products {
     public $is_filter;
+    private $filter_name = 'ProductsFilter';
+
 
     public function rules() {
         return [
@@ -20,17 +22,13 @@ class ProductsFilter extends Products {
      * @return void
      */
     public function init() {
-        $key = 'ProductsFilter';
-        if (Yii::$app->request->get('reset_filter')) {
-            Yii::$app->session->remove($key);
-        } else {
-            if (Yii::$app->request->post()) {
-                Yii::$app->session->set($key, Yii::$app->request->post());
-                $this->load(Yii::$app->request->post());
-            }  else {
-                $this->load(Yii::$app->session->get($key));
-            }
+        if ($this->load(Yii::$app->request->post())) {
+            Yii::$app->session->set($this->filter_name, Yii::$app->request->post());
+        } elseif (Yii::$app->request->get('reset_filter')) {
+            Yii::$app->session->remove($this->filter_name);
         }
+
+        $this->load(Yii::$app->session->get($this->filter_name));
     }
 
 

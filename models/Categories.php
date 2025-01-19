@@ -59,12 +59,11 @@ class Categories extends ActiveRecord {
         if (parent::beforeSave($insert)) {
             $files = new Files();
             $this->cat_image = $files->upload('categories') ?: $this->cat_image;
+            if (!$this->cat_alias) {
+                $this->cat_alias = Helpers::Translit($this->cat_title);
+            }
 
             if (!$this->cat_id) {
-                if (!$this->cat_alias) {
-                    $this->cat_alias = Helpers::Translit($this->cat_title);
-                }
-
                 $this->cat_alias = Helpers::generateUniqueAlias($this->cat_alias, $this, 'cat_alias');
             }
 

@@ -28,11 +28,11 @@ $this->params['breadcrumbs'][] = strip_tags($this->title);?>
         <div class="col-md-9">
             <div class="card card-default" id="products">
                 <div class="card-body overflow-auto" style="padding: 0">
-                    <table class="table text-nowrap">
+                    <table class="table text-nowrap table-bordered">
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Изобржение</th>
+                                <th>Изображение</th>
                                 <th>Название</th>
                                 <th>Артикул</th>
                                 <th>Категория</th>
@@ -47,7 +47,7 @@ $this->params['breadcrumbs'][] = strip_tags($this->title);?>
                             <?php if($products):?>
                                 <?foreach($products as $product):?>
                                     <tr>
-                                        <td><a href="<?="/admin/{$this->context->id}/{$product->prod_id}";?>"><?=$product->prod_id?></a></td>
+                                        <td><?=$product->prod_id?></td>
                                         <td>
                                             <div class="card_cover">
                                                 <img src="<?=$product->prod_image ? "/load/products/{$product['prod_image']}" : '/images/no-img.png';?>"/>

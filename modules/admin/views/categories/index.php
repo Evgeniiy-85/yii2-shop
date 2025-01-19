@@ -28,13 +28,14 @@ $this->params['breadcrumbs'][] = strip_tags($this->title);?>
         <div class="col-md-9">
             <div class="card card-default" id="categories">
                 <div class="card-body overflow-auto" style="padding: 0">
-                    <table class="table text-nowrap">
+                    <table class="table text-nowrap table-bordered">
                         <thead>
                             <tr>
-                                <th>ID</th>
-                                <th>Изобржение</th>
-                                <th>Название</th>
+                                <th>#ID</th>
+                                <th>Изображение</th>
+                                <th>Наименование</th>
                                 <th>Родительская категория</th>
+                                <th>Порядок сортировки</th>
                                 <th>Статус</th>
                                 <th style="width: 30px"></th>
                             </tr>
@@ -44,8 +45,10 @@ $this->params['breadcrumbs'][] = strip_tags($this->title);?>
                         <?php if($categories):?>
                             <?foreach($categories as $category):?>
                                 <tr>
-                                    <td><a href="<?="/admin/{$this->context->id}/{$category->cat_id}";?>"><?=$category->cat_id?></a></td>
-                                    <td>
+                                    <td width="40">
+                                        <?=$category->cat_id;?>
+                                    </td>
+                                    <td width="160">
                                         <div class="card_cover">
                                             <img src="<?=$category->cat_image ? "/load/categories/{$category['cat_image']}" : '/images/no-img.png';?>"/>
                                         </div>
@@ -56,6 +59,7 @@ $this->params['breadcrumbs'][] = strip_tags($this->title);?>
                                     <td>
                                         <a href="/admin/categories/<?=$category->cat_parent;?>"><?=$category->parentCategory->cat_title;?></a>
                                     </td>
+                                    <td><?=$category->cat_sort;?></td>
                                     <td><?=Categories::getStatuses($category->cat_status);?></td>
                                     <td class="user-action-buttons text-right">
                                         <?=UI::contextMenu([
@@ -88,7 +92,7 @@ $this->params['breadcrumbs'][] = strip_tags($this->title);?>
                 </div>
 
                 <div class="card-footer">
-                    <?=!$categorys ? 'Ничего не найдено' : '';?>
+                    <?=!$categories ? 'Ничего не найдено' : '';?>
                 </div>
             </div>
         </div>
