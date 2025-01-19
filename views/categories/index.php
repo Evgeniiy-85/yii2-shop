@@ -11,7 +11,7 @@ if (isset($category)) {
 <div class="site-catalog">
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <div class="categories">
+    <div class="categories-list">
         <?if($categories):
             foreach ($categories as $category):?>
                 <a class="category-card" href="/categories/<?=$category['cat_alias'];?>">
