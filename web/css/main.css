@@ -26,6 +26,31 @@ h1, .h1 {
     padding-right: 5px;
 }
 
+.button-ui {
+    padding: 10px 19px;
+    white-space: nowrap;
+    align-items: center;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    cursor: pointer;
+    display: inline-flex;
+    font-size: 16px;
+    justify-content: center;
+    line-height: 24px;
+    outline: none;
+    overflow: hidden;
+    transition: opacity .3s;
+}
+.button-ui:hover {
+    box-shadow: inset 0 100px 0 hsla(0, 0%, 100%, .1);
+    background-image: linear-gradient(0deg, #fc8507, #ffa218);
+}
+a.button {
+    border: 1px solid #ffa218;
+}
+a.button:hover {
+    text-decoration: none;
+}
 /*Категории*/
 .categories-list {
     grid-gap: 20px;
@@ -69,13 +94,15 @@ h1, .h1 {
     margin: 12px 0 0;
     text-align: center;
 }
-.product-card {
-    grid-gap: 8px 0;
-    display: grid;
-    grid-template-columns: auto minmax(0, 1fr) auto;
-    grid-template-rows: 1fr 32px 20px;
-    padding: 24px;
 
+/*Продукты*/
+.products-list {
+    display: grid;
+    grid-gap: 10px;
+}
+.product-card {
+    display: flex;
+    padding: 24px;
     background-color: #fff;
     border-radius: 16px;
     box-shadow: 0 1px 2px 0 #0000001a;
@@ -86,4 +113,46 @@ h1, .h1 {
     height: 200px;
     margin-right: 12px;
     width: 200px;
+}
+.product-card_center {
+    display: flex;
+    flex-direction: column;
+}
+.product-card_right {
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+}
+.product-card_title {
+    grid-column: 2;
+    grid-row: 1;
+    max-height: 74px;
+    font-size: 16px;
+    line-height: 22px;
+    overflow: hidden;
+    color: #000;
+}
+.product-card_title:hover {
+    text-decoration: none;
+    color: #fc5808;
+}
+.product-price {
+    display: flex;
+    flex-direction: column-reverse;
+    font-size: 20px;
+    grid-column: 2;
+    grid-row: 2;
+    line-height: 26px;
+    color: #fc8507;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+.card_bottom {
+    margin-top: auto;
+}
+.product-by button {
+    height: 44px;
+    width: min-content;
+    background: #fff;
+    border-color: #d9d9d9;
 }

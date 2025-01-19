@@ -22,7 +22,7 @@ class Products extends ActiveRecord {
         return [
             [['prod_title',], 'required'],
             [['prod_title', 'prod_image'], 'string'],
-            [['prod_status', 'prod_price',], 'integer'],
+            [['prod_status', 'prod_price', 'prod_category'], 'integer'],
             [['prod_title', 'prod_alias',], 'trim'],
         ];
     }

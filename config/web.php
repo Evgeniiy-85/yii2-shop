@@ -53,10 +53,14 @@ $config = [
                 '/products/<alias:>' => 'products/product',
                 '/categories/<alias:>' => 'categories/category',
                 '/categories/<parent_cat_alias:>/<alias:>' => 'categories/category',
+                '/buy/<alias:>' => 'orders/buy',
+                '/pay/<ID:\d+>' => 'orders/pay',
+                '/login' => 'site/login',
+
                 '/admin/products/<ID:\d+>' => 'admin/products/edit',
                 '/admin/users/<ID:\d+>' => 'admin/users/edit',
                 '/admin/categories/<ID:\d+>' => 'admin/categories/edit',
-                '/login' => 'site/login',
+
             ],
         ],
         'authManager' => [
