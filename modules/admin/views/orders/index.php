@@ -10,7 +10,7 @@ $this->params['breadcrumbs'][] = strip_tags($this->title);?>
 <div class="row product-list">
     <div class="col-md-12">
         <div class="card card-default" id="products">
-            <div class="card-body overflow-auto" style="padding: 0">
+            <div class="card-body  overflow-x-auto" style="padding: 0">
                 <table class="table text-nowrap table-bordered">
                     <thead>
                     <tr>

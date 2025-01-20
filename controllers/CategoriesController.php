@@ -51,6 +51,12 @@ class CategoriesController extends Controller {
                 'prod_status' => [Products::STATUS_ACTIVE],
                 'prod_category' => $category->cat_id,
             ])->all();
+
+            return $this->render('/products/products', [
+                'category' => $category,
+                'subcategories' => $subcategories,
+                'products' => $products,
+            ]);
         }
 
         return $this->render('category', [

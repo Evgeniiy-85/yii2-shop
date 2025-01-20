@@ -21,10 +21,13 @@ $categories = Categories::find()
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-5">
+        <div class="col-md-6">
             <div class="card card-primary">
                 <div class="card-header with-border">
-                    <h3 class="card-title"><?=$model->prod_title;?></h3>
+                    <h3 class="card-title">
+                        <?=$model->prod_title;?>
+                        <a href="/products/<?=$model->prod_alias;?>" class="fa fa-external-link-alt" target="_blank"></a>
+                    </h3>
                 </div>
 
                 <?$form = ActiveForm::begin([

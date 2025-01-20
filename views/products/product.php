@@ -1,9 +1,10 @@
 <?php
 use yii\helpers\Html;
 use app\components\Helpers;
+use app\models\Products;
 
-$this->title = $product['prod_title'];
-$this->params['breadcrumbs'][] = $this->title;?>
+$this->title = isset($category) ? $category['cat_title'] : $product['prod_title'];
+$this->params['breadcrumbs'] = Products::getBreadCrumbs($category, $product);?>
 
 <div class="product-card">
     <div class="product_cover">

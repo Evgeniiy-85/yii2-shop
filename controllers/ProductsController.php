@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Categories;
 use app\models\Products;
 use yii\data\Pagination;
 use yii\web\Controller;
@@ -26,6 +27,7 @@ class ProductsController extends Controller {
 
         return $this->render('products', [
             'products' => $query->all(),
+            'category' => null,
         ]);
     }
 
@@ -36,8 +38,14 @@ class ProductsController extends Controller {
             throw new HttpException(404, "Страница не найдена.");
         }
 
+        $category = null;
+        if ($product['prod_category']) {
+            $category = Categories::find()->where(['cat_id' => $product['prod_category']])->one();
+        }
+
         return $this->render('product', [
             'product' => $product,
+            'category' => $category,
         ]);
     }
 

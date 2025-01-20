@@ -24,7 +24,10 @@ $categories = Categories::find()
         <div class="col-md-5">
             <div class="card card-primary">
                 <div class="card-header with-border">
-                    <h3 class="card-title"><?=$model->cat_title;?></h3>
+                    <h3 class="card-title">
+                        <?=$model->cat_title;?>
+                        <a href="/categories/<?=$model->cat_alias;?>" class="fa fa-external-link-alt" target="_blank"></a>
+                    </h3>
                 </div>
 
                 <?$form = ActiveForm::begin([
