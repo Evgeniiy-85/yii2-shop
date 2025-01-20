@@ -77,4 +77,15 @@ class SettingsController extends Controller {
     public function actionIndex() {
         return $this->render('index');
     }
+
+    public function actionMain() {
+        return $this->render('main');
+    }
+
+    public function actionAppearance() {
+        return $this->render('appearance');
+    }
+    public function actionPayments() {
+        return $this->render('payments/index');
+    }
 }

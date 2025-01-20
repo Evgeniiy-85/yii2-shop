@@ -68,8 +68,9 @@
                         'url' => '#',
                         'active' => strpos($this->context->route, 'admin/settings') === 0,
                         'items' => [
-                            ['label' => 'Основные', 'iconStyle' => 'far', 'url' => ['/admin/settings/main'], 'active' => $this->context->route == 'admin/settings/main',],
-                            ['label' => 'Внешний вид', 'iconStyle' => 'far', 'url' => ['/admin/users/appearance'], 'active' => $this->context->route == 'admin/settings/appearance',],
+                            ['label' => 'Основные', 'iconStyle' => 'far', 'url' => ['/admin/settings/main'], 'active' => $this->context->route == '/admin/settings/main',],
+                            ['label' => 'Внешний вид', 'iconStyle' => 'far', 'url' => ['/admin/settings/appearance'], 'active' => $this->context->route == '/admin/settings/appearance',],
+                            ['label' => 'Платежные модули', 'iconStyle' => 'far', 'url' => ['/admin/settings/payments'], 'active' => $this->context->route == 'admin/settings/payments',],
                         ],
                     ],
                     ['label' => 'Gii',  'icon' => 'file-code', 'url' => ['/gii'], 'target' => '_blank', 'active' => $this->context->route == '/gii'],
