@@ -14,7 +14,7 @@ use Yii;
 /**
  * Default controller for the `admin` module
  */
-class SettingsController extends Controller {
+class PaymentsController extends SettingsController {
 
     public function behaviors() {
         return [
@@ -79,19 +79,6 @@ class SettingsController extends Controller {
      * @return string
      */
     public function actionIndex() {
-        return $this->render('index');
-    }
-
-    public function actionMain() {
-        return $this->render('main');
-    }
-
-    public function actionAppearance() {
-        return $this->render('appearance');
-    }
-    public function actionPayments() {
-        $page_size = 36;
-
         $query = Payments::find();
         $filter = new ProductsFilter();
         $filter->add($query);
@@ -99,14 +86,12 @@ class SettingsController extends Controller {
         $query
             ->orderBy(['pay_id' => SORT_DESC]);
 
-        return $this->render('payments/index', [
+        return $this->render('/settings/payments/index', [
             'payments' => $query->all(),
         ]);
-
-        return $this->render('payments/index');
     }
 
-    public function actionPayment($ID) {
+    public function actionEdit() {
 
     }
 }

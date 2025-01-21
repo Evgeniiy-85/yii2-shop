@@ -60,6 +60,8 @@ $config = [
                 '/admin/products/<ID:\d+>' => 'admin/products/edit',
                 '/admin/users/<ID:\d+>' => 'admin/users/edit',
                 '/admin/categories/<ID:\d+>' => 'admin/categories/edit',
+                '/admin/settings/payments' => 'admin/payments/index',
+                '/admin/settings/payments/<ID:\d+>' => 'admin/payments/edit',
             ],
         ],
         'authManager' => [
