@@ -23,6 +23,7 @@ class m250121_085836_create_payments_table extends Migration
                 'pay_sort' => $this->integer()->defaultValue(1),
                 'pay_status' => $this->integer()->defaultValue(0),
                 'pay_image' => $this->string(),
+                'pay_button_title' => $this->string()->notNull(),
                 'pay_params' => $this->text(),
             ]);
         }

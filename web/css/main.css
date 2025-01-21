@@ -211,3 +211,7 @@ a.button:hover {
 .product .product-by-one_line .product-price {
     margin-right: 10px;
 }
+
+.payments-list .card_cover {
+    height: 80px;
+}

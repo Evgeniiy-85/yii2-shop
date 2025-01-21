@@ -11,9 +11,15 @@ $this->params['breadcrumbs'][] = strip_tags($this->title);?>
     <div class="row">
         <div class="col-md-12">
             <div class="row payments-list">
+                <div class="col-md-3">
+                    <?=$this->render('filter', [
+                        'filter' => $filter,
+                    ]);?>
+                </div>
+
                 <?php if($payments):
                     foreach ($payments as $payment):?>
-                        <div class="col-md-12">
+                        <div class="col-md-9">
                             <div class="card card-default card-payment">
                                 <div class="card-body">
                                     <div class="row">

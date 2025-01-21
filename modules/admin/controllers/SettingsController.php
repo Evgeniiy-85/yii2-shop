@@ -14,51 +14,7 @@ use Yii;
 /**
  * Default controller for the `admin` module
  */
-class SettingsController extends Controller {
-
-    public function behaviors() {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['post'],
-                ],
-            ],
-            'access' => [
-                'class' => AccessControl::class,
-                'rules' => [
-                    [
-                        'allow' => true,
-                        'roles' => ['admin', 'manager']
-                    ],
-                    [
-                        'allow' => true,
-                        'roles' => ['@'],
-                        'actions' => ['admin/auth/logout'],
-                    ],
-                    [
-                        'allow' => true,
-                        'roles' => ['?'],
-                        'matchCallback' => function ($rule, $action) {
-                            return $this->redirect(['/admin/auth/login'])->send();
-                        }
-                    ]
-                ]
-            ]
-        ];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function actions()
-    {
-        return [
-            'error' => [
-                'class' => 'yii\web\ErrorAction',
-            ],
-        ];
-    }
+class SettingsController extends AdminController {
 
     /**
      * @param $action

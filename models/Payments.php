@@ -20,8 +20,8 @@ class Payments extends ActiveRecord {
      */
     public function rules() {
         return [
-            [['pay_title'], 'required'],
-            [['pay_title', 'pay_desc', 'pay_image'], 'string'],
+            [['pay_title', 'pay_button_title'], 'required'],
+            [['pay_title', 'pay_desc', 'pay_image', 'pay_button_title'], 'string'],
             [['pay_status', 'pay_sort'], 'integer'],
             [['pay_title', 'pay_desc',], 'trim'],
         ];
