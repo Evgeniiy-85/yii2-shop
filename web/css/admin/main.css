@@ -138,3 +138,7 @@ a.add-new-item, .add-new-item {
 .context-menu.show-dmenu .context-button span {
     background-color: #3c8dbc;
 }
+
+table.table tbody tr td {
+    vertical-align: middle;
+}

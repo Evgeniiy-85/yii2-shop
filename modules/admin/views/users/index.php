@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = strip_tags($this->title);?>
         <div class="col-md-9">
             <div class="card card-default" id="user-list">
                 <div class="card-body overflow-x-auto" style="padding: 0">
-                    <table class="table text-nowrap table-bordered">
+                    <table class="table text-nowrap">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -72,7 +72,7 @@ $this->params['breadcrumbs'][] = strip_tags($this->title);?>
                                                     'target' => '_blank',
                                                 ],
                                                 [
-                                                    'icon' => 'fa-remove',
+                                                    'icon' => 'fa-trash',
                                                     'text' => 'Удалить',
                                                     'href' => "/admin/{$this->context->id}/delete/{$user->user_id}",
                                                     'onclick' => 'return confirm(\'Точно удалить?\')',

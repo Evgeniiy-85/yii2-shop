@@ -50,6 +50,7 @@ $categories = Categories::find()
                             </div>
                         </div>
                     </div>
+                    <?= $form->field($model, 'prod_article')->input('text'); ?>
                     <?= $form->field($model, 'prod_price')->input('text'); ?>
                     <?= $form
                         ->field($model, "prod_category")

@@ -47,6 +47,7 @@ $categories = Categories::find()
                             </div>
                         </div>
                     </div>
+                    <?= $form->field($model, 'prod_article')->input('text'); ?>
                     <?= $form
                         ->field($model, "prod_category")
                         ->dropDownList($categories, ['class' => 'form-control', 'prompt' => '-']);

@@ -13,7 +13,7 @@ class CategoriesController extends AdminController {
     public function actionIndex() {
         $page_size = 36;
 
-        $query = Categories::find()->where(['cat_status' => [Categories::STATUS_ACTIVE]]);
+        $query = Categories::find();
         $pages = new Pagination([
             'pageSize' => $page_size,
             'defaultPageSize' => $page_size,

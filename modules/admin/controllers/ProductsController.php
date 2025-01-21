@@ -15,7 +15,7 @@ class ProductsController extends AdminController {
     public function actionIndex() {
         $page_size = 36;
 
-        $query = Products::find()->where(['prod_status' => [Products::STATUS_ACTIVE]]);
+        $query = Products::find();
         $pages = new Pagination([
             'pageSize' => $page_size,
             'defaultPageSize' => $page_size,

@@ -28,16 +28,15 @@ $this->params['breadcrumbs'][] = strip_tags($this->title);?>
         <div class="col-md-9">
             <div class="card card-default" id="categories">
                 <div class="card-body  overflow-x-auto" style="padding: 0">
-                    <table class="table text-nowrap table-bordered">
+                    <table class="table text-nowrap">
                         <thead>
                             <tr>
-                                <th>#ID</th>
                                 <th>Изображение</th>
                                 <th>Наименование</th>
                                 <th>Родительская категория</th>
                                 <th>Порядок сортировки</th>
                                 <th>Статус</th>
-                                <th style="width: 30px"></th>
+                                <th class="text-right" width="140">Действие</th>
                             </tr>
                         </thead>
 
@@ -45,9 +44,6 @@ $this->params['breadcrumbs'][] = strip_tags($this->title);?>
                         <?php if($categories):?>
                             <?foreach($categories as $category):?>
                                 <tr>
-                                    <td width="40">
-                                        <?=$category->cat_id;?>
-                                    </td>
                                     <td width="160">
                                         <div class="card_cover">
                                             <img src="<?=$category->cat_image ? "/load/categories/{$category['cat_image']}" : '/images/no-img.png';?>"/>
@@ -60,29 +56,18 @@ $this->params['breadcrumbs'][] = strip_tags($this->title);?>
                                         <a href="/admin/categories/<?=$category->cat_parent;?>"><?=$category->parentCategory->cat_title;?></a>
                                     </td>
                                     <td><?=$category->cat_sort;?></td>
-                                    <td><?=Categories::getStatuses($category->cat_status);?></td>
-                                    <td class="user-action-buttons text-right">
-                                        <?=UI::contextMenu([
-                                            [
-                                                'icon' => 'fa-external-link-alt',
-                                                'text' => 'Перейти на страницу категории',
-                                                'href' => "/categories/{$category->cat_alias}",
-                                                'class' => 'dont-replace-href',
-                                                'target' => '_blank',
-                                            ],
-                                            [
-                                                'icon' => 'fa-pencil',
-                                                'text' => 'Редактировать',
-                                                'href' => "/admin/{$this->context->id}/{$category->cat_id}",
-                                                'class' => 'dont-replace-href',
-                                            ],
-                                            [
-                                                'icon' => 'fa-remove',
-                                                'text' => 'Удалить',
-                                                'href' => "/admin/{$this->context->id}/delete/{$category->cat_id}",
-                                                'onclick' => 'return confirm(\'Точно удалить?\')',
-                                            ]
-                                        ], ['class' => 'float-right'])?>
+
+                                    <td>
+                                        <small class="badge <?=$category->cat_status == Categories::STATUS_ACTIVE ? 'badge-success' : 'badge-danger';?>">
+                                            <?=Categories::getStatuses($category->cat_status);?>
+                                        </small>
+                                    </td>
+                                    <td class="text-right">
+                                        <div class="card-tools" style="width:140px;">
+                                            <a class="btn btn-tool btn-default bg-gradient-primary" href="<?="/categories/{$category->cat_alias}";?>" target="_blank"><i class="fa fa-external-link-alt"></i></a>
+                                            <a class="btn btn-tool btn-default bg-gradient-success" href="<?="/admin/{$this->context->id}/{$category->cat_id}";?>"><i class="fa fa-pencil"></i></a>
+                                            <a class="btn btn-tool btn-default bg-gradient-danger" href="<?="/admin/{$this->context->id}/delete/{$category->cat_id}";?>" onclick="return confirm('Вы уверены?')"><i class="fa fa-trash"></i></a>
+                                        </div>
                                     </td>
                                 </tr>
                             <?php endforeach;?>
