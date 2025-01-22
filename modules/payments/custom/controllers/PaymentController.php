@@ -14,31 +14,7 @@ use Yii;
  */
 class PaymentController extends Controller {
 
-    /**
-     * {@inheritdoc}
-     */
-    public function actions()
-    {
-        return [
-            'error' => [
-                'class' => 'yii\web\ErrorAction',
-            ],
-        ];
-    }
-
-    /**
-     * @param $action
-     * @return bool
-     * @throws \yii\web\BadRequestHttpException
-     */
-    public function beforeAction($action) {
-        return parent::beforeAction($action);
-    }
-
-    public function afterAction($action, $result){
-        return parent::afterAction($action, $result);
-    }
-
+    public $layout = '@app/views/layouts/main';
 
     /**
      * @param $order_id
@@ -55,7 +31,7 @@ class PaymentController extends Controller {
             $order->save();
         }
 
-        $this->redirect("/pay/success");
+        $this->redirect("/pay/custom/success");
     }
 
 
@@ -63,8 +39,7 @@ class PaymentController extends Controller {
      * Renders the index view for the module
      * @return string
      */
-    public function actionIndex() {
-        echo '!!!222';exit;
-        return $this->render('index');
+    public function actionSuccess() {
+        return $this->render('success');
     }
 }

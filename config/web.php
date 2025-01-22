@@ -55,6 +55,7 @@ $config = [
                 '/categories/<parent_cat_alias:>/<alias:>' => 'categories/category',
                 '/buy/<alias:>' => 'orders/buy',
                 '/pay/<ID:\d+>' => 'orders/pay',
+                '/pay/success' => 'orders/success',
                 '/login' => 'site/login',
 
                 '/admin/products/<ID:\d+>' => 'admin/products/edit',

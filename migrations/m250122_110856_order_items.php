@@ -15,7 +15,8 @@ class m250122_110856_order_items extends Migration
 
         if ($this->db->getTableSchema($tableName, true) === null) {
             $this->createTable('{{%order_items}}', [
-                'order_id' => $this->primaryKey(),
+                'id' => $this->primaryKey(),
+                'order_id' => $this->integer()->notNull(),
                 'prod_id' => $this->integer()->notNull(),
                 'prod_price' => $this->integer()->notNull(),
                 'prod_title' => $this->string()->notNull(),

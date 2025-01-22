@@ -57,7 +57,7 @@ $this->title = 'Выбор оплаты';?>
 </div>
 
 <?foreach ($payments as $payment) {
-    echo $this->render("@app/modules/payments/{$payment['pay_name']}/views/pay", [
+    echo $this->render("@app/modules/payments/{$payment['pay_name']}/views/payment/pay", [
         'payment' => $payment,
         'order' => $order,
     ]);

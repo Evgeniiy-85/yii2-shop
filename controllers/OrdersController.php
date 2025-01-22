@@ -48,4 +48,11 @@ class OrdersController extends Controller {
             'payments' => $payments,
         ]);
     }
+
+
+    public function actionSuccess() {
+        return $this->render('success', [
+
+        ]);
+    }
 }
