@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = strip_tags($this->title);?>
 
                 <?$form = ActiveForm::begin([
                     'id' => 'form-payment',
-                    'action' => "/admin/settings/{$this->context->id}/{$model->pay_id}",
+                    'action' => "/admin/settings/payments/custom",
                     'options' => [
                         'enctype' => 'multipart/form-data'
                     ]

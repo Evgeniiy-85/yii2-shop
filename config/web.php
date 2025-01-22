@@ -77,6 +77,15 @@ $config = [
     ]
 ];
 
+
+foreach (scandir(__DIR__.'/../modules/payments') as $payment_name) {
+    if ($payment_name !== '.' && $payment_name !== '..') {
+        $config = array_merge_recursive(
+            $config, require(__DIR__."/../modules/payments/{$payment_name}/config.php"),
+        );
+    }
+}
+
 if (YII_ENV_DEV) {
     // configuration adjustments for 'dev' environment
     $config['bootstrap'][] = 'debug';
