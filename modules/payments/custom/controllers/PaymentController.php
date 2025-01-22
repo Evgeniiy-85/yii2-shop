@@ -2,6 +2,8 @@
 
 namespace app\modules\payments\custom\controllers;
 
+use app\models\Orders;
+use app\modules\payments\custom\models\PayCustom;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
@@ -11,38 +13,6 @@ use Yii;
  * Default controller for the `admin` module
  */
 class PaymentController extends Controller {
-
-    public function behaviors() {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['post'],
-                ],
-            ],
-            'access' => [
-                'class' => AccessControl::class,
-                'rules' => [
-                    [
-                        'allow' => true,
-                        'roles' => ['admin', 'manager']
-                    ],
-                    [
-                        'allow' => true,
-                        'roles' => ['@'],
-                        'actions' => ['admin/auth/logout'],
-                    ],
-                    [
-                        'allow' => true,
-                        'roles' => ['?'],
-                        'matchCallback' => function ($rule, $action) {
-                            return $this->redirect(['/admin/auth/login'])->send();
-                        }
-                    ]
-                ]
-            ]
-        ];
-    }
 
     /**
      * {@inheritdoc}
@@ -67,6 +37,25 @@ class PaymentController extends Controller {
 
     public function afterAction($action, $result){
         return parent::afterAction($action, $result);
+    }
+
+
+    /**
+     * @param $order_id
+     * @return void
+     * @throws \yii\db\Exception
+     */
+    public function actionPay($order_id) {
+        $order = Orders::find()->where(['order_id' => $order_id])->one();
+        $payment = new PayCustom();
+
+        if ($payment->load(Yii::$app->request->post()) && $payment->validate()) {
+            $order->order_params = $payment->getFormParams();
+            $order->setStatus(Orders::STATUS_INVOICE_ISSUED);
+            $order->save();
+        }
+
+        $this->redirect("/pay/success");
     }
 
 

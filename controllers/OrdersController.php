@@ -35,7 +35,7 @@ class OrdersController extends Controller {
 
 
     public function actionPay($ID) {
-        $order = Orders::find()->where(['order_id' => $ID])->one();
+        $order = Orders::find()->where(['order_id' => $ID, 'order_status' => Orders::STATUS_NO_PAID])->one();
         if (!$order) {
             throw new HttpException(404, "Страница не найдена.");
         }

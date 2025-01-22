@@ -13,7 +13,7 @@ class Orders extends ActiveRecord {
 
     const STATUS_NO_PAID = 0;
     const STATUS_PAID = 1;
-
+    const STATUS_INVOICE_ISSUED = 3; // ВЫПИСАН СЧЕТ
 
     /**
      * @inheritdoc
@@ -64,5 +64,14 @@ class Orders extends ActiveRecord {
         ];
 
         return $status !== false ? $statuses[$status] : $statuses;
+    }
+
+
+    /**
+     * @param $status
+     * @return void
+     */
+    public function setStatus($status) {
+        $this->order_status = $status;
     }
 }
