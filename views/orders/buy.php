@@ -7,6 +7,14 @@ $this->title = 'Оформление заказа';?>
 <div class="site-catalog">
     <h1><?= Html::encode($this->title) ?></h1>
 
+    <div class="row order-info mb-5">
+        <div class="col-md-9">
+            <?=$this->render('order_info_block', [
+                'products' => [$product],
+            ]);?>
+        </div>
+    </div>
+
     <div class="row">
         <div class="col-md-5">
             <div class="card">
@@ -18,14 +26,14 @@ $this->title = 'Оформление заказа';?>
                 ]);?>
 
                 <div class="card-body">
-                    <?= $form->field($order, 'client_email')->input('text'); ?>
+                    <?= $form->field($order, 'client_email')->input('email', ['autofocus' => true]); ?>
                     <?= $form->field($order, 'client_name')->input('text'); ?>
                     <?= $form->field($order, 'client_surname')->input('text'); ?>
                     <?= $form->field($order, 'client_phone')->input('text'); ?>
                 </div>
 
-                <div class="card-footer">
-                    <?= Html::submitButton('Продолжить', ['class' => 'btn btn-primary float-right', 'name' => 'next']) ?>
+                <div class="card-footer text-right">
+                    <?= Html::submitButton('Продолжить', ['class' => 'btn btn-primary', 'name' => 'next']) ?>
                 </div>
 
                 <?ActiveForm::end();?>

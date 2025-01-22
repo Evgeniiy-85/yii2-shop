@@ -20,7 +20,7 @@ class OrdersController extends Controller {
 
         $order = new Order();
         if ($order->load(Yii::$app->request->post()) && $order->validate()) {
-            $order->prod_id = $product->prod_id;
+            $order->products = [$product];
             if ($order->save()) {
                 $this->redirect("/pay/{$order->order_id}");
             }
@@ -40,12 +40,11 @@ class OrdersController extends Controller {
             throw new HttpException(404, "Страница не найдена.");
         }
 
-        $products = Product::find()->where(['prod_id' => $order->prod_id])->all();
         $payments = Payment::find()->where(['pay_status' => Payment::STATUS_ACTIVE])->all();
 
         return $this->render('pay', [
             'order' => $order,
-            'products' => $products,
+            'products' => $order->products,
             'payments' => $payments,
         ]);
     }

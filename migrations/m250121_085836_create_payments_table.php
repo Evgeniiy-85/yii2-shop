@@ -17,7 +17,7 @@ class m250121_085836_create_payments_table extends Migration
         if ($this->db->getTableSchema($tableName, true) === null) {
             $this->createTable('{{%payments}}', [
                 'pay_id' => $this->primaryKey(),
-                'pay_name' => $this->string()->notNull(),
+                'pay_name' => $this->string()->notNull()->unique(),
                 'pay_title' => $this->string(256),
                 'pay_desc' => $this->string(),
                 'pay_sort' => $this->integer()->defaultValue(1),

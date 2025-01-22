@@ -46,7 +46,7 @@ class PayCustom extends Payment {
     /**
      * @return false|string
      */
-    public function getFormParams() {
+    public function getOrderInfo() {
         $params = [
             'organization' => $this->organization,
             'inn' => $this->inn,

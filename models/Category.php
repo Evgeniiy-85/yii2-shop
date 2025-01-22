@@ -94,7 +94,6 @@ class Category extends ActiveRecord {
      * @return void
      */
     public function init() {
-        parent::afterFind();
         $this->cat_sort = (int)self::find()->max('cat_sort') + 1;
     }
 }
