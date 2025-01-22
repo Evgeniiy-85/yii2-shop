@@ -1,11 +1,10 @@
 <?php
-use yii\widgets\ActiveForm;
-use app\components\Helpers;
-use app\components\UI;
-use app\models\Category;
+use app\modules\admin\models\Notices;
 
 $this->title = 'Платежные модули';
 $this->params['breadcrumbs'][] = strip_tags($this->title);?>
+
+<?=Notices::showNotices();?>
 
 <div class="container-fluid">
     <div class="row">

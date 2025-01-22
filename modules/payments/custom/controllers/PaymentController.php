@@ -3,18 +3,13 @@
 namespace app\modules\payments\custom\controllers;
 
 use app\models\Order;
+use app\modules\admin\models\Notices;
 use app\modules\payments\custom\models\PayCustom;
-use yii\filters\AccessControl;
-use yii\filters\VerbFilter;
 use yii\web\Controller;
 use Yii;
 
-/**
- * Default controller for the `admin` module
- */
-class PaymentController extends Controller {
 
-    public $layout = '@app/views/layouts/main';
+class PaymentController extends Controller {
 
     /**
      * @param $order_id
@@ -28,7 +23,7 @@ class PaymentController extends Controller {
         if ($payment->load(Yii::$app->request->post()) && $payment->validate()) {
             $order->setAttribute('order_params', $payment->getOrderInfo());
             $order->setAttribute('order_status', Order::STATUS_INVOICE_ISSUED);
-            $order->save();
+            $order->save() ? Notices::addSuccess('Успешно') : Notices::addWarning('Ошибка при сохранении');
         }
 
         $this->redirect("/pay/custom/success");

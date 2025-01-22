@@ -1,11 +1,13 @@
 <?php
-use yii\widgets\ActiveForm;
+
+use app\modules\admin\models\Notices;
 use app\models\Product;
-use app\components\UI;
 use app\components\Helpers;
 
 $this->title = 'Список продуктов';
 $this->params['breadcrumbs'][] = strip_tags($this->title);?>
+
+<?=Notices::showNotices();?>
 
 <div class="container-fluid">
     <div class="row">

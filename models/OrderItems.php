@@ -13,6 +13,17 @@ class OrderItems extends ActiveRecord {
     /**
      * @inheritdoc
      */
+    public function rules() {
+        return [
+            [['order_id', 'prod_id'], 'required'],
+            [['prod_title',], 'string'],
+            [['order_id', 'prod_id', 'prod_price'], 'integer'],
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
     public static function tableName() {
         return 'order_items';
     }

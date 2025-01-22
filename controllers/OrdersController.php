@@ -19,7 +19,7 @@ class OrdersController extends Controller {
 
         $order = new Order();
         if ($order->load(Yii::$app->request->post()) && $order->validate()) {
-            $order->setAttribute('products', [$product]);
+            $order->products = [$product];
             $order->setAttribute('order_sum', $product->prod_price);
             if ($order->save()) {
                 $this->redirect("/pay/{$order->order_id}");

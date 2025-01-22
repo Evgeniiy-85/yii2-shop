@@ -5,6 +5,7 @@ namespace app\modules\admin\controllers;
 use app\models\LoginForm;
 use app\models\Product;
 use app\models\User;
+use app\modules\admin\models\Notices;
 use app\modules\admin\models\UserFilter;
 use Yii;
 use yii\data\Pagination;
@@ -43,7 +44,7 @@ class UsersController extends AdminController {
 
         if ($post = Yii::$app->request->post('User')) {
             $model->load(Yii::$app->request->post());
-            $model->save() ? $model->addSuccess('Успешно') : $model->addWarning('Ошибка при сохранении');
+            $model->save() ? Notices::addSuccess('Успешно') : Notices::addWarning('Ошибка при сохранении');
             return $this->redirect(['/admin/users']);
         }
 
@@ -66,7 +67,7 @@ class UsersController extends AdminController {
 
         if ($post = Yii::$app->request->post('User')) {
             $model->load(Yii::$app->request->post());
-            $model->save() ? $model->addSuccess('Успешно') : $model->addWarning('Ошибка при сохранении');
+            $model->save() ? Notices::addSuccess('Успешно') : Notices::addWarning('Ошибка при сохранении');
             return $this->redirect(['/admin/users']);
         }
 

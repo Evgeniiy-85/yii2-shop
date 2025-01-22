@@ -7,8 +7,6 @@ $this->title = 'Добавить пользователя';
 $this->params['breadcrumbs'][] = ['label' => 'Список пользователей', 'url' => ['/admin/'.Yii::$app->controller->id]];
 $this->params['breadcrumbs'][] = strip_tags($this->title);?>
 
-<?=$model->showNotices();?>
-
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-5">

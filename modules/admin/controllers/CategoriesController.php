@@ -5,6 +5,7 @@ namespace app\modules\admin\controllers;
 use app\models\Category;
 use app\modules\admin\models\Files;
 use app\modules\admin\models\CategoryFilter;
+use app\modules\admin\models\Notices;
 use Yii;
 use yii\data\Pagination;
 use yii\web\HttpException;
@@ -51,7 +52,7 @@ class CategoriesController extends AdminController {
 
         if (Yii::$app->request->post('Category')) {
             $model->load(Yii::$app->request->post());
-            $model->save() ? $model->addSuccess('Успешно') : $model->addWarning('Ошибка при сохранении');
+            $model->save() ? Notices::addSuccess('Успешно') : Notices::addWarning('Ошибка при сохранении');
             return $this->redirect(['/admin/categories']);
         }
 
@@ -68,7 +69,7 @@ class CategoriesController extends AdminController {
 
         if ($post = Yii::$app->request->post('Category')) {
             $model->load(Yii::$app->request->post());
-            $model->save() ? $model->addSuccess('Успешно') : $model->addWarning('Ошибка при сохранении');
+            $model->save() ? Notices::addSuccess('Успешно') : Notices::addWarning('Ошибка при сохранении');
             return $this->redirect(['/admin/categories']);
         }
 

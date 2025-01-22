@@ -23,9 +23,10 @@ class Order extends ActiveRecord {
      */
     public function rules() {
         return [
+            [['order_sum'], 'safe'],
             [['client_email', 'client_name', 'client_surname', 'client_phone',], 'required'],
             [['client_email', 'client_name','client_surname', 'client_phone'], 'string'],
-            [['order_date', 'payment_date',], 'integer'],
+            [['order_date', 'payment_date', 'order_sum'], 'integer'],
             [['client_email', 'client_name','client_surname', 'client_phone'], 'trim'],
         ];
     }
@@ -80,10 +81,12 @@ class Order extends ActiveRecord {
                 foreach ($this->products as $product) {
                     $model = new OrderItems();
                     $model->setAttribute('order_id', $this->order_id);
-                    $model->setAttribute('prod_id', $this->prod_id);
-                    $model->setAttribute('prod_price', $this->prod_price);
-                    $model->setAttribute('prod_title', $this->prod_title);
-                    $model->save();
+                    $model->setAttribute('prod_id', $product->prod_id);
+                    $model->setAttribute('prod_price', $product->prod_price);
+                    $model->setAttribute('prod_title', $product->prod_title);
+                    if ($model->validate()) {
+                        $model->save();
+                    }
                 }
             }
 

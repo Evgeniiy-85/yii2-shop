@@ -17,8 +17,6 @@ $categories = Category::find()
     ->column();
 ?>
 
-<?=$model->showNotices();?>
-
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-6">

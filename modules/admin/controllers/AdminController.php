@@ -12,6 +12,8 @@ use Yii;
  */
 class AdminController extends Controller {
 
+    public $layout = 'main';
+
     public function behaviors() {
         return [
             'verbs' => [

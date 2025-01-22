@@ -8,7 +8,7 @@ use app\modules\admin\models\ProductFilter;
 use Yii;
 use yii\data\Pagination;
 use yii\web\HttpException;
-use yii\web\UploadedFile;
+use app\modules\admin\models\Notices;
 
 class ProductsController extends AdminController {
 
@@ -54,7 +54,7 @@ class ProductsController extends AdminController {
 
         if ($post = Yii::$app->request->post('Product')) {
             $model->load(Yii::$app->request->post());
-            $model->save() ? $model->addSuccess('Успешно') : $model->addWarning('Ошибка при сохранении');
+            $model->save() ? Notices::addSuccess('Успешно') : Notices::addWarning('Ошибка при сохранении');
             return $this->redirect(['/admin/products']);
         }
 
@@ -71,7 +71,7 @@ class ProductsController extends AdminController {
 
         if ($post = Yii::$app->request->post('Product')) {
             $model->load(Yii::$app->request->post());
-            $model->save() ? $model->addSuccess('Успешно') : $model->addWarning('Ошибка при сохранении');
+            $model->save() ? Notices::addSuccess('Успешно') : Notices::addWarning('Ошибка при сохранении');
             return $this->redirect(['/admin/products']);
         }
 
