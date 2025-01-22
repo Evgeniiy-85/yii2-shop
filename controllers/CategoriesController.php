@@ -2,8 +2,8 @@
 
 namespace app\controllers;
 
-use app\models\Categories;
-use app\models\Products;
+use app\models\Category;
+use app\models\Product;
 use yii\data\Pagination;
 use yii\web\Controller;
 use yii\web\HttpException;
@@ -13,8 +13,8 @@ class CategoriesController extends Controller {
     public function actionIndex() {
         $page_size = 36;
 
-        $query = Categories::find()->where([
-            'cat_status' => [Categories::STATUS_ACTIVE],
+        $query = Category::find()->where([
+            'cat_status' => [Category::STATUS_ACTIVE],
             'cat_parent' => 0,
         ]);
 
@@ -35,20 +35,20 @@ class CategoriesController extends Controller {
     }
 
     public function actionCategory($parent_cat_alias = '', $alias) {
-        $category = Categories::find()->where(['cat_alias' => $alias])->one();
+        $category = Category::find()->where(['cat_alias' => $alias])->one();
         if (!$category) {
             throw new HttpException(404, "Страница не найдена.");
         }
 
-        $subcategories = Categories::find()->where([
-            'cat_status' => [Categories::STATUS_ACTIVE],
+        $subcategories = Category::find()->where([
+            'cat_status' => [Category::STATUS_ACTIVE],
             'cat_parent' => $category->cat_id,
         ])->all();
 
         $products = null;
         if (!$subcategories) {
-            $products = Products::find()->where([
-                'prod_status' => [Products::STATUS_ACTIVE],
+            $products = Product::find()->where([
+                'prod_status' => [Product::STATUS_ACTIVE],
                 'prod_category' => $category->cat_id,
             ])->all();
 

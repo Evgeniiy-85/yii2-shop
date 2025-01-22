@@ -1,7 +1,7 @@
 <?php
 use yii\widgets\ActiveForm;
 use app\components\Helpers;
-use app\models\Orders;
+use app\models\Order;
 use app\components\UI;
 
 $this->title = 'Список заказов';
@@ -37,7 +37,7 @@ $this->params['breadcrumbs'][] = strip_tags($this->title);?>
                                 <td><?=$order->client_email;?></td>
                                 <td><?=$order->client_phone;?></td>
                                 <td><?=Helpers::formatPrice($order->order_sum);?></td>
-                                <td><?=Orders::getStatuses($order->order_status);?></td>
+                                <td><?=Order::getStatuses($order->order_status);?></td>
                                 <td class="user-action-buttons text-right">
                                     <?=UI::contextMenu([
                                         [

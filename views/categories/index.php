@@ -1,12 +1,12 @@
 <?php
 use yii\helpers\Html;
-use app\models\Categories;
-use app\models\Products;
+use app\models\Category;
+use app\models\Product;
 
 $this->title = 'Каталог';
 if (isset($category)) {
     $this->title = $category->cat_title;
-    $this->params['breadcrumbs'] = Products::getBreadCrumbs($category);
+    $this->params['breadcrumbs'] = Product::getBreadCrumbs($category);
 }?>
 
 <div class="site-catalog">

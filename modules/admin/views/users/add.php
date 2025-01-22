@@ -1,7 +1,7 @@
 <?php
 use yii\widgets\ActiveForm;
 use yii\helpers\Html;
-use app\models\Users;
+use app\models\User;
 
 $this->title = 'Добавить пользователя';
 $this->params['breadcrumbs'][] = ['label' => 'Список пользователей', 'url' => ['/admin/'.Yii::$app->controller->id]];
@@ -38,7 +38,7 @@ $this->params['breadcrumbs'][] = strip_tags($this->title);?>
                     <?= $form->field($model, 'user_password')->input('text'); ?>
                     <?= $form
                         ->field($model, "user_status")
-                        ->dropDownList(Users::getStatuses(), ['class' => 'form-control']);
+                        ->dropDownList(User::getStatuses(), ['class' => 'form-control']);
                     ?>
                 </div>
 

@@ -2,18 +2,18 @@
 namespace app\modules\admin\models;
 
 use app\components\Helpers;
-use app\models\Categories;
+use app\models\Payment;
 use Yii;
 
-class CategoriesFilter extends Categories {
+class PaymentFilter extends Payment {
     public $is_filter;
-    private $filter_name = 'CategoriesFilter';
+    private $filter_name = 'PaymentFilter';
+
 
     public function rules() {
         return [
-            [['cat_title', 'cat_status',], 'safe'],
-            [['cat_parent',], 'integer'],
-            [['cat_title',], 'trim'],
+            [['pay_title', 'pay_status',], 'safe'],
+            [['pay_title', 'pay_status',], 'trim'],
         ];
     }
 
@@ -43,20 +43,16 @@ class CategoriesFilter extends Categories {
      * @inheritdoc
      */
     public static function tableName() {
-        return 'categories';
+        return 'payments';
     }
 
     public function add(&$query) {
-        if ($this->cat_title && $this->is_filter = 1) {
-            $query->andWhere(['like', 'cat_title', $this->cat_title]);
+        if ($this->pay_title && $this->is_filter = 1) {
+            $query->andWhere(['like', 'pay_title', $this->pay_title]);
         }
 
-        if ($this->cat_status != '' && $this->is_filter = 1) {
-            $query->andWhere(['cat_status' => $this->cat_status]);
-        }
-
-        if ($this->cat_parent != '' && $this->is_filter = 1) {
-            $query->andWhere(['cat_parent' => $this->cat_parent]);
+        if ($this->pay_status != '' && $this->is_filter = 1) {
+            $query->andWhere(['pay_status' => $this->pay_status]);
         }
     }
 }

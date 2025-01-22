@@ -2,7 +2,7 @@
 use yii\widgets\ActiveForm;
 use app\components\Helpers;
 use app\components\UI;
-use app\models\Categories;
+use app\models\Category;
 
 $this->title = 'Список категорий';
 $this->params['breadcrumbs'][] = strip_tags($this->title);?>
@@ -58,8 +58,8 @@ $this->params['breadcrumbs'][] = strip_tags($this->title);?>
                                     <td><?=$category->cat_sort;?></td>
 
                                     <td>
-                                        <small class="badge <?=$category->cat_status == Categories::STATUS_ACTIVE ? 'badge-success' : 'badge-danger';?>">
-                                            <?=Categories::getStatuses($category->cat_status);?>
+                                        <small class="badge <?=$category->cat_status == Category::STATUS_ACTIVE ? 'badge-success' : 'badge-danger';?>">
+                                            <?=Category::getStatuses($category->cat_status);?>
                                         </small>
                                     </td>
                                     <td class="text-right">

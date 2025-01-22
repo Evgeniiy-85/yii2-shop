@@ -1,6 +1,6 @@
 <?php
 use yii\widgets\ActiveForm;
-use app\models\Products;
+use app\models\Product;
 use app\components\UI;
 use app\components\Helpers;
 
@@ -63,8 +63,8 @@ $this->params['breadcrumbs'][] = strip_tags($this->title);?>
                                         <td><?=Helpers::formatPrice($product->prod_price);?></td>
                                         <td><?=$product->prod_quantity;?></td>
                                         <td>
-                                            <small class="badge <?=$product->prod_status == Products::STATUS_ACTIVE ? 'badge-success' : 'badge-danger';?> color-palette">
-                                                <span><?=Products::getStatuses($product->prod_status);?></span>
+                                            <small class="badge <?=$product->prod_status == Product::STATUS_ACTIVE ? 'badge-success' : 'badge-danger';?> color-palette">
+                                                <span><?=Product::getStatuses($product->prod_status);?></span>
                                             </small>
                                         </td>
                                         <td class="text-right">

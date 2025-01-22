@@ -2,9 +2,9 @@
 
 namespace app\modules\admin\controllers;
 
-use app\models\Products;
+use app\models\Product;
 use app\modules\admin\models\Files;
-use app\modules\admin\models\ProductsFilter;
+use app\modules\admin\models\ProductFilter;
 use Yii;
 use yii\data\Pagination;
 use yii\web\HttpException;
@@ -15,14 +15,14 @@ class ProductsController extends AdminController {
     public function actionIndex() {
         $page_size = 36;
 
-        $query = Products::find();
+        $query = Product::find();
         $pages = new Pagination([
             'pageSize' => $page_size,
             'defaultPageSize' => $page_size,
             'totalCount' => $query->count()
         ]);
 
-        $filter = new ProductsFilter();
+        $filter = new ProductFilter();
         $filter->add($query);
 
         $query
@@ -45,14 +45,14 @@ class ProductsController extends AdminController {
      * @throws \yii\db\Exception
      */
     public function actionEdit($ID = false) {
-        $model = is_numeric($ID) ? Products::findOne((int) $ID) : false;
+        $model = is_numeric($ID) ? Product::findOne((int) $ID) : false;
         $files = new Files();
 
         if (!$model) {
             throw new HttpException(404, "Страница не найдена.");
         }
 
-        if ($post = Yii::$app->request->post('Products')) {
+        if ($post = Yii::$app->request->post('Product')) {
             $model->load(Yii::$app->request->post());
             $model->save() ? $model->addSuccess('Успешно') : $model->addWarning('Ошибка при сохранении');
             return $this->redirect(['/admin/products']);
@@ -66,10 +66,10 @@ class ProductsController extends AdminController {
 
 
     public function actionAdd() {
-        $model = new Products();
+        $model = new Product();
         $files = new Files();
 
-        if ($post = Yii::$app->request->post('Products')) {
+        if ($post = Yii::$app->request->post('Product')) {
             $model->load(Yii::$app->request->post());
             $model->save() ? $model->addSuccess('Успешно') : $model->addWarning('Ошибка при сохранении');
             return $this->redirect(['/admin/products']);

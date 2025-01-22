@@ -8,7 +8,7 @@ use app\modules\admin\models\ModelExtentions;
 use Yii;
 use yii\db\ActiveRecord;
 
-class Products extends ActiveRecord {
+class Product extends ActiveRecord {
     use ModelExtentions;
 
     const STATUS_DISABLED = 0;
@@ -45,8 +45,15 @@ class Products extends ActiveRecord {
     }
 
 
+    /**
+     * @inheritdoc
+     */
+    public static function tableName() {
+        return 'products';
+    }
+
     public function getCategories() {
-        return $this->hasOne(Categories::class, ['cat_id' => 'prod_category']);
+        return $this->hasOne(Category::class, ['cat_id' => 'prod_category']);
     }
 
     /**
@@ -98,9 +105,9 @@ class Products extends ActiveRecord {
             if (!$category) {
                 return $breadcrumbs;
             }
-            $parent_category = Categories::find()
+            $parent_category = Category::find()
                 ->where([
-                    'cat_status' => [Categories::STATUS_ACTIVE],
+                    'cat_status' => [Category::STATUS_ACTIVE],
                     'cat_id' => $category->cat_parent,
                 ])
                 ->one();
@@ -114,9 +121,9 @@ class Products extends ActiveRecord {
             return array_reverse($breadcrumbs);
         }
 
-        $category = Categories::find()
+        $category = Category::find()
             ->where([
-                'cat_status' => [Categories::STATUS_ACTIVE],
+                'cat_status' => [Category::STATUS_ACTIVE],
                 'cat_id' => $category->cat_parent,
             ])
             ->one();
@@ -125,9 +132,9 @@ class Products extends ActiveRecord {
             return $breadcrumbs;
         }
 
-        $parent_category = Categories::find()
+        $parent_category = Category::find()
             ->where([
-                'cat_status' => [Categories::STATUS_ACTIVE],
+                'cat_status' => [Category::STATUS_ACTIVE],
                 'cat_id' => $category->cat_parent,
             ])
             ->one();

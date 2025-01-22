@@ -2,9 +2,9 @@
 
 namespace app\modules\admin\controllers;
 
-use app\models\Categories;
+use app\models\Category;
 use app\modules\admin\models\Files;
-use app\modules\admin\models\CategoriesFilter;
+use app\modules\admin\models\CategoryFilter;
 use Yii;
 use yii\data\Pagination;
 use yii\web\HttpException;
@@ -13,14 +13,14 @@ class CategoriesController extends AdminController {
     public function actionIndex() {
         $page_size = 36;
 
-        $query = Categories::find();
+        $query = Category::find();
         $pages = new Pagination([
             'pageSize' => $page_size,
             'defaultPageSize' => $page_size,
             'totalCount' => $query->count()
         ]);
 
-        $filter = new CategoriesFilter();
+        $filter = new CategoryFilter();
         $filter->add($query);
 
         $query
@@ -42,14 +42,14 @@ class CategoriesController extends AdminController {
      * @throws \yii\db\Exception
      */
     public function actionEdit($ID = false) {
-        $model = is_numeric($ID) ? Categories::findOne((int) $ID) : false;
+        $model = is_numeric($ID) ? Category::findOne((int) $ID) : false;
         $files = new Files();
 
         if (!$model) {
             throw new HttpException(404, "Страница не найдена.");
         }
 
-        if (Yii::$app->request->post('Categories')) {
+        if (Yii::$app->request->post('Category')) {
             $model->load(Yii::$app->request->post());
             $model->save() ? $model->addSuccess('Успешно') : $model->addWarning('Ошибка при сохранении');
             return $this->redirect(['/admin/categories']);
@@ -63,10 +63,10 @@ class CategoriesController extends AdminController {
 
 
     public function actionAdd() {
-        $model = new Categories();
+        $model = new Category();
         $files = new Files();
 
-        if ($post = Yii::$app->request->post('Categories')) {
+        if ($post = Yii::$app->request->post('Category')) {
             $model->load(Yii::$app->request->post());
             $model->save() ? $model->addSuccess('Успешно') : $model->addWarning('Ошибка при сохранении');
             return $this->redirect(['/admin/categories']);

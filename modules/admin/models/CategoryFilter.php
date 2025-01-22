@@ -2,18 +2,18 @@
 namespace app\modules\admin\models;
 
 use app\components\Helpers;
-use app\models\Products;
+use app\models\Category;
 use Yii;
 
-class ProductsFilter extends Products {
+class CategoryFilter extends Category {
     public $is_filter;
-    private $filter_name = 'ProductsFilter';
-
+    private $filter_name = 'CategoryFilter';
 
     public function rules() {
         return [
-            [['prod_title', 'prod_status','prod_category','prod_article'], 'safe'],
-            [['prod_title', 'prod_article',], 'trim'],
+            [['cat_title', 'cat_status',], 'safe'],
+            [['cat_parent',], 'integer'],
+            [['cat_title',], 'trim'],
         ];
     }
 
@@ -43,24 +43,20 @@ class ProductsFilter extends Products {
      * @inheritdoc
      */
     public static function tableName() {
-        return 'products';
+        return 'categories';
     }
 
     public function add(&$query) {
-        if ($this->prod_title && $this->is_filter = 1) {
-            $query->andWhere(['like', 'prod_title', $this->prod_title]);
+        if ($this->cat_title && $this->is_filter = 1) {
+            $query->andWhere(['like', 'cat_title', $this->cat_title]);
         }
 
-        if ($this->prod_status != '' && $this->is_filter = 1) {
-            $query->andWhere(['prod_status' => $this->prod_status]);
+        if ($this->cat_status != '' && $this->is_filter = 1) {
+            $query->andWhere(['cat_status' => $this->cat_status]);
         }
 
-        if ($this->prod_category != '' && $this->is_filter = 1) {
-            $query->andWhere(['prod_category' => $this->prod_category]);
-        }
-
-        if ($this->prod_article != '' && $this->is_filter = 1) {
-            $query->andWhere(['prod_article' => $this->prod_article]);
+        if ($this->cat_parent != '' && $this->is_filter = 1) {
+            $query->andWhere(['cat_parent' => $this->cat_parent]);
         }
     }
 }

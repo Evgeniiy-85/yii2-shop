@@ -1,8 +1,8 @@
 <?php
 use yii\widgets\ActiveForm;
 use yii\helpers\Html;
-use app\models\Products;
-use app\models\Categories;
+use app\models\Product;
+use app\models\Category;
 
 $this->title = 'Редактировать платежный модуль';
 $this->params['breadcrumbs'][] = ['label' => 'Список продуктов', 'url' => ['/admin/'.Yii::$app->controller->id]];
@@ -46,7 +46,7 @@ $this->params['breadcrumbs'][] = strip_tags($this->title);?>
                     ]);?>
                     <?= $form
                         ->field($model, "pay_status")
-                        ->dropDownList(Products::getStatuses(), ['class' => 'form-control']);
+                        ->dropDownList(Product::getStatuses(), ['class' => 'form-control']);
                     ?>
                     <?=Html::activeInput('hidden', $model, 'pay_id');?>
                 </div>

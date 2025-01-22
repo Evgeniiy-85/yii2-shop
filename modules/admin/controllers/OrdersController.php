@@ -2,8 +2,8 @@
 
 namespace app\modules\admin\controllers;
 
-use app\models\Orders;
-use app\models\Products;
+use app\models\Order;
+use app\models\Product;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
@@ -15,7 +15,7 @@ class OrdersController extends AdminController {
     public function actionIndex() {
         $page_size = 36;
 
-        $query = Orders::find();
+        $query = Order::find();
         $pages = new Pagination([
             'pageSize' => $page_size,
             'defaultPageSize' => $page_size,

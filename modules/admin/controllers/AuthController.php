@@ -1,7 +1,7 @@
 <?php
 namespace app\modules\admin\controllers;
 
-use app\models\Users;
+use app\models\User;
 use Yii;
 use yii\web\Controller;
 use app\modules\admin\models\LoginForm;

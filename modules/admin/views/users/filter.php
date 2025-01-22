@@ -1,7 +1,7 @@
 <?php
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use app\models\Users;?>
+use app\models\User;?>
 
 <div class="card card-default">
     <div class="card-header">
@@ -25,7 +25,7 @@ use app\models\Users;?>
         ?>
         <?= $form
             ->field($filter, "user_status")
-            ->dropDownList(Users::getStatuses(), ['class' => 'form-control', 'prompt' => '-']);
+            ->dropDownList(User::getStatuses(), ['class' => 'form-control', 'prompt' => '-']);
         ?>
     </div>
 

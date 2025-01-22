@@ -2,9 +2,9 @@
 
 namespace app\modules\admin\controllers;
 
-use app\models\Payments;
+use app\models\Payment;
 use app\modules\admin\models\Files;
-use app\modules\admin\models\PaymentsFilter;
+use app\modules\admin\models\PaymentFilter;
 
 /**
  * Default controller for the `admin` module
@@ -32,7 +32,7 @@ class PaymentsController extends SettingsController {
     public function actionIndex() {
         $query = Payments::find();
 
-        $filter = new PaymentsFilter();
+        $filter = new PaymentFilter();
         $filter->add($query);
 
         $query

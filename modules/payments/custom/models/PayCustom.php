@@ -2,10 +2,10 @@
 
 namespace app\modules\payments\custom\models;
 
-use app\models\Payments;
+use app\models\Payment;
 use app\modules\admin\models\ModelExtentions;
 
-class PayCustom extends Payments {
+class PayCustom extends Payment {
     use ModelExtentions;
 
     const STATUS_DISABLED = 0;

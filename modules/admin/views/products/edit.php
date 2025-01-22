@@ -1,17 +1,17 @@
 <?php
 use yii\widgets\ActiveForm;
 use yii\helpers\Html;
-use app\models\Products;
-use app\models\Categories;
+use app\models\Product;
+use app\models\Category;
 
 $this->title = 'Редактировать продукт';
 $this->params['breadcrumbs'][] = ['label' => 'Список продуктов', 'url' => ['/admin/'.Yii::$app->controller->id]];
 $this->params['breadcrumbs'][] = strip_tags($this->title);
 
-$categories = Categories::find()
+$categories = Category::find()
     ->select(['cat_title'])
     ->where([
-        'cat_status' => Categories::STATUS_ACTIVE,
+        'cat_status' => Category::STATUS_ACTIVE,
     ])
     ->indexBy('cat_id')
     ->column();
@@ -58,7 +58,7 @@ $categories = Categories::find()
                     ?>
                     <?= $form
                         ->field($model, "prod_status")
-                        ->dropDownList(Products::getStatuses(), ['class' => 'form-control']);
+                        ->dropDownList(Product::getStatuses(), ['class' => 'form-control']);
                     ?>
                     <?=Html::activeInput('hidden', $model, 'prod_id');?>
                 </div>

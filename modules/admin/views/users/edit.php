@@ -1,7 +1,7 @@
 <?php
 use yii\widgets\ActiveForm;
 use yii\helpers\Html;
-use app\models\Users;
+use app\models\User;
 
 $this->title = "Просмотр пользователя ID : {$model->user_id}";
 $this->params['breadcrumbs'][] = ['label' => 'Список пользователей', 'url' => ['/admin/'.Yii::$app->controller->id]];
@@ -37,7 +37,7 @@ $this->params['breadcrumbs'][] = strip_tags($this->title);?>
                     <?= $form->field($model, 'user_password')->input('text'); ?>
                     <?= $form
                         ->field($model, "user_status")
-                        ->dropDownList(Users::getStatuses(), ['class' => 'form-control',]);
+                        ->dropDownList(User::getStatuses(), ['class' => 'form-control',]);
                     ?>
 
                     <?=Html::activeInput('hidden', $model, 'user_id');?>

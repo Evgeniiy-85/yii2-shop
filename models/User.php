@@ -25,7 +25,7 @@ use Yii;
  * @property string $user_auth_key
  * @property string $user_password_hash
  */
-class Users extends ActiveRecord implements IdentityInterface {
+class User extends ActiveRecord implements IdentityInterface {
     use ModelExtentions;
 
     const STATUS_OFF = 0;
@@ -103,6 +103,13 @@ class Users extends ActiveRecord implements IdentityInterface {
     }
 
     /**
+     * @inheritdoc
+     */
+    public static function tableName() {
+        return 'users';
+    }
+
+    /**
      * @param $insert
      * @param $changedAttributes
      * @return void
@@ -112,7 +119,6 @@ class Users extends ActiveRecord implements IdentityInterface {
         parent::afterSave($insert, $changedAttributes);
         $this->saveRole();
     }
-
 
     /**
      * @param $role_name
@@ -196,7 +202,7 @@ class Users extends ActiveRecord implements IdentityInterface {
 
     /**
      * @param $email
-     * @return Users|null
+     * @return User|null
      */
     public static function findByEmail($email) {
         return static::findOne(['user_email' => $email, 'user_status' => self::STATUS_ACTIVE]);
@@ -204,10 +210,10 @@ class Users extends ActiveRecord implements IdentityInterface {
 
     /**
      * @param $username
-     * @return Users|null
+     * @return User|null
      */
     public static function findByUsername($username) {
-        return Users::findOne(['user_name' => $username, 'user_status' => Users::STATUS_ACTIVE]);
+        return User::findOne(['user_name' => $username, 'user_status' => User::STATUS_ACTIVE]);
     }
 
     /**

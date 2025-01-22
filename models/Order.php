@@ -8,7 +8,7 @@ use app\modules\admin\models\ModelExtentions;
 use Yii;
 use yii\db\ActiveRecord;
 
-class Orders extends ActiveRecord {
+class Order extends ActiveRecord {
     use ModelExtentions;
 
     const STATUS_NO_PAID = 0;
@@ -38,6 +38,13 @@ class Orders extends ActiveRecord {
             'client_surname' => 'Фамилия',
             'client_phone' => 'Телефон',
         ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public static function tableName() {
+        return 'orders';
     }
 
     /**

@@ -2,8 +2,8 @@
 
 namespace app\controllers;
 
-use app\models\Categories;
-use app\models\Products;
+use app\models\Category;
+use app\models\Product;
 use yii\data\Pagination;
 use yii\web\Controller;
 use yii\web\HttpException;
@@ -13,7 +13,7 @@ class ProductsController extends Controller {
     public function actionIndex() {
         $page_size = 36;
 
-        $query = Products::find()->where(['prod_status' => [Products::STATUS_ACTIVE]]);
+        $query = Product::find()->where(['prod_status' => [Product::STATUS_ACTIVE]]);
         $pages = new Pagination([
             'pageSize' => $page_size,
             'defaultPageSize' => $page_size,
@@ -33,14 +33,14 @@ class ProductsController extends Controller {
 
 
     public function actionProduct($alias) {
-        $product = Products::find()->where(['prod_alias' => $alias])->one();
+        $product = Product::find()->where(['prod_alias' => $alias])->one();
         if (!$product) {
             throw new HttpException(404, "Страница не найдена.");
         }
 
         $category = null;
         if ($product['prod_category']) {
-            $category = Categories::find()->where(['cat_id' => $product['prod_category']])->one();
+            $category = Category::find()->where(['cat_id' => $product['prod_category']])->one();
         }
 
         return $this->render('product', [

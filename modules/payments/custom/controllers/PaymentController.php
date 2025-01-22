@@ -2,7 +2,7 @@
 
 namespace app\modules\payments\custom\controllers;
 
-use app\models\Orders;
+use app\models\Order;
 use app\modules\payments\custom\models\PayCustom;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
@@ -46,12 +46,12 @@ class PaymentController extends Controller {
      * @throws \yii\db\Exception
      */
     public function actionPay($order_id) {
-        $order = Orders::find()->where(['order_id' => $order_id])->one();
+        $order = Order::find()->where(['order_id' => $order_id])->one();
         $payment = new PayCustom();
 
         if ($payment->load(Yii::$app->request->post()) && $payment->validate()) {
             $order->order_params = $payment->getFormParams();
-            $order->setStatus(Orders::STATUS_INVOICE_ISSUED);
+            $order->setStatus(Order::STATUS_INVOICE_ISSUED);
             $order->save();
         }
 

@@ -5,12 +5,10 @@ namespace app\models;
 use app\components\Helpers;
 use app\modules\admin\models\Files;
 use app\modules\admin\models\ModelExtentions;
-use backend\models\Attachments;
-use backend\models\Manufacturers;
 use Yii;
 use yii\db\ActiveRecord;
 
-class Categories extends ActiveRecord {
+class Category extends ActiveRecord {
     use ModelExtentions;
 
     const STATUS_DISABLED = 0;
@@ -28,11 +26,6 @@ class Categories extends ActiveRecord {
         ];
     }
 
-
-    public function getParentCategory() {
-        return $this->hasOne(Categories::class, ['cat_id' => 'cat_parent']);
-    }
-
     /**
      * @return string[]
      */
@@ -48,6 +41,16 @@ class Categories extends ActiveRecord {
         ];
     }
 
+    /**
+     * @inheritdoc
+     */
+    public static function tableName() {
+        return 'categories';
+    }
+
+    public function getParentCategory() {
+        return $this->hasOne(Category::class, ['cat_id' => 'cat_parent']);
+    }
 
     /**
      * @param $insert

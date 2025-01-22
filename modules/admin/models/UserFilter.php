@@ -2,13 +2,13 @@
 namespace app\modules\admin\models;
 
 use app\components\Helpers;
-use \app\models\Users;
+use \app\models\User;
 use Yii;
 
-class UsersFilter extends Users {
+class UserFilter extends User {
     public $full_name;
     public $is_filter;
-    private $filter_name = 'UsersFilter';
+    private $filter_name = 'UserFilter';
 
     public function rules() {
         return [

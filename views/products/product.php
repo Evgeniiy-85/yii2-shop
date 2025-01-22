@@ -1,10 +1,10 @@
 <?php
 use yii\helpers\Html;
 use app\components\Helpers;
-use app\models\Products;
+use app\models\Product;
 
 $this->title = $product['prod_title'];
-$this->params['breadcrumbs'] = Products::getBreadCrumbs($category, $product);?>
+$this->params['breadcrumbs'] = Product::getBreadCrumbs($category, $product);?>
 
 <div class="site-catalog">
     <h1><?= Html::encode($this->title) ?></h1>

@@ -3,9 +3,9 @@
 namespace app\modules\admin\controllers;
 
 use app\models\LoginForm;
-use app\models\Products;
-use app\models\Users;
-use app\modules\admin\models\UsersFilter;
+use app\models\Product;
+use app\models\User;
+use app\modules\admin\models\UserFilter;
 use Yii;
 use yii\data\Pagination;
 use yii\web\Controller;
@@ -16,14 +16,14 @@ class UsersController extends AdminController {
     public function actionIndex() {
         $page_size = 36;
 
-        $query = Users::find();
+        $query = User::find();
         $pages = new Pagination([
             'pageSize' => $page_size,
             'defaultPageSize' => $page_size,
             'totalCount' => $query->count()
         ]);
 
-        $filter = new UsersFilter();
+        $filter = new UserFilter();
         $filter->add($query);
 
         $query
@@ -39,9 +39,9 @@ class UsersController extends AdminController {
 
 
     public function actionAdd() {
-        $model = new Users();
+        $model = new User();
 
-        if ($post = Yii::$app->request->post('Users')) {
+        if ($post = Yii::$app->request->post('User')) {
             $model->load(Yii::$app->request->post());
             $model->save() ? $model->addSuccess('Успешно') : $model->addWarning('Ошибка при сохранении');
             return $this->redirect(['/admin/users']);
@@ -59,12 +59,12 @@ class UsersController extends AdminController {
      * @throws \yii\db\Exception
      */
     public function actionEdit($ID = false) {
-        $model = is_numeric($ID) ? Users::findOne((int) $ID) : false;
+        $model = is_numeric($ID) ? User::findOne((int) $ID) : false;
         if (!$model) {
             throw new HttpException(404, "Страница не найдена.");
         }
 
-        if ($post = Yii::$app->request->post('Users')) {
+        if ($post = Yii::$app->request->post('User')) {
             $model->load(Yii::$app->request->post());
             $model->save() ? $model->addSuccess('Успешно') : $model->addWarning('Ошибка при сохранении');
             return $this->redirect(['/admin/users']);

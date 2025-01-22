@@ -2,7 +2,7 @@
 
 namespace app\modules\payments\custom\controllers;
 
-use app\models\Payments;
+use app\models\Payment;
 use app\modules\admin\models\Files;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;

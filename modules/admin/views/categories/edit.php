@@ -1,16 +1,16 @@
 <?php
 use yii\widgets\ActiveForm;
 use yii\helpers\Html;
-use app\models\Categories;
+use app\models\Category;
 
 $this->title = 'Редактировать категорию';
 $this->params['breadcrumbs'][] = ['label' => 'Список категорий', 'url' => ['/admin/'.Yii::$app->controller->id]];
 $this->params['breadcrumbs'][] = strip_tags($this->title);
 
-$categories = Categories::find()
+$categories = Category::find()
     ->select(['cat_title'])
     ->where([
-        'cat_status' => Categories::STATUS_ACTIVE,
+        'cat_status' => Category::STATUS_ACTIVE,
     ])
     ->andWhere(['<>','cat_id', $model->cat_id])
     ->indexBy('cat_id')
@@ -57,7 +57,7 @@ $categories = Categories::find()
                     ?>
                     <?= $form
                         ->field($model, "cat_status")
-                        ->dropDownList(Categories::getStatuses(), ['class' => 'form-control']);
+                        ->dropDownList(Category::getStatuses(), ['class' => 'form-control']);
                     ?>
                     <?=Html::activeInput('hidden', $model, 'cat_id');?>
                 </div>

@@ -48,11 +48,11 @@ class LoginForm extends Model
 
 
     /**
-     * @return Users|null
+     * @return mixed
      */
     protected function getUser() {
         if (!isset($this->_user)) {
-            $this->_user = Users::findByEmail($this->email);
+            $this->_user = User::findByEmail($this->email);
         }
 
         return $this->_user;

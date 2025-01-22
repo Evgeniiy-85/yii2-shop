@@ -2,9 +2,9 @@
 
 namespace app\modules\admin\controllers;
 
-use app\models\Payments;
-use app\models\Products;
-use app\modules\admin\models\ProductsFilter;
+use app\models\Payment;
+use app\models\Product;
+use app\modules\admin\models\ProductFilter;
 use yii\data\Pagination;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
@@ -49,7 +49,7 @@ class SettingsController extends AdminController {
         $page_size = 36;
 
         $query = Payments::find();
-        $filter = new ProductsFilter();
+        $filter = new ProductFilter();
         $filter->add($query);
 
         $query

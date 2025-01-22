@@ -1,7 +1,7 @@
 <?php
 namespace app\modules\admin\models;
 
-use app\models\Users;
+use app\models\User;
 use Yii;
 use yii\base\Model;
 
@@ -59,7 +59,7 @@ class LoginForm extends Model {
      * @return bool
      */
     public function loginByToken($token) {
-        $user = Users::findIdentityByAccessToken($token);
+        $user = User::findIdentityByAccessToken($token);
         if (empty($user)) {
             return false;
         }
@@ -74,7 +74,7 @@ class LoginForm extends Model {
      */
     protected function getUser() {
         if (!isset($this->_user)) {
-            $this->_user = Users::findByEmail($this->email);
+            $this->_user = User::findByEmail($this->email);
         }
 
         return $this->_user;

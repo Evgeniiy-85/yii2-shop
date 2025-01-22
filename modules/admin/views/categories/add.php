@@ -1,18 +1,18 @@
 <?php
 use yii\widgets\ActiveForm;
 use yii\helpers\Html;
-use app\models\Products;
-use app\models\Categories;
+use app\models\Product;
+use app\models\Category;
 use yii\data\ActiveDataProvider;
 
 $this->title = 'Добавить категорию';
 $this->params['breadcrumbs'][] = ['label' => 'Список категории', 'url' => ['/admin/'.Yii::$app->controller->id]];
 $this->params['breadcrumbs'][] = strip_tags($this->title);
 
-$categories = Categories::find()
+$categories = Category::find()
     ->select(['cat_title'])
     ->where([
-        'cat_status' => Categories::STATUS_ACTIVE,
+        'cat_status' => Category::STATUS_ACTIVE,
     ])
     ->indexBy('cat_id')
     ->column();?>
@@ -54,7 +54,7 @@ $categories = Categories::find()
                     ?>
                     <?= $form
                         ->field($model, "cat_status")
-                        ->dropDownList(Products::getStatuses(), ['class' => 'form-control', 'options'=> [Products::STATUS_ACTIVE => ['Selected' => true]]]);
+                        ->dropDownList(Product::getStatuses(), ['class' => 'form-control', 'options'=> [Product::STATUS_ACTIVE => ['Selected' => true]]]);
                     ?>
                 </div>
 

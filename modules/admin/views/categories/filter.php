@@ -1,13 +1,13 @@
 <?php
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use app\models\Products;
-use app\models\Categories;
+use app\models\Product;
+use app\models\Category;
 
-$categories = Categories::find()
+$categories = Category::find()
     ->select(['cat_title'])
     ->where([
-        'cat_status' => Categories::STATUS_ACTIVE,
+        'cat_status' => Category::STATUS_ACTIVE,
     ])
     ->indexBy('cat_id')
     ->column();
@@ -34,7 +34,7 @@ $categories = Categories::find()
         ?>
         <?= $form
             ->field($filter, "cat_status")
-            ->dropDownList(Products::getStatuses(), ['class' => 'form-control', 'prompt' => '-']);
+            ->dropDownList(Product::getStatuses(), ['class' => 'form-control', 'prompt' => '-']);
         ?>
     </div>
 

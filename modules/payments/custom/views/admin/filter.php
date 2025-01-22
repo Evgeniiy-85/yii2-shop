@@ -1,7 +1,7 @@
 <?php
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use app\models\Payments;?>
+use app\models\Payment;?>
 
 <div class="card card-default">
     <div class="card-header">

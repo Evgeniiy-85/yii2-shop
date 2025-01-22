@@ -8,7 +8,7 @@ use app\modules\admin\models\ModelExtentions;
 use Yii;
 use yii\db\ActiveRecord;
 
-class Payments extends ActiveRecord {
+class Payment extends ActiveRecord {
     use ModelExtentions;
 
     const STATUS_DISABLED = 0;
@@ -39,6 +39,13 @@ class Payments extends ActiveRecord {
             'pay_sort' => 'Порядок сортировки',
             'pay_status' => 'Статус',
         ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public static function tableName() {
+        return 'payments';
     }
 
     /**

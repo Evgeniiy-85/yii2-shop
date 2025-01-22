@@ -2,18 +2,18 @@
 namespace app\modules\admin\models;
 
 use app\components\Helpers;
-use app\models\Payments;
+use app\models\Product;
 use Yii;
 
-class PaymentsFilter extends Payments {
+class ProductFilter extends Product {
     public $is_filter;
-    private $filter_name = 'PaymentsFilter';
+    private $filter_name = 'ProductFilter';
 
 
     public function rules() {
         return [
-            [['pay_title', 'pay_status',], 'safe'],
-            [['pay_title', 'pay_status',], 'trim'],
+            [['prod_title', 'prod_status','prod_category','prod_article'], 'safe'],
+            [['prod_title', 'prod_article',], 'trim'],
         ];
     }
 
@@ -43,16 +43,24 @@ class PaymentsFilter extends Payments {
      * @inheritdoc
      */
     public static function tableName() {
-        return 'payments';
+        return 'products';
     }
 
     public function add(&$query) {
-        if ($this->pay_title && $this->is_filter = 1) {
-            $query->andWhere(['like', 'pay_title', $this->pay_title]);
+        if ($this->prod_title && $this->is_filter = 1) {
+            $query->andWhere(['like', 'prod_title', $this->prod_title]);
         }
 
-        if ($this->pay_status != '' && $this->is_filter = 1) {
-            $query->andWhere(['pay_status' => $this->pay_status]);
+        if ($this->prod_status != '' && $this->is_filter = 1) {
+            $query->andWhere(['prod_status' => $this->prod_status]);
+        }
+
+        if ($this->prod_category != '' && $this->is_filter = 1) {
+            $query->andWhere(['prod_category' => $this->prod_category]);
+        }
+
+        if ($this->prod_article != '' && $this->is_filter = 1) {
+            $query->andWhere(['prod_article' => $this->prod_article]);
         }
     }
 }

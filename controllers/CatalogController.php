@@ -2,31 +2,31 @@
 
 namespace app\controllers;
 
-use app\models\Categories;
+use app\models\Category;
 use yii\data\Pagination;
 use yii\web\Controller;
 use yii\web\HttpException;
 
 class CatalogController extends Controller {
     public function actionIndex() {
-        $count_categories = Categories::find()->where([
-            'cat_status' => [Categories::STATUS_ACTIVE],
+        $count_categories = Category::find()->where([
+            'cat_status' => [Category::STATUS_ACTIVE],
             'cat_parent' => 0,
         ])->count();
 
         if ($count_categories) {
-            $category_exists = Categories::find()->where([
-                'cat_status' => [Categories::STATUS_ACTIVE],
+            $category_exists = Category::find()->where([
+                'cat_status' => [Category::STATUS_ACTIVE],
                 'cat_parent' => 0,
             ])->count();
 
             if ($category_exists) {
-                $category = Categories::find()->where([
-                    'cat_status' => [Categories::STATUS_ACTIVE],
+                $category = Category::find()->where([
+                    'cat_status' => [Category::STATUS_ACTIVE],
                     'cat_parent' => 0,
                 ])->one();
-                $sub_categories = Categories::find()->where([
-                    'cat_status' => [Categories::STATUS_ACTIVE],
+                $sub_categories = Category::find()->where([
+                    'cat_status' => [Category::STATUS_ACTIVE],
                     'cat_parent' => 0,
                 ])->all();
             }
