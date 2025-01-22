@@ -20,7 +20,7 @@ use app\models\Payment;?>
         <?= $form->field($filter, 'pay_title')->input('text'); ?>
         <?= $form
             ->field($filter, "pay_status")
-            ->dropDownList(Payments::getStatuses(), ['class' => 'form-control', 'prompt' => '-']);
+            ->dropDownList(Payment::getStatuses(), ['class' => 'form-control', 'prompt' => '-']);
         ?>
     </div>
 

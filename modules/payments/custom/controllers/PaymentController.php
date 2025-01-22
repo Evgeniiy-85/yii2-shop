@@ -26,8 +26,8 @@ class PaymentController extends Controller {
         $payment = new PayCustom();
 
         if ($payment->load(Yii::$app->request->post()) && $payment->validate()) {
-            $order->order_params = $payment->getOrderInfo();
-            $order->setStatus(Order::STATUS_INVOICE_ISSUED);
+            $order->setAttribute('order_params', $payment->getOrderInfo());
+            $order->setAttribute('order_status', Order::STATUS_INVOICE_ISSUED);
             $order->save();
         }
 

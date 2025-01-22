@@ -78,14 +78,14 @@ class AdminController extends Controller {
      * @return string
      */
     public function actionIndex() {
-        $model = Payments::find()->where(['pay_name' => 'tinkoff'])->one();
+        $model = Payment::find()->where(['pay_name' => 'tinkoff'])->one();
         $files = new Files();
 
         if (!$model) {
             throw new HttpException(404, "Страница не найдена.");
         }
 
-        if ($post = Yii::$app->request->post('Payments')) {
+        if ($post = Yii::$app->request->post('Payment')) {
             $model->load(Yii::$app->request->post());
             $model->save() ? $model->addSuccess('Успешно') : $model->addWarning('Ошибка при сохранении');
             return $this->redirect(['/admin/settings/payments']);

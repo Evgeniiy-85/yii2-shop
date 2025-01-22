@@ -79,10 +79,10 @@ class Order extends ActiveRecord {
             if ($this->products) {
                 foreach ($this->products as $product) {
                     $model = new OrderItems();
-                    $model->order_id = $this->order_id;
-                    $model->prod_id = $product->prod_id;
-                    $model->prod_price = $product->prod_price;
-                    $model->prod_title = $product->prod_title;
+                    $model->setAttribute('order_id', $this->order_id);
+                    $model->setAttribute('prod_id', $this->prod_id);
+                    $model->setAttribute('prod_price', $this->prod_price);
+                    $model->setAttribute('prod_title', $this->prod_title);
                     $model->save();
                 }
             }
@@ -95,7 +95,7 @@ class Order extends ActiveRecord {
 
     /**
      * @param $status
-     * @return int|int[]
+     * @return string|string[]
      */
     public static function getStatuses($status = false) {
         $statuses = [
@@ -104,14 +104,5 @@ class Order extends ActiveRecord {
         ];
 
         return $status !== false ? $statuses[$status] : $statuses;
-    }
-
-
-    /**
-     * @param $status
-     * @return void
-     */
-    public function setStatus($status) {
-        $this->order_status = $status;
     }
 }

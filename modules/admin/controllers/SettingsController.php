@@ -45,10 +45,11 @@ class SettingsController extends AdminController {
     public function actionAppearance() {
         return $this->render('appearance');
     }
+
     public function actionPayments() {
         $page_size = 36;
 
-        $query = Payments::find();
+        $query = Payment::find();
         $filter = new ProductFilter();
         $filter->add($query);
 

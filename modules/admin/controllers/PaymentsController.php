@@ -30,7 +30,7 @@ class PaymentsController extends SettingsController {
      * @return string
      */
     public function actionIndex() {
-        $query = Payments::find();
+        $query = Payment::find();
 
         $filter = new PaymentFilter();
         $filter->add($query);

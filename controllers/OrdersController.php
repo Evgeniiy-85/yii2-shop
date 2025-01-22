@@ -5,7 +5,6 @@ namespace app\controllers;
 use app\models\Order;
 use app\models\Payment;
 use app\models\Product;
-use yii\data\Pagination;
 use yii\web\Controller;
 use yii\web\HttpException;
 use Yii;
@@ -20,7 +19,8 @@ class OrdersController extends Controller {
 
         $order = new Order();
         if ($order->load(Yii::$app->request->post()) && $order->validate()) {
-            $order->products = [$product];
+            $order->setAttribute('products', [$product]);
+            $order->setAttribute('order_sum', $product->prod_price);
             if ($order->save()) {
                 $this->redirect("/pay/{$order->order_id}");
             }
@@ -34,6 +34,11 @@ class OrdersController extends Controller {
     }
 
 
+    /**
+     * @param $ID
+     * @return string
+     * @throws HttpException
+     */
     public function actionPay($ID) {
         $order = Order::find()->where(['order_id' => $ID, 'order_status' => Order::STATUS_NO_PAID])->one();
         if (!$order) {
@@ -51,8 +56,6 @@ class OrdersController extends Controller {
 
 
     public function actionSuccess() {
-        return $this->render('success', [
-
-        ]);
+        return $this->render('success');
     }
 }
