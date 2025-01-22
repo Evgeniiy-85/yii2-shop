@@ -12,7 +12,6 @@ $config = [
     'modules' => [
         'payment_tinkoff' => [
             'class' => 'app\modules\payments\tinkoff\Module',
-            'layout' => '@app/modules/admin/views/layouts/main'
         ],
     ]
 ];

@@ -14,7 +14,6 @@ $config = [
     'modules' => [
         'payment_custom' => [
             'class' => 'app\modules\payments\custom\Module',
-            'layout' => '@app/modules/admin/views/layouts/main'
         ],
     ]
 ];

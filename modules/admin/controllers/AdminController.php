@@ -12,16 +12,10 @@ use Yii;
  */
 class AdminController extends Controller {
 
-    public $layout = 'main';
+    public $layout = '@app/modules/admin/views/layouts/main';
 
     public function behaviors() {
         return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['post'],
-                ],
-            ],
             'access' => [
                 'class' => AccessControl::class,
                 'rules' => [
