@@ -26,4 +26,3 @@ if (isset($category)) {
         endif;?>
     </div>
 </div>
-

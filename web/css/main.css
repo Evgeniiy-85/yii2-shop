@@ -304,7 +304,10 @@ a.button:hover {
     font-size: 14px;
 }
 
-
+/*Корзина*/
+#basket_modal .modal-dialog {
+    max-width: 600px;
+}
 
 /*Платежные модули*/
 .payments-list .card_cover {
