@@ -13,12 +13,6 @@ h1, .h1 {
 .width-100 {
     width: 100%;
 }
-a.button {
-    border: 1px solid #ffa218;
-}
-a.button:hover {
-    text-decoration: none;
-}
 .button-ui {
     padding: 10px 19px;
     white-space: nowrap;
@@ -33,6 +27,30 @@ a.button:hover {
     outline: none;
     overflow: hidden;
     transition: opacity .3s;
+    border: 1px solid transparent;
+}
+.button-white {
+    color: #333;
+    background: #fff;
+    border-color: #d9d9d9;
+}
+.button-white:hover {
+    box-shadow:0 0 0 3px rgba(0,0,0,.03)
+}
+.button-orange {
+    border: 1px solid #ffa218;
+    box-shadow: inset 0 100px 0 hsla(0, 0%, 100%, .1);
+    background-image: linear-gradient(0deg, #fc8507, #ffa218);
+    color: #fff;
+}
+.button-orange:hover {
+    box-shadow:0 0 0 3px #fff7da;
+}
+a.button-ui_brand {
+    border: 1px solid #ffa218;
+}
+a.button:hover {
+    text-decoration: none;
 }
 
 /*Хлебные крошки*/
@@ -117,7 +135,7 @@ a.button:hover {
 .products-list {
     display: grid;
     grid-gap: 10px;
-    width: 100%;
+    width: calc(100% - 249px);
 }
 .product-card {
     display: flex;
@@ -275,15 +293,11 @@ a.button:hover {
 .products-filter .btn-group {
     width: 100%;
 }
+.products-filter .btn-group  + .btn-group  {
+    margin-top: 8px;
+}
 .products-filter .button {
     width: 100%;
-    border: 1px solid #ffa218;
-    box-shadow: inset 0 100px 0 hsla(0, 0%, 100%, .1);
-    background-image: linear-gradient(0deg, #fc8507, #ffa218);
-    color: #fff;
-}
-.products-filter .button:hover {
-    box-shadow:0 0 0 3px #fff7da;
 }
 .products-filter input {
     border-radius: 8px;

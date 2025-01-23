@@ -38,7 +38,7 @@ if (isset($category)) {
                             </div>
 
                             <div class="product-by">
-                                <a class="button button-ui" href="/buy/<?=$product['prod_alias'];?>">Купить</a>
+                                <a class="button button-ui button-ui_brand" href="/buy/<?=$product['prod_alias'];?>">Купить</a>
                             </div>
                         </div>
                     </div>
