@@ -49,7 +49,7 @@ a.button:hover {
     content: ">";
     padding-right: 5px;
 }
-.product-by .button-ui {
+.products .button-ui {
     color: #333;
 }
 .product-by .button-ui:hover, .product-card:hover .product-by .button-ui, .product .product-by .button-ui {
@@ -117,6 +117,7 @@ a.button:hover {
 .products-list {
     display: grid;
     grid-gap: 10px;
+    width: 100%;
 }
 .product-card {
     display: flex;
@@ -178,6 +179,12 @@ a.button:hover {
 }
 
 /*Продукт*/
+.products {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    min-height: 600px;
+}
 .product .product_cover {
     width: 340px;
     height: 500px;
@@ -214,7 +221,78 @@ a.button:hover {
 .product .product-by-one_line .product-price {
     margin-right: 10px;
 }
+.products-empty_result {
+    width: 100%;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background-color: #fff;
+    border-radius: 16px;
+    box-shadow: 0 1px 2px 0 #0000001a;
+}
 
+/*Фильлтр в продуктах*/
+.products-filter_wrap {
+    width: 234px;
+    margin-right: 15px;
+    background-color: #fff;
+    border-radius: 16px;
+    box-shadow: 0 1px 2px 0 #0000001a;
+    padding: 15px;
+}
+.products-filter_wrap form {
+    height: 100%;
+}
+.products-filter {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.filter-item {
+    width: 100%;
+}
+.filter-item:last-child {
+    margin-top: auto;
+}
+.products-filter .filter-group {
+    width: 100%;
+    display: flex;
+}
+.products-filter .filter-group .form-group + .form-group {
+    margin-left: 15px;
+}
+.products-filter .filter-group_wrap {
+    display: flex;
+    flex-direction: column;
+}
+.products-filter .filter-name {
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+.products-filter .btn-group {
+    width: 100%;
+}
+.products-filter .button {
+    width: 100%;
+    border: 1px solid #ffa218;
+    box-shadow: inset 0 100px 0 hsla(0, 0%, 100%, .1);
+    background-image: linear-gradient(0deg, #fc8507, #ffa218);
+    color: #fff;
+}
+.products-filter .button:hover {
+    box-shadow:0 0 0 3px #fff7da;
+}
+.products-filter input {
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+
+
+/*Платежные модули*/
 .payments-list .card_cover {
     height: 80px;
 }

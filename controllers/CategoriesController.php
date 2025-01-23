@@ -4,9 +4,11 @@ namespace app\controllers;
 
 use app\models\Category;
 use app\models\Product;
+use app\models\ProductFilter;
 use yii\data\Pagination;
 use yii\web\Controller;
 use yii\web\HttpException;
+use Yii;
 
 class CategoriesController extends Controller {
 
@@ -47,15 +49,21 @@ class CategoriesController extends Controller {
 
         $products = null;
         if (!$subcategories) {
-            $products = Product::find()->where([
+            $query = Product::find()->where([
                 'prod_status' => [Product::STATUS_ACTIVE],
                 'prod_category' => $category->cat_id,
-            ])->all();
+            ]);
+
+            $filter = new ProductFilter();
+            if ($filter->load(Yii::$app->request->get()) && $filter->validate()) {
+                $filter->add($query);
+            }
 
             return $this->render('/products/products', [
                 'category' => $category,
                 'subcategories' => $subcategories,
-                'products' => $products,
+                'products' => $query->all(),
+                'filter' => $filter,
             ]);
         }
 

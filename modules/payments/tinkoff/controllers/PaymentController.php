@@ -11,5 +11,5 @@ use Yii;
  * Default controller for the `admin` module
  */
 class PaymentController extends Controller {
-    
+
 }
