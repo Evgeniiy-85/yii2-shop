@@ -38,7 +38,7 @@ if (isset($category)) {
                             </div>
 
                             <div class="product-by">
-                                <button type="button" class="button button-ui button-ui_brand" data-prod_id="<?=$product['prod_id'];?>" data-quantity="1" data-target="#basket_modal" data-toggle="modal">Купить</button>
+                                <button type="button" class="button button-ui button-ui_brand" data-prod_id="<?=$product['prod_id'];?>" data-quantity="1">Купить</button>
                             </div>
                         </div>
                     </div>

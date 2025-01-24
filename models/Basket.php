@@ -21,6 +21,12 @@ class Basket extends Model {
         ];
     }
 
+
+    /**
+     * @param int $prod_id
+     * @param int $quantity
+     * @return bool
+     */
     public function addToBasket(int $prod_id, int $quantity) {
         $this->setAttributes(Yii::$app->session->get($this->save_key, []));
 
@@ -38,6 +44,8 @@ class Basket extends Model {
             $this->total += $product->prod_price;
         }
 
-        Yii::$app->session->set($this->save_key, $this->attributes);
+       Yii::$app->session->set($this->save_key, $this->attributes);
+
+        return true;
     }
 }

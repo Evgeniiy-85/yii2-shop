@@ -11,6 +11,9 @@ class BasketController extends Controller {
 
     }
 
+    /**
+     * @return string|void
+     */
     public function actionAdd() {
         if (Yii::$app->request->isAjax && $data = Yii::$app->request->post()) {
             $this->layout = false;
@@ -22,10 +25,9 @@ class BasketController extends Controller {
             }
 
             $basket = new Basket();
-            $basket->addToBasket($prod_id, $quantity);
-
-            return $this->render('modal', ['basket' => $basket]);
+            if ($basket->addToBasket($prod_id, $quantity)) {
+                return $this->render('modal', ['basket' => $basket]);
+            }
         }
     }
-
 }

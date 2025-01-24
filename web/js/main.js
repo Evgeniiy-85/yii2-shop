@@ -10,10 +10,13 @@ $(function(){
             success: function (html) {
                 if (html) {
                     $('#basket_modal .modal-body').html(html);
+                    $('#basket_modal').modal();
+                } else {
+                    alert('Произошла ошибка при обновлении корзины');
                 }
             },
             error: function () {
-                console.error('Произошла ошибка при обновлении корзины');
+                alert('Произошла ошибка при обновлении корзины');
             }
         });
     });
