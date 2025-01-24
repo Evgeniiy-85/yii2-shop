@@ -23,12 +23,12 @@ use yii\helpers\Html;?>
 
     <div class="filter-item">
         <div class="btn-group">
-            <?= Html::submitButton('Применить', ['class' => 'button button-ui button-orange', 'name' => 'apply']) ?>
+            <?= Html::submitButton('Применить', ['class' => 'button button-ui btn_a-primary', 'name' => 'apply']) ?>
         </div>
 
         <?if($filter->is_filter):?>
             <div class="btn-group">
-                <a class="button button-ui button-white" href="/<?=Yii::$app->request->getPathInfo();?>?reset_filter=1">
+                <a class="button button-ui btn_a-secondary" href="/<?=Yii::$app->request->getPathInfo();?>?reset_filter=1">
                     <span class="fa fa-close"></span> Сбросить
                 </a>
             </div>

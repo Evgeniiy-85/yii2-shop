@@ -13,6 +13,10 @@ h1, .h1 {
 .width-100 {
     width: 100%;
 }
+.without-border {
+    border: none;
+}
+/*Кнопки*/
 .button-ui {
     padding: 10px 19px;
     white-space: nowrap;
@@ -27,27 +31,38 @@ h1, .h1 {
     outline: none;
     overflow: hidden;
     transition: opacity .3s;
-    border: 1px solid transparent;
 }
-.button-white {
+.btn_a-secondary {
     color: #333;
     background: #fff;
     border-color: #d9d9d9;
 }
-.button-white:hover {
-    box-shadow:0 0 0 3px rgba(0,0,0,.03)
+.btn_a-secondary:hover {
+    box-shadow:0 0 0 3px rgba(0,0,0,.03);
+    color: #333;
 }
-.button-orange {
+.btn_a-primary, .btn_a-outline-primary:hover {
     border: 1px solid #ffa218;
     box-shadow: inset 0 100px 0 hsla(0, 0%, 100%, .1);
     background-image: linear-gradient(0deg, #fc8507, #ffa218);
     color: #fff;
 }
-.button-orange:hover {
+.btn_a-primary:hover {
     box-shadow:0 0 0 3px #fff7da;
+    background-color: #ffa218;
+    border-color: #ffa218;
+    color: #fff;
 }
-a.button-ui_brand {
+.btn_a-outline-primary {
     border: 1px solid #ffa218;
+    color: #333;
+}
+.btn_a-outline-primary:hover {
+    color: #333;
+}
+.button-small {
+    padding: 5px 10px;
+    font-size: 14px;
 }
 a.button:hover {
     text-decoration: none;
@@ -66,14 +81,6 @@ a.button:hover {
     color: #333;
     content: ">";
     padding-right: 5px;
-}
-.products .button-ui {
-    color: #333;
-}
-.product-by .button-ui:hover, .product-card:hover .product-by .button-ui, .product .product-by .button-ui {
-    box-shadow: inset 0 100px 0 hsla(0, 0%, 100%, .1);
-    background-image: linear-gradient(0deg, #fc8507, #ffa218);
-    color: #fff;
 }
 .product .product-by .button-ui {
     font-weight: 700;
