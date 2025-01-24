@@ -16,6 +16,13 @@ h1, .h1 {
 .without-border {
     border: none;
 }
+a {
+    color: #333;
+}
+a:hover {
+    color: #fc5808;
+    text-decoration: none;
+}
 /*Кнопки*/
 .button-ui {
     padding: 10px 19px;
@@ -46,6 +53,7 @@ h1, .h1 {
     box-shadow: inset 0 100px 0 hsla(0, 0%, 100%, .1);
     background-image: linear-gradient(0deg, #fc8507, #ffa218);
     color: #fff;
+
 }
 .btn_a-primary:hover {
     box-shadow:0 0 0 3px #fff7da;
@@ -54,7 +62,7 @@ h1, .h1 {
     color: #fff;
 }
 .btn_a-outline-primary {
-    border: 1px solid #ffa218;
+    border: 1px solid #d9d9d9;
     color: #333;
 }
 .btn_a-outline-primary:hover {
@@ -309,11 +317,6 @@ a.button:hover {
 .products-filter input {
     border-radius: 8px;
     font-size: 14px;
-}
-
-/*Корзина*/
-#basket_modal .modal-dialog {
-    max-width: 600px;
 }
 
 /*Платежные модули*/

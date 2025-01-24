@@ -2,42 +2,51 @@
 use app\components\Helpers;
 use yii\helpers\Url;?>
 
-<div class="card-body overflow-x-auto" style="padding: 0">
-    <div class="table-responsive">
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Наименование</th>
-                    <th>Количество</th>
-                    <th>Цена</th>
-                    <th>Итого</th>
-                    <th></th>
-                </tr>
-            </thead>
+<div class="basket">
+    <div class="basket-header">
+        <div class="basket-title">Список товаров</div>
+        <a class="basket-products_remove" href="<?= Url::to(['basket/remove']);?>">Очистить список</a>
+    </div>
 
-            <tbody>
-                <?foreach($basket->products as $prod_id => $product):
-                    $quantity = $basket->quantity[$prod_id];?>
-                    <tr>
-                        <td><?=Html::encode($product->prod_title);?></td>
-                        <td><?=$quantity;?></td>
-                        <td><nobr><?=Helpers::formatPrice($product->prod_price);?> руб.</nobr></td>
-                        <td><nobr><?=Helpers::formatPrice($product->prod_price * $quantity);?> руб.</nobr></td>
-                        <td>
-                            <a href="<?= Url::to(['basket/remove', 'id' => $prod_id]);?>" class="text-danger">
-                                <i class="fa fa-times" aria-hidden="true"></i>
-                            </a>
-                        </td>
-                    </tr>
-                <?endforeach;?>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td><strong>Итого</strong></td>
-                    <td><?=Helpers::formatPrice($basket->total);?> руб.</td>
-                    <td></td>
-                </tr>
-            </tbody>
-        </table>
+
+    <div class="basket-body">
+        <?foreach($basket->products as $prod_id => $product):
+            $quantity = $basket->quantity[$prod_id];?>
+                <div class="basket-product">
+                    <div class="basket-product_cover">
+                        <img src="/load/products/<?=$product->prod_image;?>">
+                    </div>
+
+                    <div class="basket-product_info">
+                        <div class="basket-product_title"><?=Html::encode($product->prod_title);?></div>
+                        <div class="basket-product_price"><nobr><?=Helpers::formatPrice($product->prod_price * $quantity);?> руб.</nobr></div>
+                        <a class="basket-product_remove" href="#">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
+                                <path d="M12.1663 3.125C12.5115 3.125 12.7913 2.84518 12.7913 2.5C12.7913 2.15482 12.5115 1.875 12.1663 1.875H8.83301C8.48783 1.875 8.20801 2.15482 8.20801 2.5C8.20801 2.84518 8.48783 3.125 8.83301 3.125L12.1663 3.125Z" fill="#AFAFAF"></path>
+                                <path d="M17.7913 5C17.7913 5.34518 17.5115 5.625 17.1663 5.625L3.83301 5.625C3.48783 5.625 3.20801 5.34518 3.20801 5C3.20801 4.65482 3.48783 4.375 3.83301 4.375L17.1663 4.375C17.5115 4.375 17.7913 4.65482 17.7913 5Z" fill="#AFAFAF"></path>
+                                <path d="M5.49967 7.70833C5.84485 7.70833 6.12467 7.98816 6.12467 8.33333V15.8333C6.12467 16.4086 6.59104 16.875 7.16634 16.875H13.833C14.4083 16.875 14.8747 16.4086 14.8747 15.8333V8.33333C14.8747 7.98816 15.1545 7.70833 15.4997 7.70833C15.8449 7.70833 16.1247 7.98816 16.1247 8.33333V15.8333C16.1247 17.099 15.0987 18.125 13.833 18.125H7.16634C5.90069 18.125 4.87467 17.099 4.87467 15.8333V8.33333C4.87467 7.98816 5.1545 7.70833 5.49967 7.70833Z" fill="#AFAFAF"></path>
+                                <path d="M8.83301 9.375C9.17819 9.375 9.45801 9.65482 9.45801 10V14.1667C9.45801 14.5118 9.17819 14.7917 8.83301 14.7917C8.48783 14.7917 8.20801 14.5118 8.20801 14.1667V10C8.20801 9.65482 8.48783 9.375 8.83301 9.375Z" fill="#AFAFAF"></path>
+                                <path d="M12.7913 10C12.7913 9.65482 12.5115 9.375 12.1663 9.375C11.8212 9.375 11.5413 9.65482 11.5413 10V14.1667C11.5413 14.5118 11.8212 14.7917 12.1663 14.7917C12.5115 14.7917 12.7913 14.5118 12.7913 14.1667V10Z" fill="#AFAFAF"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+        <?endforeach;?>
+    </div>
+
+    <div class="basket-footer">
+        <div class="basket-footer_left">
+            <strong>Итого: </strong>
+            <span><?=Helpers::formatPrice($basket->total);?></span>
+        </div>
+
+        <div class="basket-footer_right">
+            <button type="button" class="button button-ui btn_a-secondary button-small" data-dismiss="modal">
+                Продолжить покупки
+            </button>
+            <a href="/cart" class="button button-ui btn_a-outline-primary button-small">
+                Оформить заказ
+            </a>
+        </div>
     </div>
 </div>
