@@ -54,23 +54,6 @@ class BasketController extends Controller {
         if (Yii::$app->request->isAjax && $data = Yii::$app->request->post()) {
             $this->layout = false;
 
-            $prod_id = (int)$data['prod_id'] ?? null;
-            if (!$prod_id) {
-                exit;
-            }
-
-            $basket = new Basket();
-            if ($basket->quantityChange($prod_id, 0)) {
-                return $this->render('modal', ['basket' => $basket]);
-            }
-        }
-    }
-
-
-    public function actionRemoveAll() {
-        if (Yii::$app->request->isAjax && $data = Yii::$app->request->post()) {
-            $this->layout = false;
-
             $basket = new Basket();
             return $basket->remove();
         }
