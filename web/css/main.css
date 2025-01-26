@@ -322,3 +322,10 @@ a.button:hover {
 .payments-list .card_cover {
     height: 80px;
 }
+
+.checkout-form_wrap {
+    border-radius: 8px;
+}
+.checkout-form_wrap .card-footer {
+    background-color: #fff;
+}

@@ -9,9 +9,9 @@ $this->title = 'Оформление заказа';?>
 
     <div class="row">
         <div class="col-md-5">
-            <div class="card">
+            <div class="card checkout-form_wrap">
                 <?$form = ActiveForm::begin([
-                    'id' => 'form-product',
+                    'id' => 'form-checkout',
                     'options' => [
                         'enctype' => 'multipart/form-data'
                     ]
@@ -25,7 +25,7 @@ $this->title = 'Оформление заказа';?>
                 </div>
 
                 <div class="card-footer text-right">
-                    <?= Html::submitButton('Продолжить', ['class' => 'btn btn-primary', 'name' => 'next']) ?>
+                    <?= Html::submitButton('Подвердить заказ', ['class' => 'button button-ui btn_a-primary button-small', 'name' => 'next']) ?>
                 </div>
 
                 <?ActiveForm::end();?>
