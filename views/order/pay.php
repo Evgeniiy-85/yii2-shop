@@ -8,7 +8,7 @@ $this->title = 'Выбор оплаты';?>
 
     <div class="row order-info mb-5">
         <div class="col-md-9">
-            <?=$this->render('order_info_block', [
+            <?=$this->render('order_products', [
                 'order' => $order,
                 'products' => $products,
                 'order_items' => $order_items,

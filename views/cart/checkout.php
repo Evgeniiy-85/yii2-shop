@@ -9,7 +9,7 @@ $this->title = 'Оформление заказа';?>
 
     <div class="row">
         <div class="col-md-9">
-            <?=$this->render('cart_info_block', [
+            <?=$this->render('cart_products', [
                 'order' => $order,
                 'cart' => $cart,
             ]);?>
