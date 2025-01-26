@@ -9,11 +9,11 @@ use Yii;
 use yii\base\Model;
 use yii\db\ActiveRecord;
 
-class Basket extends Model {
+class Cart extends Model {
     public $total = 0;
     public $products = [];
     public $quantity = [];
-    private $save_key = 'Basket';
+    private $save_key = 'cart';
 
     public function rules() {
         return [
@@ -22,14 +22,17 @@ class Basket extends Model {
     }
 
 
+    public function loadCart() {
+        $this->setAttributes(Yii::$app->session->get($this->save_key, []));
+    }
+
     /**
      * @param int $prod_id
      * @param int $quantity
      * @return bool
      */
-    public function addToBasket(int $prod_id, int $quantity) {
-        $this->setAttributes(Yii::$app->session->get($this->save_key, []));
-
+    public function addProduct(int $prod_id, int $quantity) {
+        $this->loadCart();
         $product = $this->products[$prod_id] ?? Product::find()->where(['prod_status' => Product::STATUS_ACTIVE, 'prod_id' => $prod_id])->one();
         if (!$product) {
             return false;
@@ -54,9 +57,8 @@ class Basket extends Model {
      * @param $quantity
      * @return bool
      */
-    public function quantityChange($prod_id, $quantity) {
-        $this->setAttributes(Yii::$app->session->get($this->save_key, []));
-
+    public function changeCountProducts($prod_id, $quantity) {
+        $this->loadCart();
         if (!isset($this->products[$prod_id]) || !isset($this->quantity[$prod_id])) {
             return false;
         }

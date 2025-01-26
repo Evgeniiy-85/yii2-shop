@@ -34,6 +34,15 @@ class OrdersController extends Controller {
     }
 
 
+    public function actionCheckout() {
+        exit;
+
+        return $this->render('checkout', [
+
+        ]);
+    }
+
+
     /**
      * @param $ID
      * @return string

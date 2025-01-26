@@ -2,33 +2,33 @@
 use app\components\Helpers;
 use yii\helpers\Url;?>
 
-<div class="basket">
-    <div class="basket-header">
-        <div class="basket-title">Список товаров</div>
-        <a class="basket-products_remove" href="<?=Url::to(['basket/remove']);?>">Очистить список</a>
+<div class="cart">
+    <div class="cart-header">
+        <div class="cart-title">Список товаров</div>
+        <a class="cart-products_remove" href="<?=Url::to(['cart/remove']);?>">Очистить список</a>
     </div>
 
-    <div class="basket-body">
-        <?foreach($basket->products as $prod_id => $product):
-            $quantity = $basket->quantity[$prod_id];?>
-                <div class="basket-product">
-                    <div class="basket-product_cover">
+    <div class="cart-body">
+        <?foreach($cart->products as $prod_id => $product):
+            $quantity = $cart->quantity[$prod_id];?>
+                <div class="cart-product">
+                    <div class="cart-product_cover">
                         <img src="/load/products/<?=$product->prod_image;?>">
                     </div>
 
-                    <div class="basket-product_info">
-                        <div class="basket-product_title"><?=Html::encode($product->prod_title);?></div>
-                        <div class="basket-product_price"><nobr><?=Helpers::formatPrice($product->prod_price * $quantity);?> руб.</nobr></div>
-                        <div class="basket-product-quantity_pickers">
-                            <a href="javascript:void()" class="basket-product-quantity_picker btn_a-primary" data-prod_id="<?=$prod_id;?>" data-action_type="reduce">
+                    <div class="cart-product_info">
+                        <div class="cart-product_title"><?=Html::encode($product->prod_title);?></div>
+                        <div class="cart-product_price"><nobr><?=Helpers::formatPrice($product->prod_price * $quantity);?> руб.</nobr></div>
+                        <div class="cart-product-quantity_pickers">
+                            <a href="javascript:void()" class="cart-product-quantity_picker btn_a-primary" data-prod_id="<?=$prod_id;?>" data-action_type="reduce">
                                 <i class="fa fa-minus"></i>
                             </a>
-                            <div class="basket-product-quantity"><?=$quantity;?></div>
-                            <a href="javascript:void()" class="basket-product-quantity_picker btn_a-primary" data-prod_id="<?=$prod_id;?>" data-action_type="append">
+                            <div class="cart-product-quantity"><?=$quantity;?></div>
+                            <a href="javascript:void()" class="cart-product-quantity_picker btn_a-primary" data-prod_id="<?=$prod_id;?>" data-action_type="append">
                                 <i class="fa fa-plus"></i>
                             </a>
                         </div>
-                        <a href="javascript:void()" class="basket-product_remove" data-prod_id="<?=$prod_id;?>">
+                        <a href="javascript:void()" class="cart-product_remove" data-prod_id="<?=$prod_id;?>">
                             <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
                                 <path d="M12.1663 3.125C12.5115 3.125 12.7913 2.84518 12.7913 2.5C12.7913 2.15482 12.5115 1.875 12.1663 1.875H8.83301C8.48783 1.875 8.20801 2.15482 8.20801 2.5C8.20801 2.84518 8.48783 3.125 8.83301 3.125L12.1663 3.125Z" fill="#AFAFAF"></path>
                                 <path d="M17.7913 5C17.7913 5.34518 17.5115 5.625 17.1663 5.625L3.83301 5.625C3.48783 5.625 3.20801 5.34518 3.20801 5C3.20801 4.65482 3.48783 4.375 3.83301 4.375L17.1663 4.375C17.5115 4.375 17.7913 4.65482 17.7913 5Z" fill="#AFAFAF"></path>
@@ -42,13 +42,13 @@ use yii\helpers\Url;?>
         <?endforeach;?>
     </div>
 
-    <div class="basket-footer">
-        <div class="basket-footer_left">
+    <div class="cart-footer">
+        <div class="cart-footer_left">
             <strong>Итого: </strong>
-            <span><?=Helpers::formatPrice($basket->total);?></span>
+            <span><?=Helpers::formatPrice($cart->total);?></span>
         </div>
 
-        <div class="basket-footer_right">
+        <div class="cart-footer_right">
             <button type="button" class="button button-ui btn_a-secondary button-small" data-dismiss="modal">
                 Продолжить покупки
             </button>

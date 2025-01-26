@@ -2,13 +2,16 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Basket;
+use app\models\Cart;
 use yii\web\Controller;
 
-class BasketController extends Controller {
+class CartController extends Controller {
 
     public function actionIndex() {
+        $cart = new Cart();
+        $cart->loadCart();
 
+        return $this->render('index', ['cart' => $cart]);
     }
 
     /**
@@ -24,15 +27,15 @@ class BasketController extends Controller {
                 exit;
             }
 
-            $basket = new Basket();
-            if ($basket->addToBasket($prod_id, $quantity)) {
-                return $this->render('modal', ['basket' => $basket]);
+            $cart = new Cart();
+            if ($cart->addProduct($prod_id, $quantity)) {
+                return $this->render('modal', ['cart' => $cart]);
             }
         }
     }
 
 
-    public function actionQuantityChange() {
+    public function actionChange() {
         if (Yii::$app->request->isAjax && $data = Yii::$app->request->post()) {
             $this->layout = false;
 
@@ -42,9 +45,9 @@ class BasketController extends Controller {
                 exit;
             }
 
-            $basket = new Basket();
-            if ($basket->quantityChange($prod_id, $quantity)) {
-                return $this->render('modal', ['basket' => $basket]);
+            $cart = new Cart();
+            if ($cart->changeCountProducts($prod_id, $quantity)) {
+                return $this->render('modal', ['cart' => $cart]);
             }
         }
     }
@@ -54,8 +57,13 @@ class BasketController extends Controller {
         if (Yii::$app->request->isAjax && $data = Yii::$app->request->post()) {
             $this->layout = false;
 
-            $basket = new Basket();
-            return $basket->remove();
+            $cart = new Cart();
+            return $cart->remove();
         }
+    }
+
+
+    public function actionCheckout() {
+
     }
 }

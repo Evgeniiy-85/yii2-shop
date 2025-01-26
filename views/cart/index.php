@@ -3,24 +3,15 @@ use yii\helpers\Html;
 use app\components\Helpers;
 use app\models\Product;
 
-$this->title = isset($category) ? $category['cat_title'] : 'Каталог';
-if (isset($category)) {
-    $this->params['breadcrumbs'] = Product::getBreadCrumbs($category, null);
-}?>
+$this->title = 'Корзина';?>
 
 <div class="site-catalog">
     <h1><?= Html::encode($this->title) ?></h1>
 
     <div class="products">
-        <div class="products-filter_wrap">
-            <?=$this->render('filter', [
-                'filter' => $filter,
-            ]);?>
-        </div>
-
         <div class="products-list">
-            <?if($products):
-                foreach ($products as $product):?>
+            <?if($cart->products):
+                foreach ($cart->products as $product):?>
                     <div class="product-card">
                         <div class="product_cover">
                             <img src="/load/products/<?=$product['prod_image'];?>">
@@ -36,10 +27,6 @@ if (isset($category)) {
                             <div class="product-price">
                                 <?=Helpers::formatPrice($product['prod_price']);?> ₽
                             </div>
-
-                            <div class="product-by">
-                                <button type="button" class="button button-ui btn_a-outline-primary" data-prod_id="<?=$product['prod_id'];?>" data-quantity="1">Купить</button>
-                            </div>
                         </div>
                     </div>
                 <?endforeach;
@@ -49,7 +36,11 @@ if (isset($category)) {
                 </div>
             <?endif;?>
         </div>
+
+        <div class="cart-right-block_wrap">
+            <?=$this->render('right_block', [
+                'cart' => $cart,
+            ]);?>
+        </div>
     </div>
 </div>
-
-<?=$this->render('cart_modal');?>
