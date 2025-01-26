@@ -23,11 +23,12 @@ class Order extends ActiveRecord {
      */
     public function rules() {
         return [
-            [['order_sum'], 'safe'],
+            [['order_sum', 'order_status'], 'safe'],
             [['client_email', 'client_name', 'client_surname', 'client_phone',], 'required'],
             [['client_email', 'client_name','client_surname', 'client_phone'], 'string'],
-            [['order_date', 'payment_date', 'order_sum'], 'integer'],
+            [['order_date', 'payment_date', 'order_sum', 'order_status'], 'integer'],
             [['client_email', 'client_name','client_surname', 'client_phone'], 'trim'],
+            [['order_status'], 'default', 'value' => 0]
         ];
     }
 
@@ -104,6 +105,7 @@ class Order extends ActiveRecord {
         $statuses = [
             self::STATUS_PAID => 'Оплачен',
             self::STATUS_NO_PAID => 'Не оплачен',
+            self::STATUS_INVOICE_ISSUED => 'Ждет подтверждения',
         ];
 
         return $status !== false ? $statuses[$status] : $statuses;

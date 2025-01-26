@@ -9,7 +9,7 @@ use yii\web\Controller;
 use yii\web\HttpException;
 use Yii;
 
-class OrdersController extends Controller {
+class OrderController extends Controller {
 
     public function actionBuy($alias) {
         $product = Product::find()->where(['prod_alias' => $alias])->one();
@@ -24,7 +24,6 @@ class OrdersController extends Controller {
             if ($order->save()) {
                 $this->redirect("/pay/{$order->order_id}");
             }
-
         }
 
         return $this->render('buy', [

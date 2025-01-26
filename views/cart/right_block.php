@@ -1,8 +1,9 @@
 <?php
 use yii\helpers\Html;
-use app\components\Helpers;?>
+use app\components\Helpers;
+use yii\helpers\Url;?>
 
-<?=Html::beginForm(['/order/checkout'], 'post', ['id' => 'form-add_to_basket']) ?>
+<?=Html::beginForm(['/cart/checkout'], 'post', ['id' => 'form-add_to_basket']) ?>
 
 <div class="cart-right_block">
     <div class="cart-item_header">
@@ -15,9 +16,7 @@ use app\components\Helpers;?>
     </div>
 
     <div class="cart-item">
-        <div class="btn-group">
-            <?= Html::submitButton('Перейти к оформлению', ['class' => 'button button-ui btn_a-primary', 'name' => 'apply']) ?>
-        </div>
+        <a href="<?=Url::to(['cart/checkout']);?>" class="button button-ui btn_a-primary">Перейти к оформлению</a>
     </div>
 </div>
 
