@@ -23,7 +23,9 @@ use app\models\Product;?>
                 </div>
 
                 <div class="order-product_info">
-                    <div class="order-product_title"><?=Html::encode("{$product->prod_title} ({$quantity}шт.)");?></div>
+                    <div class="order-product_title">
+                        <?=Html::encode($product->prod_title);?><b><?=" ({$quantity}шт.)";?></b>
+                    </div>
                     <div class="order-product_price"><nobr><?=Helpers::formatPrice($product->prod_price * $quantity);?> руб.</nobr></div>
                 </div>
             </div>
@@ -35,5 +37,11 @@ use app\models\Product;?>
             <strong>Итого: </strong>
             <span><?=Helpers::formatPrice($cart->total);?></span>
         </div>
+
+         <?if(Yii::$app->controller->action->id == 'index'):?>
+             <div>
+                 <a href="<?=Url::to(['cart/checkout']);?>" class="button button-ui btn_a-primary button-small">Перейти к оформлению</a>
+             </div>
+         <?endif;?>
      </div>
 </div>

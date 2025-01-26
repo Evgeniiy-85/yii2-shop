@@ -22,7 +22,9 @@ use app\models\Product;?>
                 </div>
 
                 <div class="order-product_info">
-                    <div class="order-product_title"><?=Html::encode("{$order_item->prod_title} ({$order_item->quantity}шт.)");?></div>
+                    <div class="order-product_title">
+                        <?=Html::encode($product->prod_title);?><b><?=" ({$order_item->quantity}шт.)";?></b>
+                    </div>
                     <div class="order-product_price"><nobr><?=Helpers::formatPrice($order_item->prod_price * $order_item->quantity);?> руб.</nobr></div>
                 </div>
             </div>
