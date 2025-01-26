@@ -1,37 +1,38 @@
-<div class="card card-default">
-    <div class="card-body overflow-x-auto" style="padding: 0">
-        <table class="table text-nowrap">
-            <thead>
-                <tr>
-                    <th>Наименование товара</th>
-                    <th>Количество</th>
-                    <th>Цена</th>
-                    <th>Итого</th>
-                </tr>
-            </thead>
+<?php
+use yii\helpers\Html;
+use app\components\Helpers;
+use yii\helpers\Url;
+use app\models\Product;?>
 
-            <tbody>
-                <?foreach($products as $product):?>
-                    <tr>
-                        <td><?=$product->prod_title;?></td>
-                        <td>1</td>
-                        <td><?=$product->prod_price;?> руб.</td>
-                        <td><?=$product->prod_price;?> руб.</td>
-                    </tr>
-                <?endforeach;?>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td><strong>Сумма</strong></td>
-                    <td><?=$product->prod_price;?> руб.</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td><strong>Итого</strong></td>
-                    <td><?=$product->prod_price;?> руб.</td>
-                </tr>
-            </tbody>
-        </table>
+<div class="order-products_list">
+    <div class="order-header">
+        <div class="cart-title">Список товаров</div>
     </div>
+
+    <div class="order-body">
+        <?foreach($order_items as $key => $order_item):
+            $product = Product::find()->where(['prod_id' => $order_item->prod_id])->one();?>
+            <?if($key !== 0):?>
+                <hr>
+            <?endif;?>
+
+            <div class="order-product">
+                <div class="order-product_cover">
+                    <img src="/load/products/<?=$product->prod_image;?>">
+                </div>
+
+                <div class="order-product_info">
+                    <div class="order-product_title"><?=Html::encode("{$order_item->prod_title} ({$order_item->quantity}шт.)");?></div>
+                    <div class="order-product_price"><nobr><?=Helpers::formatPrice($order_item->prod_price * $order_item->quantity);?> руб.</nobr></div>
+                </div>
+            </div>
+        <?endforeach;?>
+    </div>
+
+     <div class="cart-footer">
+        <div class="cart-footer_left">
+            <strong>Итого: </strong>
+            <span><?=Helpers::formatPrice($order->order_sum);?></span>
+        </div>
+     </div>
 </div>

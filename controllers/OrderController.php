@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\Order;
+use app\models\OrderItems;
 use app\models\Payment;
 use app\models\Product;
 use yii\web\Controller;
@@ -53,10 +54,12 @@ class OrderController extends Controller {
             throw new HttpException(404, "Страница не найдена.");
         }
 
+        $order_items = OrderItems::find()->where(['order_id' => $ID])->all();
         $payments = Payment::find()->where(['pay_status' => Payment::STATUS_ACTIVE])->all();
 
         return $this->render('pay', [
             'order' => $order,
+            'order_items' => $order_items,
             'products' => $order->products,
             'payments' => $payments,
         ]);

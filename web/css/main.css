@@ -329,3 +329,54 @@ a.button:hover {
 .checkout-form_wrap .card-footer {
     background-color: #fff;
 }
+
+/*Заказы*/
+.order-products_list {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 1.25rem;
+}
+.order-products_list .order-header {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    margin: 0 0 16px;
+}
+.order-products_list .order-product {
+    display: flex;
+    width: 100%;
+}
+.order-products_list .order-product + .order-product {
+    margin-top: 10px;
+}
+.order-product_cover {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    min-width: 60px;
+    height: 60px;
+    margin-right: 8px;
+}
+.order-product_cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    max-width: 100%;
+    display: block;
+}
+.order-product_info {
+    display: flex;
+    width: 100%;
+    font-size: 14px;
+}
+.order-product_title {
+    min-width: 196px;
+    margin-right: auto;
+}
+.order-product_price {
+    margin-left: 30px;
+    font-size: 18px;
+    line-height: 20px;
+    font-weight: 700;
+}

@@ -2,6 +2,7 @@
 namespace app\controllers;
 
 use app\models\Order;
+use app\models\OrderItems;
 use app\models\Product;
 use Yii;
 use app\models\Cart;
@@ -70,8 +71,19 @@ class CartController extends Controller {
         $order = new Order();
 
         if ($order->load(Yii::$app->request->post()) && $order->validate()) {
-            $order->products = $cart->products;
             $order->setAttribute('order_sum', $cart->total);
+            $order->products = $cart->products;
+
+            if ($order->save()) {
+                foreach ($cart->products as $prod_id => $product) {
+                    $order_items = new OrderItems();
+                    $order_items->setData($order, $product, $cart->quantity[$prod_id]);
+                    $order_items->save();
+                }
+
+                $this->redirect("/pay/{$order->order_id}");
+            }
+
             if ($order->save()) {
                 $this->redirect("/pay/{$order->order_id}");
             }

@@ -78,19 +78,6 @@ class Order extends ActiveRecord {
      */
     public function afterSave($insert, $changedAttributes) {
         if (parent::beforeSave($insert, $changedAttributes)) {
-            if ($this->products) {
-                foreach ($this->products as $product) {
-                    $model = new OrderItems();
-                    $model->setAttribute('order_id', $this->order_id);
-                    $model->setAttribute('prod_id', $product->prod_id);
-                    $model->setAttribute('prod_price', $product->prod_price);
-                    $model->setAttribute('prod_title', $product->prod_title);
-                    if ($model->validate()) {
-                        $model->save();
-                    }
-                }
-            }
-
             return true;
         }
 

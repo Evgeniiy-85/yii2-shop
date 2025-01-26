@@ -11,6 +11,7 @@ $this->title = 'Выбор оплаты';?>
             <?=$this->render('order_info_block', [
                 'order' => $order,
                 'products' => $products,
+                'order_items' => $order_items,
             ]);?>
         </div>
     </div>
@@ -43,9 +44,9 @@ $this->title = 'Выбор оплаты';?>
                                 </div>
                             </div>
 
-                            <div class="col-md-3 text-right flex-column align-content-center">
+                            <div class="col-md-3 text-right flex-column mt-2">
                                 <div class="btn-group">
-                                    <button type="submit" class="btn btn-success" name="apply" data-target="#modalPay_<?=$payment['pay_name'];?>" data-toggle="modal"><?=$payment['pay_button_title'];?></button>
+                                    <button type="submit" class="button button-ui btn_a-primary button-small" name="apply" data-target="#modalPay_<?=$payment['pay_name'];?>" data-toggle="modal"><?=$payment['pay_button_title'];?></button>
                                 </div>
                             </div>
                         </div>

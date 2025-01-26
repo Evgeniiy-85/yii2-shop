@@ -15,9 +15,9 @@ class OrderItems extends ActiveRecord {
      */
     public function rules() {
         return [
-            [['order_id', 'prod_id'], 'required'],
+            [['order_id', 'prod_id', 'quantity'], 'required'],
             [['prod_title',], 'string'],
-            [['order_id', 'prod_id', 'prod_price'], 'integer'],
+            [['order_id', 'prod_id', 'prod_price', 'quantity'], 'integer'],
         ];
     }
 
@@ -26,5 +26,20 @@ class OrderItems extends ActiveRecord {
      */
     public static function tableName() {
         return 'order_items';
+    }
+
+
+    /**
+     * @param $order
+     * @param $product
+     * @param $quantity
+     * @return void
+     */
+    public function setData($order, $product, $quantity) {
+        $this->setAttribute('order_id', $order->order_id);
+        $this->setAttribute('prod_id', $product->prod_id);
+        $this->setAttribute('prod_price', $product->prod_price);
+        $this->setAttribute('prod_title', $product->prod_title);
+        $this->setAttribute('quantity', $quantity);
     }
 }

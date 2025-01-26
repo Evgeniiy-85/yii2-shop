@@ -20,6 +20,7 @@ class m250122_110856_order_items extends Migration
                 'prod_id' => $this->integer()->notNull(),
                 'prod_price' => $this->integer()->notNull(),
                 'prod_title' => $this->string()->notNull(),
+                'quantity' => $this->smallInteger(4)->notNull()->defaultValue(1),
             ]);
         }
     }
