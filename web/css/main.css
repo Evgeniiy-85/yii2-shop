@@ -228,27 +228,18 @@ a.button:hover {
     border-color: #d9d9d9;
 }
 
-/*Продукт*/
-.products {
-    display: flex;
-    width: 100%;
-    height: 100%;
-}
-.products .product .product-cover {
+/*Карточка продукта*/
+.product .product-cover {
     width: 340px;
     height: 500px;
     margin-right: 32px;
 }
-.products .product .product-card_center {
+.product .product-card_center {
     display: flex;
     flex-direction: column;
     width: calc(100% - 340px);
 }
-.products .product-card-title {
-    height: 84px;
-    padding-right: 100px;
-}
-.products .product .product-price {
+.product .product-price {
     width: 100%;
     background: #f7f7f7;
     border-radius: 8px;
@@ -261,14 +252,27 @@ a.button:hover {
     font-weight: 700;
     line-height: 20px;
 }
-.products .product .product-by-one_line {
+.product .product-by-one_line {
     display: flex;
     flex-direction: row;
     margin-bottom: 16px;
     min-height: 64px;
 }
-.products .product .product-by-one_line .product-price {
+.product .product-by-one_line .product-price {
     margin-right: 10px;
+}
+.product-card-title {
+    height: 84px;
+    padding-right: 100px;
+}
+
+
+
+/*Продукт*/
+.products {
+    display: flex;
+    width: 100%;
+    height: 100%;
 }
 .products-empty_result {
     width: 100%;
