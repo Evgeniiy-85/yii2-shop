@@ -22,10 +22,15 @@ class AppAsset extends AssetBundle
     public $baseUrl = '@web';
 
     public $css = [
+        'css/style.css',
         'css/main.css',
         'css/cart.css',
         'css/font-awesome.min.css',
     ];
+    public $sass = [
+        'sass/main.sass',
+    ];
+
     public $js = [
         'js/main.js',
     ];

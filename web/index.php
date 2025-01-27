@@ -8,5 +8,12 @@ require __DIR__ . '/../vendor/autoload.php';
 require __DIR__ . '/../vendor/yiisoft/yii2/Yii.php';
 
 $config = require __DIR__ . '/../config/web.php';
+$application = new yii\web\Application($config);
 
-(new yii\web\Application($config))->run();
+if ('dev' == YII_ENV) {
+    (new \app\components\SassPreprocessor())->run('@webroot/sass', '@webroot/css/style.css', [
+        'main'
+    ]);
+}
+
+$application->run();

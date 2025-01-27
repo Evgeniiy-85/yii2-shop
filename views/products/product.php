@@ -27,12 +27,6 @@ $this->params['breadcrumbs'] = Product::getBreadCrumbs($category, $product);?>
                 </div>
                 <div class="card_bottom">Наличите: в наличии</div>
             </div>
-
-            <div class="product-card_right">
-
-
-
-            </div>
         </div>
     </div>
 </div>
