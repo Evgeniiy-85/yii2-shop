@@ -19,11 +19,11 @@ $this->title = 'Выбор оплаты';?>
     <div class="row payments-list">
         <?foreach ($payments as $payment):?>
             <div class="col-md-9 mb-3">
-                <div class="card card-default card-payment">
-                    <div class="card-body">
+                <div class="c-card card-payment">
+                    <div class="c-card-body">
                         <div class="row">
                             <div class="col-md-2">
-                                <a class="card_cover" href="/admin/settings/payments/<?=$payment['pay_id'];?>">
+                                <a class="card-cover" href="/admin/settings/payments/<?=$payment['pay_id'];?>">
                                     <?if($payment['pay_image']):?>
                                         <img src="/load/payments/<?=$payment['pay_image'];?>";?>
                                     <?else:?>
