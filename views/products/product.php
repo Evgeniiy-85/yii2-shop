@@ -11,7 +11,7 @@ $this->params['breadcrumbs'] = Product::getBreadCrumbs($category, $product);?>
 
     <div class="product">
         <div class="product-card">
-            <div class="product_cover">
+            <div class="product-cover">
                 <img src="/load/products/<?=$product['prod_image'];?>">
             </div>
 

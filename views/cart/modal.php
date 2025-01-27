@@ -17,7 +17,7 @@ use yii\helpers\Url;?>
             <?endif;?>
 
             <div class="cart-product">
-                <div class="cart-product_cover">
+                <div class="cart-product-cover">
                     <img src="/load/products/<?=$product->prod_image;?>">
                 </div>
 

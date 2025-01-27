@@ -22,7 +22,7 @@ if (isset($category)) {
             <?if($products):
                 foreach ($products as $product):?>
                     <div class="product-card">
-                        <div class="product_cover">
+                        <div class="product-cover">
                             <img src="/load/products/<?=$product['prod_image'];?>">
                         </div>
 

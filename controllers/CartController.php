@@ -72,7 +72,6 @@ class CartController extends Controller {
 
         if ($order->load(Yii::$app->request->post()) && $order->validate()) {
             $order->setAttribute('order_sum', $cart->total);
-            $order->products = $cart->products;
 
             if ($order->save()) {
                 foreach ($cart->products as $prod_id => $product) {
