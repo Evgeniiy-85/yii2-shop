@@ -234,21 +234,21 @@ a.button:hover {
     width: 100%;
     height: 100%;
 }
-.product .product_cover {
+.products .product .product_cover {
     width: 340px;
     height: 500px;
     margin-right: 32px;
 }
-.product .product-card_center {
+.products .product .product-card_center {
     display: flex;
     flex-direction: column;
     width: calc(100% - 340px);
 }
-.product-card_title {
+.products .product-card_title {
     height: 84px;
     padding-right: 100px;
 }
-.product .product-price {
+.products .product .product-price {
     width: 100%;
     background: #f7f7f7;
     border-radius: 8px;
@@ -261,13 +261,13 @@ a.button:hover {
     font-weight: 700;
     line-height: 20px;
 }
-.product .product-by-one_line {
+.products .product .product-by-one_line {
     display: flex;
     flex-direction: row;
     margin-bottom: 16px;
     min-height: 64px;
 }
-.product .product-by-one_line .product-price {
+.products .product .product-by-one_line .product-price {
     margin-right: 10px;
 }
 .products-empty_result {
@@ -340,26 +340,30 @@ a.button:hover {
     height: 80px;
 }
 
-/*Заказы*/
-.order-products_list {
+/*Выбранные продукты*/
+.selected-products {
     background-color: #fff;
     border-radius: 8px;
     padding: 20px;
 }
-.order-products_list .order-header {
+.selected-products .block-header {
     display: flex;
     align-items: center;
     font-size: 16px;
     margin: 0 0 16px;
 }
-.order-products_list .order-product {
+.selected-products .block-title {
+    font-size: 18px;
+    font-weight: 700;
+}
+.selected-products .product {
     display: flex;
     width: 100%;
 }
-.order-products_list .order-product + .order-product {
+.selected-products .product + .product {
     margin-top: 10px;
 }
-.order-product_cover {
+.selected-products .product-cover {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -368,25 +372,35 @@ a.button:hover {
     height: 60px;
     margin-right: 8px;
 }
-.order-product_cover img {
+.selected-products .product-cover img {
     width: 100%;
     height: 100%;
     object-fit: contain;
     max-width: 100%;
     display: block;
 }
-.order-product_info {
+.selected-products .product-info {
     display: flex;
     width: 100%;
     font-size: 14px;
 }
-.order-product_title {
+.selected-products .product-title {
     min-width: 196px;
     margin-right: auto;
 }
-.order-product_price {
+.selected-products .product-price {
     margin-left: 30px;
     font-size: 18px;
     line-height: 20px;
     font-weight: 700;
+}
+.selected-products .block-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid rgba(0, 0, 0, .08);
+    padding-top: 20px;
+}
+.selected-products .block-footer_left {
+    font-size: 18px;
 }
