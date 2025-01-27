@@ -7,37 +7,17 @@ $this->title = 'Оформление заказа';?>
 <div class="site-catalog">
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <div class="row order-info mb-5">
-        <div class="col-md-9">
-            <?=$this->render('order_products', [
-                'products' => [$product],
+    <div class="row">
+        <div class="col-md-7 mb-5">
+            <?=$this->render('order_product', [
+                'product' => $product,
             ]);?>
         </div>
-    </div>
 
-    <div class="row">
-        <div class="col-md-5">
-            <div class="card">
-                <?$form = ActiveForm::begin([
-                    'id' => 'form-product',
-                    'options' => [
-                        'enctype' => 'multipart/form-data'
-                    ]
-                ]);?>
-
-                <div class="card-body">
-                    <?= $form->field($order, 'client_email')->input('email', ['autofocus' => true]); ?>
-                    <?= $form->field($order, 'client_name')->input('text'); ?>
-                    <?= $form->field($order, 'client_surname')->input('text'); ?>
-                    <?= $form->field($order, 'client_phone')->input('text'); ?>
-                </div>
-
-                <div class="card-footer text-right">
-                    <?= Html::submitButton('Продолжить', ['class' => 'btn btn-primary', 'name' => 'next']) ?>
-                </div>
-
-                <?ActiveForm::end();?>
-            </div>
+        <div class="col-md-7">
+            <?=$this->render('checkout_form', [
+                'order' => $order,
+            ]);?>
         </div>
     </div>
 </div>

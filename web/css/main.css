@@ -23,6 +23,23 @@ a:hover {
     color: #fc5808;
     text-decoration: none;
 }
+.c-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    background-clip: border-box;
+    border-radius: 8px;
+    box-shadow: 0 1px 2px 0 #0000001a;
+    padding: 20px;
+    word-wrap: break-word;
+}
+.c-card-footer {
+    background-color: #fff;
+    border: none;
+}
+
+
 /*Кнопки*/
 .button-ui {
     padding: 10px 19px;
@@ -156,7 +173,7 @@ a.button:hover {
     display: flex;
     padding: 24px;
     background-color: #fff;
-    border-radius: 16px;
+    border-radius: 8px;
     box-shadow: 0 1px 2px 0 #0000001a;
 }
 .product-card .product_cover {
@@ -261,7 +278,7 @@ a.button:hover {
     justify-content: center;
     padding: 24px;
     background-color: #fff;
-    border-radius: 16px;
+    border-radius: 8px;
     box-shadow: 0 1px 2px 0 #0000001a;
 }
 
@@ -270,7 +287,7 @@ a.button:hover {
     width: 234px;
     margin-right: 15px;
     background-color: #fff;
-    border-radius: 16px;
+    border-radius: 8px;
     box-shadow: 0 1px 2px 0 #0000001a;
     padding: 15px;
 }
@@ -323,18 +340,11 @@ a.button:hover {
     height: 80px;
 }
 
-.checkout-form_wrap {
-    border-radius: 8px;
-}
-.checkout-form_wrap .card-footer {
-    background-color: #fff;
-}
-
 /*Заказы*/
 .order-products_list {
     background-color: #fff;
     border-radius: 8px;
-    padding: 1.25rem;
+    padding: 20px;
 }
 .order-products_list .order-header {
     display: flex;
