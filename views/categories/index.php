@@ -16,11 +16,11 @@ if (isset($category)) {
         <?if($categories):
             foreach ($categories as $category):?>
                 <a class="category-card" href="/categories/<?=$category['cat_alias'];?>">
-                    <div class="card_cover">
+                    <div class="card-cover">
                         <img src="/load/categories/<?=$category['cat_image'];?>">
                     </div>
 
-                    <div class="card_title"><?=$category['cat_title'];?></div>
+                    <div class="card-title"><?=$category['cat_title'];?></div>
                 </a>
             <?endforeach;
         endif;?>

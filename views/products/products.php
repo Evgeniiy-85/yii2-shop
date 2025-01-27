@@ -27,7 +27,7 @@ if (isset($category)) {
                         </div>
 
                         <div class="product-card_center">
-                            <a class="product-card_title" href="/products/<?=$product['prod_alias'];?>"><?=$product['prod_title'];?></a>
+                            <a class="product-card-title" href="/products/<?=$product['prod_alias'];?>"><?=$product['prod_title'];?></a>
 
                             <div class="card_bottom">Наличите: в наличии</div>
                         </div>

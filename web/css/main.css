@@ -151,7 +151,7 @@ a.button:hover {
     max-width: 100%;
     display: block;
 }
-.card_title {
+.card-title {
     align-items: center;
     color: #4e4e4e;
     display: flex;
@@ -194,7 +194,7 @@ a.button:hover {
     flex-direction: column;
     margin-left: auto;
 }
-.product-card_title {
+.product-card-title {
     grid-column: 2;
     grid-row: 1;
     max-height: 74px;
@@ -203,7 +203,7 @@ a.button:hover {
     overflow: hidden;
     color: #000;
 }
-.product-card_title:hover {
+.product-card-title:hover {
     text-decoration: none;
     color: #fc5808;
 }
@@ -244,7 +244,7 @@ a.button:hover {
     flex-direction: column;
     width: calc(100% - 340px);
 }
-.products .product-card_title {
+.products .product-card-title {
     height: 84px;
     padding-right: 100px;
 }
