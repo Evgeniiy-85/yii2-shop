@@ -23,7 +23,7 @@ $this->title = 'Выбор оплаты';?>
                     <div class="c-card-body">
                         <div class="row">
                             <div class="col-md-2">
-                                <a class="card-cover" href="/admin/settings/payments/<?=$payment['pay_id'];?>">
+                                <a class="c-card-cover" href="/admin/settings/payments/<?=$payment['pay_id'];?>">
                                     <?if($payment['pay_image']):?>
                                         <img src="/load/payments/<?=$payment['pay_image'];?>";?>
                                     <?else:?>

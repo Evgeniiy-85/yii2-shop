@@ -15,12 +15,12 @@ if (isset($category)) {
     <div class="categories-list">
         <?if($categories):
             foreach ($categories as $category):?>
-                <a class="category-card" href="/categories/<?=$category['cat_alias'];?>">
-                    <div class="card-cover">
+                <a class="category" href="/categories/<?=$category['cat_alias'];?>">
+                    <div class="category-cover">
                         <img src="/load/categories/<?=$category['cat_image'];?>">
                     </div>
 
-                    <div class="card-title"><?=$category['cat_title'];?></div>
+                    <div class="category-title"><?=$category['cat_title'];?></div>
                 </a>
             <?endforeach;
         endif;?>

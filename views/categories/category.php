@@ -11,12 +11,12 @@ $this->params['breadcrumbs'] = Product::getBreadCrumbs($category);?>
 
     <div class="categories-list">
         <?foreach ($subcategories as $subcategory):?>
-            <a class="category-card" href="/categories/<?="{$category['cat_alias']}/{$subcategory['cat_alias']}";?>">
-                <div class="card-cover">
+            <a class="category" href="/categories/<?="{$category['cat_alias']}/{$subcategory['cat_alias']}";?>">
+                <div class="category-cover">
                     <img src="/load/categories/<?=$subcategory['cat_image'];?>">
                 </div>
 
-                <div class="card-title"><?=$subcategory['cat_title'];?></div>
+                <div class="category-title"><?=$subcategory['cat_title'];?></div>
             </a>
         <?endforeach;?>
     </div>

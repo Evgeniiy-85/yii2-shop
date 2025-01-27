@@ -64,6 +64,13 @@
           background: #fff;
           border-color: #d9d9d9;
           font-size: 16px;
+
+          &:hover {
+            border: 1px solid #ffa218;
+            box-shadow: inset 0 100px 0 hsla(0, 0%, 100%, .1);
+            background-image: linear-gradient(0deg, #fc8507, #ffa218);
+            color: #fff;
+          }
         }
       }
     }
