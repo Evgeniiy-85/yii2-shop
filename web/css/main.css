@@ -39,7 +39,6 @@ a:hover {
     border: none;
 }
 
-
 /*Кнопки*/
 .button-ui {
     padding: 10px 19px;
@@ -56,6 +55,7 @@ a:hover {
     overflow: hidden;
     transition: opacity .3s;
 }
+
 .btn_a-secondary {
     color: #333;
     background: #fff;
@@ -67,10 +67,9 @@ a:hover {
 }
 .btn_a-primary, .btn_a-outline-primary:hover {
     border: 1px solid #ffa218;
-    box-shadow: inset 0 100px 0 hsla(0, 0%, 100%, .1);
-    background-image: linear-gradient(0deg, #fc8507, #ffa218);
+    box-shadow: inset 0 100px 0 hsla(0, 0%, 100%, .1)!important;
+    background-image: linear-gradient(0deg, #fc8507, #ffa218)!important;
     color: #fff;
-
 }
 .btn_a-primary:hover {
     box-shadow:0 0 0 3px #fff7da;
@@ -106,11 +105,6 @@ a.button:hover {
     color: #333;
     content: ">";
     padding-right: 5px;
-}
-.product .product-by .button-ui {
-    font-weight: 700;
-    font-size: 18px;
-    width: 151px;
 }
 
 /*Категории*/
@@ -163,181 +157,6 @@ a.button:hover {
     text-align: center;
 }
 
-/*Продукты*/
-.products-list {
-    display: grid;
-    grid-gap: 10px;
-    width: calc(100% - 249px);
-}
-.product-card {
-    display: flex;
-    padding: 24px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 1px 2px 0 #0000001a;
-}
-.product-card .product-cover {
-    grid-column: 1;
-    grid-row: 1 / 4;
-}
-.products-list .product-cover {
-    height: 200px;
-    width: 200px;
-    margin-right: 12px;
-}
-.products-list .product-card_center {
-    display: flex;
-    flex-direction: column;
-}
-.product-card_right {
-    display: flex;
-    flex-direction: column;
-    margin-left: auto;
-}
-.product-card-title {
-    grid-column: 2;
-    grid-row: 1;
-    max-height: 74px;
-    font-size: 16px;
-    line-height: 22px;
-    overflow: hidden;
-    color: #000;
-}
-.product-card-title:hover {
-    text-decoration: none;
-    color: #fc5808;
-}
-.products-list .product-price {
-    display: flex;
-    flex-direction: column-reverse;
-    font-size: 20px;
-    grid-column: 2;
-    grid-row: 2;
-    line-height: 26px;
-    color: #fc8507;
-    font-weight: 700;
-    margin-bottom: 10px;
-}
-.card_bottom {
-    margin-top: auto;
-}
-.product-by button {
-    height: 44px;
-    width: min-content;
-    background: #fff;
-    border-color: #d9d9d9;
-}
-
-/*Карточка продукта*/
-.product .product-cover {
-    width: 340px;
-    height: 500px;
-    margin-right: 32px;
-}
-.product .product-card_center {
-    display: flex;
-    flex-direction: column;
-    width: calc(100% - 340px);
-}
-.product .product-price {
-    width: 100%;
-    background: #f7f7f7;
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    min-height: 44px;
-    padding: 0 16px 0 12px;
-    font-size: 22px;
-    font-weight: 700;
-    line-height: 20px;
-}
-.product .product-by-one_line {
-    display: flex;
-    flex-direction: row;
-    margin-bottom: 16px;
-    min-height: 64px;
-}
-.product .product-by-one_line .product-price {
-    margin-right: 10px;
-}
-.product-card-title {
-    height: 84px;
-    padding-right: 100px;
-}
-
-
-
-/*Продукт*/
-.products {
-    display: flex;
-    width: 100%;
-    height: 100%;
-}
-.products-empty_result {
-    width: 100%;
-    height: 300px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 24px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 1px 2px 0 #0000001a;
-}
-
-/*Фильлтр в продуктах*/
-.products-filter_wrap {
-    width: 234px;
-    margin-right: 15px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 1px 2px 0 #0000001a;
-    padding: 15px;
-}
-.products-filter_wrap form {
-    height: 100%;
-}
-.products-filter {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-}
-.filter-item {
-    width: 100%;
-}
-.filter-item:last-child {
-    margin-top: auto;
-}
-.products-filter .filter-group {
-    width: 100%;
-    display: flex;
-}
-.products-filter .filter-group .form-group + .form-group {
-    margin-left: 15px;
-}
-.products-filter .filter-group_wrap {
-    display: flex;
-    flex-direction: column;
-}
-.products-filter .filter-name {
-    font-weight: 700;
-    margin-bottom: 10px;
-}
-.products-filter .btn-group {
-    width: 100%;
-}
-.products-filter .btn-group  + .btn-group  {
-    margin-top: 8px;
-}
-.products-filter .button {
-    width: 100%;
-}
-.products-filter input {
-    border-radius: 8px;
-    font-size: 14px;
-}
 
 /*Платежные модули*/
 .payments-list .card-cover {

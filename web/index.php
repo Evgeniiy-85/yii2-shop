@@ -12,7 +12,7 @@ $application = new yii\web\Application($config);
 
 if ('dev' == YII_ENV) {
     (new \app\components\SassPreprocessor())->run('@webroot/sass', '@webroot/css/style.css', [
-        'main'
+        'main', 'products', 'product-card'
     ]);
 }
 

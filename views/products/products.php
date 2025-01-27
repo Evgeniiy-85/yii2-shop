@@ -21,18 +21,18 @@ if (isset($category)) {
         <div class="products-list">
             <?if($products):
                 foreach ($products as $product):?>
-                    <div class="product-card">
+                    <div class="product">
                         <div class="product-cover">
                             <img src="/load/products/<?=$product['prod_image'];?>">
                         </div>
 
-                        <div class="product-card_center">
-                            <a class="product-card-title" href="/products/<?=$product['prod_alias'];?>"><?=$product['prod_title'];?></a>
+                        <div class="product-center">
+                            <a class="product-title" href="/products/<?=$product['prod_alias'];?>"><?=$product['prod_title'];?></a>
 
-                            <div class="card_bottom">Наличите: в наличии</div>
+                            <div class="card-bottom">Наличите: в наличии</div>
                         </div>
 
-                        <div class="product-card_right">
+                        <div class="product-right">
                             <div class="product-price">
                                 <?=Helpers::formatPrice($product['prod_price']);?> ₽
                             </div>
@@ -44,7 +44,7 @@ if (isset($category)) {
                     </div>
                 <?endforeach;
             else:?>
-                <div class="products-empty_result">
+                <div class="empty-result">
                     <h3>Ничего не найдено</h3>
                 </div>
             <?endif;?>
