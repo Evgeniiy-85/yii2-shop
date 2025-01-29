@@ -34,15 +34,15 @@ class ProductFilter extends Product {
      * @return void
      */
     public function init() {
-        if (!Yii::$app->request->get('reset_filter')) {
-            $this->load(Yii::$app->request->get());
+        if (Yii::$app->request->post('filter') && Yii::$app->request->post('filter') != 'reset') {
+            $this->load(Yii::$app->request->post());
         }
         if (!$this->min_price) {
-            $this->min_price = Product::find()->where(['prod_status' => [Product::STATUS_ACTIVE]])->min('prod_price');
+            //$this->min_price = Product::find()->where(['prod_status' => [Product::STATUS_ACTIVE]])->min('prod_price');
         }
 
         if (!$this->max_price) {
-            $this->max_price = Product::find()->where(['prod_status' => [Product::STATUS_ACTIVE]])->max('prod_price');
+            //$this->max_price = Product::find()->where(['prod_status' => [Product::STATUS_ACTIVE]])->max('prod_price');
         }
     }
 
@@ -55,11 +55,11 @@ class ProductFilter extends Product {
 
     public function add(&$query) {
         if ($this->min_price && $this->is_filter = 1) {
-            $query->andWhere(['prod_price' => $this->min_price]);
+            $query->andWhere(['>=', 'prod_price', $this->min_price]);
         }
 
         if ($this->max_price && $this->is_filter = 1) {
-            $query->andWhere(['prod_price' => $this->max_price]);
+            $query->andWhere(['<=', 'prod_price', $this->max_price]);
         }
     }
 }

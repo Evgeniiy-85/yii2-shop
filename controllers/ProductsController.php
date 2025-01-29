@@ -18,7 +18,7 @@ class ProductsController extends Controller {
         ]);
 
         $filter = new ProductFilter();
-        if ($filter->load(Yii::$app->request->get()) && $filter->validate()) {
+        if (Yii::$app->request->get('filter') == 'apply' && $filter->load(Yii::$app->request->get()) && $filter->validate()) {
             $filter->add($query);
         }
 
