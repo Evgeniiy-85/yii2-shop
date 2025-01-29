@@ -6,6 +6,8 @@ use app\models\Payment;
 use Yii;
 
 class PaymentFilter extends Payment {
+    use AdminFilter;
+
     public $is_filter;
     private $filter_name = 'PaymentFilter';
 
@@ -22,13 +24,8 @@ class PaymentFilter extends Payment {
      * @return void
      */
     public function init() {
-        if ($this->load(Yii::$app->request->post())) {
-            Yii::$app->session->set($this->filter_name, Yii::$app->request->post());
-        } elseif (Yii::$app->request->get('reset_filter')) {
-            Yii::$app->session->remove($this->filter_name);
-        }
-
-        $this->load(Yii::$app->session->get($this->filter_name));
+        parent::init();
+        $this->filterInit();
     }
 
 

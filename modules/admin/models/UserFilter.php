@@ -4,8 +4,11 @@ namespace app\modules\admin\models;
 use app\components\Helpers;
 use \app\models\User;
 use Yii;
+use \app\modules\admin\models\AdminFilter;
 
 class UserFilter extends User {
+    use AdminFilter;
+
     public $full_name;
     public $is_filter;
     private $filter_name = 'UserFilter';
@@ -22,13 +25,8 @@ class UserFilter extends User {
      * @return void
      */
     public function init() {
-        if ($this->load(Yii::$app->request->post())) {
-            Yii::$app->session->set($this->filter_name, Yii::$app->request->post());
-        } elseif (Yii::$app->request->get('reset_filter')) {
-            Yii::$app->session->remove($this->filter_name);
-        }
-
-        $this->load(Yii::$app->session->get($this->filter_name));
+        parent::init();
+        $this->filterInit();
     }
 
 

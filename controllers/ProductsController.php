@@ -4,30 +4,34 @@ namespace app\controllers;
 
 use app\models\Category;
 use app\models\Product;
+use app\models\ProductFilter;
 use yii\data\Pagination;
 use yii\web\Controller;
 use yii\web\HttpException;
+use Yii;
 
 class ProductsController extends Controller {
 
-    public function actionIndex() {
-        $page_size = 36;
-
-        $query = Product::find()->where(['prod_status' => [Product::STATUS_ACTIVE]]);
-        $pages = new Pagination([
-            'pageSize' => $page_size,
-            'defaultPageSize' => $page_size,
-            'totalCount' => $query->count()
+    public function actionSearch() {
+        $query = Product::find()->where([
+            'prod_status' => [Product::STATUS_ACTIVE],
         ]);
 
-        $query
-            ->orderBy(['prod_id' => SORT_DESC])
-            ->offset($pages->offset)
-            ->limit($pages->limit);
+        $filter = new ProductFilter();
+        if ($filter->load(Yii::$app->request->get()) && $filter->validate()) {
+            $filter->add($query);
+        }
 
-        return $this->render('products', [
+        if (Yii::$app->request->get('q')) {
+            Product::search(urldecode(Yii::$app->request->get('q')), $query);
+        }
+
+        $product_count = $query->count();
+
+        return $this->render('search', [
             'products' => $query->all(),
-            'category' => null,
+            'product_count' => $product_count,
+            'filter' => $filter,
         ]);
     }
 

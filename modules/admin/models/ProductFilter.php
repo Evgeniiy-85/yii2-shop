@@ -3,9 +3,12 @@ namespace app\modules\admin\models;
 
 use app\components\Helpers;
 use app\models\Product;
+use app\modules\admin\models\AdminFilter;
 use Yii;
 
 class ProductFilter extends Product {
+    use AdminFilter;
+
     public $is_filter;
     private $filter_name = 'ProductFilter';
 
@@ -22,13 +25,8 @@ class ProductFilter extends Product {
      * @return void
      */
     public function init() {
-        if ($this->load(Yii::$app->request->post())) {
-            Yii::$app->session->set($this->filter_name, Yii::$app->request->post());
-        } elseif (Yii::$app->request->get('reset_filter')) {
-            Yii::$app->session->remove($this->filter_name);
-        }
-
-        $this->load(Yii::$app->session->get($this->filter_name));
+        parent::init();
+        $this->filterInit();
     }
 
 

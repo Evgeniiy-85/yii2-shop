@@ -10,8 +10,8 @@ use yii\bootstrap4\Html;
 use yii\bootstrap4\Nav;
 use yii\bootstrap4\NavBar;
 
-AppAsset::register($this);
-?>
+AppAsset::register($this);?>
+
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>" class="h-100">
@@ -25,39 +25,44 @@ AppAsset::register($this);
 <body class="d-flex flex-column h-100">
 <?php $this->beginBody() ?>
 
+
 <header>
-    <?php
-    NavBar::begin([
-        'brandLabel' => Yii::$app->name,
-        'brandUrl' => Yii::$app->homeUrl,
-        'options' => [
-            'class' => 'navbar navbar-expand-md navbar-dark bg-dark fixed-top',
-        ],
-    ]);
-    echo Nav::widget([
-        'options' => ['class' => 'navbar-nav'],
-        'items' => [
-            ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'About', 'url' => ['/site/about']],
-            ['label' => 'Contact', 'url' => ['/site/contact']],
-            ['label' => 'Adminka', 'url' => ['/admin']],
-            ['label' => 'Adminka Продукты', 'url' => ['/admin/products']],
-            Yii::$app->user->isGuest ? (
-                ['label' => 'Login', 'url' => ['/site/login']]
-            ) : (
-                '<li>'
-                . Html::beginForm(['/site/logout'], 'post', ['class' => 'form-inline'])
-                . Html::submitButton(
-                    'Logout (' . Yii::$app->user->identity->user_name . ')',
-                    ['class' => 'btn btn-link logout']
-                )
-                . Html::endForm()
-                . '</li>'
-            )
-        ],
-    ]);
-    NavBar::end();
-    ?>
+    <nav id="w0" class="navbar navbar-expand-md navbar-white bg-white fixed-top">
+        <div class="container">
+            <div class="header-left"></div>
+            <div class="header-center">
+
+            <div id="w0-collapse" class="collapse navbar-collapse">
+                <ul id="w1" class="navbar-nav nav">
+                    <li class="nav-item">
+                          <a href="#">&nbsp</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#">&nbsp</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="header-bottom bg-white">
+        <div class="container">
+            <div class="header-left"></div>
+            <div class="header-center">
+                <div class="search">
+                    <div class="search-wrap">
+                        <?=Html::beginForm(['/search'], 'get', ['id' => 'form-search']) ?>
+                        <div class="input-group">
+                            <?=Html::input('text', 'q', urldecode( Yii::$app->request->get('q')), ['placeholder' => 'Поиск по сайту']);?>
+                            <?=Html::submitButton('',['class' => 'btn-search']);?>
+                        </div>
+                        <?=Html::endForm();?>
+                    </div>
+                </div>
+            </div>
+            <div class="header-right"></div>
+        </div>
+    </div>
 </header>
 
 <main role="main" class="flex-shrink-0">

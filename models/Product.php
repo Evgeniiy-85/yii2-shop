@@ -141,4 +141,9 @@ class Product extends ActiveRecord {
 
         return self::getBreadCrumbs($category, null, $parent_category, $breadcrumbs);
     }
+
+
+    public static function search($q, $query) {
+        $query->andWhere(['like', 'prod_title', $q]);
+    }
 }

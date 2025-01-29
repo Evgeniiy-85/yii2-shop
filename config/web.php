@@ -50,6 +50,7 @@ $config = [
                 '/' => 'categories',
                 '/admin' => 'admin/admin',
                 '/catalog' => 'categories',
+                '/search' => 'products/search',
                 '/products/<alias:>' => 'products/product',
                 '/categories/<alias:>' => 'categories/category',
                 '/categories/<parent_cat_alias:>/<alias:>' => 'categories/category',

@@ -1,7 +1,11 @@
 main {
   & > .container {
-    padding: 70px 15px 20px;
+    padding: 136px 15px 20px;
   }
+}
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+  transition: background-color 0s 600000s, color 0s 600000s !important;
 }
 body {
   background-color: #f6f6f6;
