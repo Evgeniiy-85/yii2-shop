@@ -39,32 +39,35 @@ class CartController extends Controller {
     }
 
 
-    /**
-     * @return string|void
-     */
-    public function actionShow() {
-        if (Yii::$app->request->isAjax) {
-            $this->layout = false;
-
-            $cart = new Cart();
-            $cart->loadCart();
-            return $this->render('modal', ['cart' => $cart]);
-        }
-    }
-
-
-    public function actionChange() {
+    public function actionActions() {
         if (Yii::$app->request->isAjax && $data = Yii::$app->request->post()) {
-            $this->layout = false;
-
-            $prod_id = (int)$data['prod_id'] ?? null;
-            $quantity = (int)$data['quantity'] ?? null;
-            if (!$prod_id || $quantity === null) {
+            if (!isset($data['action_type'])) {
                 exit;
             }
 
+            $this->layout = false;
             $cart = new Cart();
-            if ($cart->changeCountProducts($prod_id, $quantity)) {
+            $prod_id = isset($data['prod_id']) ? (int)$data['prod_id'] : null;
+
+            switch($data['action_type']) {
+                case 'get':
+                    $cart->loadCart();
+                    break;
+                case 'append':
+                    $cart->changeProduct($prod_id, 1);
+                    break;
+                case 'reduce':
+                    $cart->changeProduct($prod_id, -1);
+                    break;
+                case 'product_remove':
+                    $cart->changeProduct($prod_id, 0);
+                    break;
+                case 'cart_remove':
+                    $cart->remove();
+                    break;
+            }
+
+            if ($cart->total) {
                 return $this->render('modal', ['cart' => $cart]);
             }
         }

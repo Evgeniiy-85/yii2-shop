@@ -31,18 +31,47 @@ class Cart extends Model {
      * @param int $quantity
      * @return bool
      */
-    public function addProduct(int $prod_id, int $quantity) {
+    public function changeProduct(int $prod_id, int $quantity) {
         $this->loadCart();
         $product = $this->products[$prod_id] ?? Product::find()->where(['prod_status' => Product::STATUS_ACTIVE, 'prod_id' => $prod_id])->one();
         if (!$product) {
             return false;
         }
 
+        $current_quantity = $this->quantity[$prod_id] ?? 0;
+        $new_quantity = $quantity ? $current_quantity + $quantity : 0;
+
+        if ($new_quantity == 0) {
+            $this->total -= $product->prod_price * $current_quantity;
+            unset($this->products[$prod_id]);
+            unset($this->quantity[$prod_id]);
+
+        } else {
+            $this->total += $product->prod_price * $quantity;
+            $this->products[$prod_id] = $product;
+            $this->quantity[$prod_id] = $new_quantity;
+        }
+
+        Yii::$app->session->set($this->save_key, $this->attributes);
+    }
+
+
+    /**
+     * @param int $prod_id
+     * @return bool
+     */
+    public function removeProduct(int $prod_id) {
+        $this->loadCart();
+        $product = $this->products[$prod_id] ?? null;
+        if (!$product) {
+            return false;
+        }
+
         if (!isset($this->products[$prod_id])) {
             $this->products[$prod_id] = $product;
-            $this->quantity[$prod_id] = $quantity;
+            $this->quantity[$prod_id] = 1;
         } else {
-            $this->quantity[$prod_id] += $quantity;
+            $this->quantity[$prod_id] += 1;
         }
 
         $this->total += $product->prod_price;

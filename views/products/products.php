@@ -38,7 +38,7 @@ if (isset($category)) {
                             </div>
 
                             <div class="product-by">
-                                <button type="button" class="button button-ui btn_a-outline-primary" data-prod_id="<?=$product['prod_id'];?>" data-quantity="1">Купить</button>
+                                <button type="button" class="button button-ui btn_a-outline-primary" data-prod_id="<?=$product['prod_id'];?>" data-action_type="append">Купить</button>
                             </div>
                         </div>
                     </div>

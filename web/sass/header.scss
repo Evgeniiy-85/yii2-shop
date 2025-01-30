@@ -142,10 +142,22 @@ header {
           }
 
           .btn-cart {
+            .cart-total {
+              opacity: 0;
+              font-weight: 700;
+              word-break: break-all;
+            }
+
             .btn-icon:after {
               width: 24px;
               height: 24px;
               mask-image: url(../images/icons/cart-icon.svg);
+            }
+
+            &.active {
+              .cart-total {
+                opacity: 1;
+              }
             }
           }
         }

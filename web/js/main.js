@@ -6,10 +6,10 @@ $(function(){
     $(".btn-cart, #cart_modal").hover(function(){
         if (!$('#cart_modal .modal-body').html()) {
             $.ajax({
-                url: '/cart/show',
+                url: '/cart/actions',
                 type: 'post',
                 dataType: 'html',
-                data: {},
+                data: {action_type: 'get'},
                 success: function (html) {
                     if (html) {
                         $('#cart_modal .modal-body').html(html);
@@ -23,76 +23,25 @@ $(function(){
         $('#cart_modal').modal('hide');
     });
 
-    $('.products-list .product-by .button').click(function() {
-        let prod_id = $(this).data('prod_id');
-        let quantity = $(this).data('quantity');
-        $.ajax({
-            url: '/cart/add',
-            type: 'post',
-            dataType: 'html',
-            data: {prod_id: prod_id, quantity: quantity},
-            success: function (html) {
-                if (html) {
-                    $('#cart_modal .modal-body').html(html);
-                    $('#cart_modal').modal();
-                } else {
-                    alert('Произошла ошибка при обновлении корзины');
-                }
-            },
-            error: function () {
-                alert('Произошла ошибка при обновлении корзины');
-            }
-        });
-    });
-
-    $(document).on('click', '.cart-product-quantity_picker, .cart-product_remove', function(e) {
+    $(document).on('click', '.cart [data-action_type], .product-by [data-action_type]', function(e) {
         e.preventDefault();
-        let prod_id = $(this).data('prod_id');
-        let quantity = 0;
-        let $quantity = $(this).closest('.cart-product').find('.cart-product-quantity');
-
-        if (!$(this).hasClass('cart-product_remove')) {
-            let action_type = $(this).data('action_type');
-            quantity = Number($quantity.text());
-            quantity += action_type == 'reduce' ? -1 : 1;
-        }
+        let action_type = $(this).data('action_type');
+        let prod_id = typeof($(this).data('prod_id')) !== 'undefined' ? $(this).data('prod_id') : '';
 
         $.ajax({
-            url: '/cart/change',
+            url: '/cart/actions',
             type: 'post',
             dataType: 'html',
-            data: {prod_id: prod_id, quantity: quantity},
+            data: {action_type: action_type, prod_id: prod_id},
             success: function (html) {
+                $('#cart_modal .modal-body').html(html);
+
                 if (html) {
-                    $quantity.text(quantity);
-                    $('#cart_modal .modal-body').html(html);
-                    if ($('.cart-product').length < 1) {
-                        $('#cart_modal').modal('hide');
-                    }
+                    $('header .btn-cart').addClass('active');
+                    $('#cart_modal').modal({backdrop: false});
                 } else {
-                    alert('Произошла ошибка при обновлении корзины');
-                }
-            },
-            error: function () {
-                alert('Произошла ошибка при обновлении корзины');
-            }
-        });
-    });
-
-    $(document).on('click', '.cart-products_remove', function(e) {
-        e.preventDefault();
-        let prod_id = $(this).data('prod_id');
-
-        $.ajax({
-            url: '/cart/remove',
-            type: 'post',
-            dataType: 'html',
-            data: {products: 'all'},
-            success: function (result) {
-                if (result) {
+                    $('header .btn-cart').removeClass('active');
                     $('#cart_modal').modal('hide');
-                } else {
-                    alert('Произошла ошибка при очищении корзины');
                 }
             },
             error: function () {

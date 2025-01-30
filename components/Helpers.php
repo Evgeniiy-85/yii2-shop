@@ -159,6 +159,6 @@ class Helpers extends Component {
 
 
     public static function formatPrice($price) {
-        return $price ? number_format($price, 2, ',', ' ') : 0;
+        return $price ? number_format($price, 0, ',', ' ') : 0;
     }
 }
