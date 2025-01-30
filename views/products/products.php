@@ -51,5 +51,3 @@ if (isset($category)) {
         </div>
     </div>
 </div>
-
-<?=$this->render('cart_modal');?>

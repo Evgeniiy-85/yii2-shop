@@ -1,4 +1,28 @@
 $(function(){
+    $('.btn-cart').mouseover(function() {
+
+    });
+
+    $(".btn-cart, #cart_modal").hover(function(){
+        if (!$('#cart_modal .modal-body').html()) {
+            $.ajax({
+                url: '/cart/show',
+                type: 'post',
+                dataType: 'html',
+                data: {},
+                success: function (html) {
+                    if (html) {
+                        $('#cart_modal .modal-body').html(html);
+                    }
+                }
+            });
+        }
+
+        $('#cart_modal').modal({backdrop: false});
+    },function(){
+        $('#cart_modal').modal('hide');
+    });
+
     $('.products-list .product-by .button').click(function() {
         let prod_id = $(this).data('prod_id');
         let quantity = $(this).data('quantity');

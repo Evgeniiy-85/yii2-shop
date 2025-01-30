@@ -81,58 +81,92 @@ header {
         align-items: center;
         padding: 0 24px;
 
-        .btn-favourites, .btn-cart, .btn-login {
+        .btn-wrap {
           position: relative;
-          display: flex ;
-          align-items: center;
-          flex-direction: column;
-          justify-content: center;
-          padding: 10px;
-          height: 100%;
-          width: 90px;
-          transition: .2s;
-          font-size: 14px;
-          line-height: 18px;
 
-          .btn-icon {
-            max-height: 24px;
-          }
-          .btn-icon:after {
-            display: block;
-            content: '';
-          }
-          &:hover {
-            color: #fc8507;
+          .btn-favourites, .btn-cart, .btn-login {
+            position: relative;
+            display: flex ;
+            align-items: center;
+            flex-direction: column;
+            justify-content: center;
+            padding: 10px;
+            height: 100%;
+            width: 90px;
+            transition: .2s;
+            font-size: 14px;
+            line-height: 18px;
+
             .btn-icon {
-              filter: invert(56%) sepia(20%) saturate(4961%) hue-rotate(358deg) brightness(102%) contrast(98%);
+              max-height: 24px;
             }
-            //background-color: #f6f6f6;
-            //border-radius: 8px;
+
+            .btn-icon:after {
+              display: block;
+              content: '';
+              background-color: #AFAFAF;
+              -webkit-mask-size: contain;
+              mask-size: contain;
+              -webkit-mask-position: center;
+              mask-position: center;
+              -webkit-mask-repeat: no-repeat;
+              mask-repeat: no-repeat;
+              &:hover {
+
+              }
+            }
+            &:hover {
+              color: #fc8507;
+              .btn-icon {
+                &:after {
+                  background-color: #fc8507;
+                }
+              }
+            }
+          }
+          .btn-favourites {
+            .btn-icon:after {
+              width: 22px;
+              height: 22px;
+              mask-image: url(../images/icons/favourites-icon.svg);
+            }
+          }
+
+          .btn-login {
+            .btn-icon:after {
+              width: 20px;
+              height: 20px;
+              margin-bottom: 2px;
+              mask-image: url(../images/icons/login-icon.svg);
+            }
+          }
+
+          .btn-cart {
+            .btn-icon:after {
+              width: 24px;
+              height: 24px;
+              mask-image: url(../images/icons/cart-icon.svg);
+            }
           }
         }
-        .btn-favourites {
-          .btn-icon:after {
-            width: 22px;
-            height: 22px;
-            background: url(../images/icons/favourites-icon.svg) no-repeat center;
-            background-size: cover;
-          }
-        }
-        .btn-login {
-          .btn-icon:after {
-            width: 20px;
-            height: 20px;
-            margin-bottom: 2px;
-            background: url(../images/icons/login-icon.svg) no-repeat center;
-            background-size: cover;
-          }
-        }
-        .btn-cart {
-          .btn-icon:after {
-            width: 24px;
-            height: 24px;
-            background: url(../images/icons/cart-icon.svg) no-repeat center;
-            background-size: cover;
+
+        #cart_modal {
+          position: absolute;
+          top: auto;
+          height: auto;
+          right: 0;
+          left: auto;
+          width: auto;
+          box-shadow: 0 0 12px #00000029;
+          animation: showCartModal .15s forwards ease-in;
+          white-space: normal;
+
+          .modal-dialog {
+            margin: 0;
+
+            .modal-content {
+              border: none;
+            }
           }
         }
       }

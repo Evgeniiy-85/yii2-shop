@@ -63,18 +63,27 @@ AppAsset::register($this);?>
 
             <div class="header-right">
                 <div class="header-buttons">
-                    <a href="" class="btn-favourites">
-                        <i class="btn-icon"></i>
-                        <span>Избранное</span>
-                    </a>
-                    <a href="" class="btn-cart">
-                        <i class="btn-icon"></i>
-                        <b>2699</b>
-                    </a>
-                    <a href="" class="btn-login">
-                        <i class="btn-icon"></i>
-                        <span>Войти</span>
-                    </a>
+                    <div class="btn-wrap">
+                        <a href="" class="btn-favourites">
+                            <i class="btn-icon"></i>
+                            <span>Избранное</span>
+                        </a>
+                    </div>
+
+                    <div class="btn-wrap">
+                        <a href="" class="btn-cart">
+                            <i class="btn-icon"></i>
+                            <b>2699</b>
+                        </a>
+                        <?=$this->render('/products/cart_modal');?>
+                    </div>
+
+                    <div class="btn-wrap">
+                        <a href="" class="btn-login">
+                            <i class="btn-icon"></i>
+                            <span>Войти</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>

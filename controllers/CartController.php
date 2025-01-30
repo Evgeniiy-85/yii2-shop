@@ -39,6 +39,20 @@ class CartController extends Controller {
     }
 
 
+    /**
+     * @return string|void
+     */
+    public function actionShow() {
+        if (Yii::$app->request->isAjax) {
+            $this->layout = false;
+
+            $cart = new Cart();
+            $cart->loadCart();
+            return $this->render('modal', ['cart' => $cart]);
+        }
+    }
+
+
     public function actionChange() {
         if (Yii::$app->request->isAjax && $data = Yii::$app->request->post()) {
             $this->layout = false;
