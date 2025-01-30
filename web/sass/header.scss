@@ -12,12 +12,17 @@ header {
 
   .container {
     display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .header-left {
+      width: 318px;
+    }
 
     .header-center {
       width: 100%;
 
       .search {
-        padding: 0 0 10px;
 
         .search-wrap {
           width: 100%;
@@ -69,8 +74,68 @@ header {
         }
       }
     }
-    .header-left {
-      width: 318px;
+
+    .header-right {
+      .header-buttons {
+        display: flex;
+        align-items: center;
+        padding: 0 24px;
+
+        .btn-favourites, .btn-cart, .btn-login {
+          position: relative;
+          display: flex ;
+          align-items: center;
+          flex-direction: column;
+          justify-content: center;
+          padding: 10px;
+          height: 100%;
+          width: 90px;
+          transition: .2s;
+          font-size: 14px;
+          line-height: 18px;
+
+          .btn-icon {
+            max-height: 24px;
+          }
+          .btn-icon:after {
+            display: block;
+            content: '';
+          }
+          &:hover {
+            color: #fc8507;
+            .btn-icon {
+              filter: invert(56%) sepia(20%) saturate(4961%) hue-rotate(358deg) brightness(102%) contrast(98%);
+            }
+            //background-color: #f6f6f6;
+            //border-radius: 8px;
+          }
+        }
+        .btn-favourites {
+          .btn-icon:after {
+            width: 22px;
+            height: 22px;
+            background: url(../images/icons/favourites-icon.svg) no-repeat center;
+            background-size: cover;
+          }
+        }
+        .btn-login {
+          .btn-icon:after {
+            width: 20px;
+            height: 20px;
+            margin-bottom: 2px;
+            background: url(../images/icons/login-icon.svg) no-repeat center;
+            background-size: cover;
+          }
+        }
+        .btn-cart {
+          .btn-icon:after {
+            width: 24px;
+            height: 24px;
+            background: url(../images/icons/cart-icon.svg) no-repeat center;
+            background-size: cover;
+          }
+        }
+      }
     }
   }
 }

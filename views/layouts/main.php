@@ -60,7 +60,23 @@ AppAsset::register($this);?>
                     </div>
                 </div>
             </div>
-            <div class="header-right"></div>
+
+            <div class="header-right">
+                <div class="header-buttons">
+                    <a href="" class="btn-favourites">
+                        <i class="btn-icon"></i>
+                        <span>Избранное</span>
+                    </a>
+                    <a href="" class="btn-cart">
+                        <i class="btn-icon"></i>
+                        <b>2699</b>
+                    </a>
+                    <a href="" class="btn-login">
+                        <i class="btn-icon"></i>
+                        <span>Войти</span>
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 </header>
