@@ -23,7 +23,7 @@ use yii\helpers\Url;?>
 
                 <div class="cart-product_info">
                     <div class="cart-product_title"><?=Html::encode($product->prod_title);?></div>
-                    <div class="cart-product_price"><nobr><?=Helpers::formatPrice($product->prod_price * $quantity);?> руб.</nobr></div>
+                    <div class="cart-product_price"><?=Helpers::formatPrice($product->prod_price * $quantity);?> ₽</div>
                     <div class="cart-product-quantity_pickers">
                         <a href="javascript:void()" class="cart-product-quantity_picker btn_a-primary" data-prod_id="<?=$prod_id;?>" data-action_type="reduce">
                             <i class="fa fa-minus"></i>
@@ -49,8 +49,8 @@ use yii\helpers\Url;?>
 
     <div class="cart-footer">
         <div class="cart-footer_left">
-            <strong>Итого: </strong>
-            <span><?=Helpers::formatPrice($cart->total);?></span>
+            <span>Итого: </span>
+            <span class="cart-sum"><?=Helpers::formatPrice($cart->total);?> ₽</span>
         </div>
 
         <div class="cart-footer_right">
@@ -63,7 +63,3 @@ use yii\helpers\Url;?>
         </div>
     </div>
 </div>
-
-<script>
-    $('header .cart-total-sum').html('<?=Helpers::formatPrice($cart->total);?>');
-</script>

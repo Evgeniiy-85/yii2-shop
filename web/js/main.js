@@ -4,6 +4,9 @@ $(function(){
     });
 
     $(".btn-cart, #cart_modal").hover(function(){
+        if (!$('.btn-cart').hasClass('active')) {
+            return false;
+        }
         if (!$('#cart_modal .modal-body').html()) {
             $.ajax({
                 url: '/cart/actions',
@@ -35,14 +38,18 @@ $(function(){
             data: {action_type: action_type, prod_id: prod_id},
             success: function (html) {
                 $('#cart_modal .modal-body').html(html);
+                let cart_title = '<span>Корзина</span>';
 
                 if (html) {
                     $('header .btn-cart').addClass('active');
+                    let price = $(html).find('.cart-sum').text();
+                    cart_title = `<span class="cart-sum">${price}</span>`;
                     $('#cart_modal').modal({backdrop: false});
                 } else {
                     $('header .btn-cart').removeClass('active');
                     $('#cart_modal').modal('hide');
                 }
+                $('header .btn-cart .btn-title').html(cart_title);
             },
             error: function () {
                 alert('Произошла ошибка при очищении корзины');

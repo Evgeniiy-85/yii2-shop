@@ -43,6 +43,7 @@
       min-width: 196px;
     }
     .cart-product_price {
+      white-space: nowrap;
       font-weight: 700;
       font-size: 16px;
       line-height: 20px;
@@ -87,6 +88,7 @@
 
     .cart-footer_left {
       font-size: 18px;
+      font-weight: 700;
     }
     .cart-footer_right {
       .button {

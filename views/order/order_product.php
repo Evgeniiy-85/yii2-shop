@@ -19,7 +19,7 @@ use app\models\Product;?>
                 <div class="product-title">
                     <?=Html::encode($product->prod_title);?>
                 </div>
-                <div class="product-price"><nobr><?=Helpers::formatPrice($product->prod_price);?> руб.</nobr></div>
+                <div class="product-price"><nobr><?=Helpers::formatPrice($product->prod_price);?> ₽</nobr></div>
             </div>
         </div>
     </div>

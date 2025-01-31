@@ -68,18 +68,19 @@ $cart->loadCart();?>
                     <div class="btn-wrap">
                         <a href="" class="btn-favourites">
                             <i class="btn-icon"></i>
-                            <span>Избранное</span>
+                            <span class="btn-title">Избранное</span>
                         </a>
                     </div>
 
                     <div class="btn-wrap">
                         <a href="" class="btn-cart<?=$cart->total ? ' active' : '';?>">
                             <i class="btn-icon"></i>
-                            <span class="cart-total">
-                                <span class="cart-total-sum">
-                                    <?=$cart->total ? Helpers::formatPrice($cart->total) : '';?>
-                                </span>
-                                <span class="cart-total-currency">₽</span>
+                            <span class="btn-title">
+                                <?if(!$cart->total):?>
+                                    <span>Корзина</span>
+                                <?else:?>
+                                    <span class="cart-sum"><?=Helpers::formatPrice($cart->total);?> ₽</span>
+                                <?endif;?>
                             </span>
                         </a>
                         <?=$this->render('/products/cart_modal');?>
@@ -88,7 +89,7 @@ $cart->loadCart();?>
                     <div class="btn-wrap">
                         <a href="" class="btn-login">
                             <i class="btn-icon"></i>
-                            <span>Войти</span>
+                            <span class="btn-title">Войти</span>
                         </a>
                     </div>
                 </div>

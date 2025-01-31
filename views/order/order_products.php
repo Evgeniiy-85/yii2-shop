@@ -25,7 +25,7 @@ use app\models\Product;?>
                     <div class="product-title">
                         <?=Html::encode($product->prod_title);?><b><?=" ({$order_item->quantity}шт.)";?></b>
                     </div>
-                    <div class="product-price"><nobr><?=Helpers::formatPrice($order_item->prod_price * $order_item->quantity);?> руб.</nobr></div>
+                    <div class="product-price"><nobr><?=Helpers::formatPrice($order_item->prod_price * $order_item->quantity);?> ₽</nobr></div>
                 </div>
             </div>
         <?endforeach;?>

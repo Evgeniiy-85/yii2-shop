@@ -83,6 +83,7 @@ header {
 
         .btn-wrap {
           position: relative;
+          max-height: 60px;
 
           .btn-favourites, .btn-cart, .btn-login {
             position: relative;
@@ -98,7 +99,7 @@ header {
             line-height: 18px;
 
             .btn-icon {
-              max-height: 24px;
+              height: 24px;
             }
 
             .btn-icon:after {
@@ -142,10 +143,10 @@ header {
           }
 
           .btn-cart {
-            .cart-total {
+            .cart-sum {
               opacity: 0;
               font-weight: 700;
-              word-break: break-all;
+              white-space: nowrap;
             }
 
             .btn-icon:after {
@@ -155,7 +156,7 @@ header {
             }
 
             &.active {
-              .cart-total {
+              .cart-sum {
                 opacity: 1;
               }
             }
