@@ -58,24 +58,76 @@
         }
       }
 
-      .product-by {
-        .button {
-          width: min-content;
-          height: 44px;
-          background: #fff;
-          border-color: #d9d9d9;
-          font-size: 16px;
+      .product-buttons {
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
-          &:hover {
-            border: 1px solid #ffa218;
-            box-shadow: inset 0 100px 0 hsla(0, 0%, 100%, .1);
-            background-image: linear-gradient(0deg, #fc8507, #ffa218);
-            color: #fff;
-          }
-          &.active {
-            color: #fc8507;
+        .product-by {
+          .button {
+            width: min-content;
+            height: 44px;
             background: #fff;
-            border-color: #fc8507;
+            border-color: #d9d9d9;
+            font-size: 16px;
+
+            &:hover {
+              border: 1px solid #ffa218;
+              box-shadow: inset 0 100px 0 hsla(0, 0%, 100%, .1);
+              background-image: linear-gradient(0deg, #fc8507, #ffa218);
+              color: #fff;
+
+              &.active {
+                background-image: linear-gradient(0deg, #fc8507, #ffa218);
+                color: #fff;
+              }
+            }
+
+            &.active {
+              color: #fc8507;
+              background: #fff;
+              border-color: #fc8507;
+            }
+          }
+        }
+
+        .product-favorites {
+          margin-right: 10px;
+
+          .button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 44px;
+
+            &:after {
+              display: block;
+              content: '';
+              -webkit-mask-size: contain;
+              mask-size: contain;
+              -webkit-mask-position: center;
+              mask-position: center;
+              -webkit-mask-repeat: no-repeat;
+              mask-repeat: no-repeat;
+
+              width: 16px;
+              height: 16px;
+              mask-image: url(../images/icons/favourites-icon.svg);
+              background-color: #afafaf;
+            }
+
+            &.active {
+              &:after {
+                background-color: #ff5c52;
+                mask-image: url(../images/icons/favourites-icon-active.svg);
+              }
+            }
+
+            &:hover {
+              &:after {
+                background-color: #ff5c52;
+              }
+            }
           }
         }
       }

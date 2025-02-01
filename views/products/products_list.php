@@ -21,16 +21,26 @@ use app\components\Helpers;?>
                         <?=Helpers::formatPrice($product['prod_price']);?> ₽
                     </div>
 
-                    <div class="product-by">
-                        <?=Html::button('Купить', [
-                            'class' => ['button', 'button-ui', 'btn_a-outline-primary'],
-                            'type' => 'button',
-                            'data' => [
-                                'prod_id' => $product['prod_id'],
-                                'action_type' => 'append',
-                            ],
-                        ]);?>
+                    <div class="product-buttons">
+                        <div class="product-favorites">
+                            <?=Html::button('', [
+                                'class' => ['button', 'button-ui', 'btn_a-grey'],
+                                'type' => 'button',
+                            ]);?>
+                        </div>
+
+                        <div class="product-by">
+                            <?=Html::button('Купить', [
+                                'class' => ['button', 'button-ui', 'btn_a-outline-primary'],
+                                'type' => 'button',
+                                'data' => [
+                                    'prod_id' => $product['prod_id'],
+                                    'action_type' => 'append',
+                                ],
+                            ]);?>
+                        </div>
                     </div>
+
                 </div>
             </div>
         <?endforeach;
