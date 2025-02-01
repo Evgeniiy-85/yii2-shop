@@ -30,6 +30,7 @@ class AppAsset extends AssetBundle
     ];
 
     public $js = [
+        'js/cart.js',
         'js/main.js',
     ];
     public $depends = [

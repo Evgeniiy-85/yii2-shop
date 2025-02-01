@@ -7,12 +7,7 @@ use app\assets\AppAsset;
 use app\widgets\Alert;
 use yii\bootstrap4\Breadcrumbs;
 use yii\bootstrap4\Html;;
-use app\components\Helpers;
-use app\models\Cart;
-AppAsset::register($this);
-
-$cart = new Cart();
-$cart->loadCart();?>
+AppAsset::register($this);?>
 
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -73,14 +68,10 @@ $cart->loadCart();?>
                     </div>
 
                     <div class="btn-wrap">
-                        <a href="" class="btn-cart<?=$cart->total ? ' active' : '';?>">
+                        <a href="" class="btn-cart">
                             <i class="btn-icon"></i>
                             <span class="btn-title">
-                                <?if(!$cart->total):?>
-                                    <span>Корзина</span>
-                                <?else:?>
-                                    <span class="cart-sum"><?=Helpers::formatPrice($cart->total);?> ₽</span>
-                                <?endif;?>
+                                <span>Корзина</span>
                             </span>
                         </a>
                         <?=$this->render('/products/cart_modal');?>

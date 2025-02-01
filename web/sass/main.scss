@@ -11,6 +11,10 @@ html body {
   background-color: #f6f6f6;
   padding-right: 0!important;
 }
+.modal {
+  display: none;
+  padding: 0;
+}
 .modal-open {
   overflow: auto;
 }
@@ -138,6 +142,11 @@ a {
     box-shadow: inset 0 100px 0 hsla(0, 0%, 100%, .1);
     background-image: linear-gradient(0deg, #fc8507, #ffa218);
     color: #fff;
+  }
+  &.active {
+    color: #fc8507;
+    background: #fff;
+    border-color: #fc8507;
   }
 }
 .button-small {
