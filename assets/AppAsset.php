@@ -31,6 +31,7 @@ class AppAsset extends AssetBundle
 
     public $js = [
         'js/cart.js',
+        'js/favorites.js',
         'js/main.js',
     ];
     public $depends = [

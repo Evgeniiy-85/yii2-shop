@@ -57,4 +57,39 @@ class ProductsController extends Controller {
     public function actionBuy() {
         return $this->render('buy');
     }
+
+
+    public function actionFavorites() {
+        if (Yii::$app->request->isAjax && $data = Yii::$app->request->post()) {
+            if (!isset($data['action_type'])) {
+                exit;
+            }
+
+            $this->layout = false;
+            $products = [];
+
+            switch($data['action_type']) {
+                case 'get':
+                    $products = [23];
+                    exit(json_encode([
+                        'status' => true,
+                        'products' => $products,
+                    ]));
+                    break;
+                case 'add':
+
+                    break;
+                case 'remove':
+
+                    break;
+            }
+
+
+
+
+            exit(json_encode([
+                'status' => true,
+            ]));
+        }
+    }
 }

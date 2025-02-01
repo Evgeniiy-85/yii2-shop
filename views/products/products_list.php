@@ -26,6 +26,10 @@ use app\components\Helpers;?>
                             <?=Html::button('', [
                                 'class' => ['button', 'button-ui', 'btn_a-grey'],
                                 'type' => 'button',
+                                'data' => [
+                                    'prod_id' => $product['prod_id'],
+                                    'action_type' => 'add',
+                                ],
                             ]);?>
                         </div>
 

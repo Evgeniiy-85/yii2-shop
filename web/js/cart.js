@@ -5,7 +5,7 @@ class Cart {
     constructor() {}
 
     init() {
-        this.updHtml();
+        this.updElements();
         this.Events();
     }
 
@@ -76,7 +76,7 @@ class Cart {
         }
     }
 
-    updHtml() {
+    updElements() {
         let Cart = this;
         this.runAction({action_type:'get'}, (html) => {
             Cart.updCart(html);
@@ -93,6 +93,8 @@ class Cart {
             data: data,
             success: function (html) {
                 callback(html);
+            }, error: function () {
+                alert('Произошла ошибка при обновлении корзины');
             }
         });
     }
