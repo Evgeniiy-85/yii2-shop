@@ -24,20 +24,27 @@ class Cart {
             });
         });
 
-        $(".btn-cart, #cart_modal").hover(function(){
-        }, function(){
+        $(".btn-cart, #cart_modal").hover(function(){}, function(){
+            $('#cart_modal').removeClass('show');
+        });
+        $("body").click(function(){
             $('#cart_modal').removeClass('show');
         });
     }
 
     updCart(html) {
         let cart_title = '<span>Корзина</span>';
+        let count_products = '';
+
         if (html) {
             let price = $(html).find('.cart-sum').text();
             cart_title = `<span class="cart-sum">${price}</span>`;
             $('#cart_modal').addClass('has-products').find('.modal-body').html(html);
+            count_products = $(html).find('.cart-products').data('count_products');
+            $('.btn-cart .count-products-icon').html(count_products).removeClass('hidden');
         } else {
             $('#cart_modal').removeClass('has-products').find('.modal-body').html(html);
+            $('.btn-cart .count-products-icon').html(count_products).addClass('hidden');
         }
 
         $('.btn-cart .btn-title').html(cart_title);

@@ -8,7 +8,7 @@ use yii\helpers\Url;?>
         <a class="cart-products_remove" href="javascript:void(0);" data-action_type="cart_remove">Очистить список</a>
     </div>
 
-    <div class="cart-body">
+    <div class="cart-body cart-products" data-count_products="<?=$cart->count_products;?>">
         <?$first_key = array_key_first($cart->products);
         foreach($cart->products as $prod_id => $product):
             $quantity = $cart->quantity[$prod_id];?>

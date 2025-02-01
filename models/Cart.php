@@ -11,13 +11,15 @@ use yii\db\ActiveRecord;
 
 class Cart extends Model {
     public $total = 0;
+    public $count_products = 0;
     public $products = [];
     public $quantity = [];
     private $save_key = 'cart';
 
     public function rules() {
         return [
-            [['total', 'products', 'quantity',], 'safe'],
+            [['total', 'products', 'quantity', 'count_products',], 'safe'],
+            [['total', 'quantity', 'count_products',], 'integer'],
         ];
     }
 
@@ -43,69 +45,18 @@ class Cart extends Model {
 
         if ($new_quantity == 0) {
             $this->total -= $product->prod_price * $current_quantity;
+            $this->count_products -= $current_quantity;
             unset($this->products[$prod_id]);
             unset($this->quantity[$prod_id]);
 
         } else {
             $this->total += $product->prod_price * $quantity;
+            $this->count_products += $quantity;
             $this->products[$prod_id] = $product;
             $this->quantity[$prod_id] = $new_quantity;
         }
 
         Yii::$app->session->set($this->save_key, $this->attributes);
-    }
-
-
-    /**
-     * @param int $prod_id
-     * @return bool
-     */
-    public function removeProduct(int $prod_id) {
-        $this->loadCart();
-        $product = $this->products[$prod_id] ?? null;
-        if (!$product) {
-            return false;
-        }
-
-        if (!isset($this->products[$prod_id])) {
-            $this->products[$prod_id] = $product;
-            $this->quantity[$prod_id] = 1;
-        } else {
-            $this->quantity[$prod_id] += 1;
-        }
-
-        $this->total += $product->prod_price;
-        Yii::$app->session->set($this->save_key, $this->attributes);
-
-        return true;
-    }
-
-
-    /**
-     * @param $prod_id
-     * @param $quantity
-     * @return bool
-     */
-    public function changeCountProducts($prod_id, $quantity) {
-        $this->loadCart();
-        if (!isset($this->products[$prod_id]) || !isset($this->quantity[$prod_id])) {
-            return false;
-        }
-
-        $current_quantity = $this->quantity[$prod_id];
-        $sum = $this->products[$prod_id]->prod_price * ($quantity - $current_quantity);
-
-        if ($quantity > 0) {
-            $this->quantity[$prod_id] = $quantity;
-        } else {
-            unset($this->products[$prod_id]);
-            unset($this->quantity[$prod_id]);
-        }
-
-        $this->total += $sum;
-        Yii::$app->session->set($this->save_key, $this->attributes);
-
-        return true;
     }
 
 

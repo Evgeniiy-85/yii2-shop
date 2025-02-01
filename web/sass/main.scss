@@ -21,6 +21,9 @@ html body {
 .modal-open {
   overflow: auto;
 }
+.hidden {
+  display: none!important;
+}
 h1, .h1 {
   font-size: 32px;
   line-height: 32px;

@@ -70,6 +70,7 @@ AppAsset::register($this);?>
                     <div class="btn-wrap">
                         <a href="" class="btn-cart">
                             <i class="btn-icon"></i>
+                            <i class="count-products-icon hidden"></i>
                             <span class="btn-title">
                                 <span>Корзина</span>
                             </span>
