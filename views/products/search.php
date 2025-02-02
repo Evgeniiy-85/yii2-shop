@@ -3,7 +3,7 @@ use yii\helpers\Html;
 use app\components\Helpers;
 use app\models\Product;
 
-$this->title = !$product_count ? 'Ничего не найдено' : "Найденотоваров : $product_count";
+$this->title = !$product_count ? 'Ничего не найдено' : "Найдено товаров : $product_count";
 if (isset($category)) {
     $this->params['breadcrumbs'] = Product::getBreadCrumbs($category, null);
 }?>

@@ -6,7 +6,9 @@
 use app\assets\AppAsset;
 use app\widgets\Alert;
 use yii\bootstrap4\Breadcrumbs;
-use yii\bootstrap4\Html;;
+use yii\bootstrap4\Html;
+use yii\helpers\Url;
+
 AppAsset::register($this);?>
 
 <?php $this->beginPage() ?>
@@ -61,14 +63,14 @@ AppAsset::register($this);?>
             <div class="header-right">
                 <div class="header-buttons">
                     <div class="btn-wrap">
-                        <a href="" class="btn-favourites">
+                        <a href="<?=Url::to(['products/favorites']);?>" class="btn-favourites">
                             <i class="btn-icon"></i>
                             <span class="btn-title">Избранное</span>
                         </a>
                     </div>
 
                     <div class="btn-wrap">
-                        <a href="" class="btn-cart">
+                        <a href="javascript:void(0);" class="btn-cart">
                             <i class="btn-icon"></i>
                             <i class="count-products-icon hidden"></i>
                             <span class="btn-title">

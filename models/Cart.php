@@ -48,7 +48,6 @@ class Cart extends Model {
             $this->count_products -= $current_quantity;
             unset($this->products[$prod_id]);
             unset($this->quantity[$prod_id]);
-
         } else {
             $this->total += $product->prod_price * $quantity;
             $this->count_products += $quantity;
