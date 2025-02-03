@@ -46,14 +46,19 @@ class ProductsController extends AdminController {
      */
     public function actionEdit($ID = false) {
         $model = is_numeric($ID) ? Product::findOne((int) $ID) : false;
-        $files = new Files();
-
         if (!$model) {
             throw new HttpException(404, "Страница не найдена.");
         }
 
-        if ($post = Yii::$app->request->post('Product')) {
-            $model->load(Yii::$app->request->post());
+        $files = new Files();
+        $files->setAttributes(['files' => $model->prod_images]);
+        $files->setAttributes(['dir' => 'products']);
+
+        if ($files->load(Yii::$app->request->post())) {
+            $model->setAttributes(['prod_images' => $files->files]);
+        }
+
+        if ($model->load(Yii::$app->request->post())) {
             $model->save() ? Notices::addSuccess('Успешно') : Notices::addWarning('Ошибка при сохранении');
             return $this->redirect(['/admin/products']);
         }

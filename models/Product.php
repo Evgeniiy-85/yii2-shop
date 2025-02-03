@@ -14,6 +14,7 @@ class Product extends ActiveRecord {
     const STATUS_DISABLED = 0;
     const STATUS_ACTIVE = 1;
 
+    public $prod_image;
 
     /**
      * @inheritdoc
@@ -21,7 +22,7 @@ class Product extends ActiveRecord {
     public function rules() {
         return [
             [['prod_title',], 'required'],
-            [['prod_title', 'prod_image', 'prod_article'], 'string'],
+            [['prod_title', 'prod_image', 'prod_article', 'prod_images'], 'string'],
             [['prod_status', 'prod_price', 'prod_category'], 'integer'],
             [['prod_title', 'prod_alias', 'prod_article',], 'trim'],
         ];
@@ -57,13 +58,20 @@ class Product extends ActiveRecord {
     }
 
     /**
+     * @return bool
+     */
+    public function beforeValidate() {
+        $this->prod_images = $this->prod_images ? json_encode($this->prod_images, JSON_UNESCAPED_UNICODE) : null;
+
+        return parent::beforeValidate();
+    }
+
+    /**
      * @param $insert
      * @return bool
      */
     public function beforeSave($insert) {
         if (parent::beforeSave($insert)) {
-            $files = new Files();
-            $this->prod_image = $files->upload('products') ?: $this->prod_image;
             if (!$this->prod_alias) {
                 $this->prod_alias = Helpers::Translit($this->prod_title);
             }
@@ -76,6 +84,12 @@ class Product extends ActiveRecord {
         }
 
         return false;
+    }
+
+    public function afterFind() {
+        parent::afterFind();
+        $this->prod_images = $this->prod_images ? json_decode($this->prod_images, true) : false;
+        $this->prod_image = $this->prod_images ? $this->prod_images[0] : null;
     }
 
     /**

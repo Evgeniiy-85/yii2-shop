@@ -40,11 +40,20 @@ $categories = Category::find()
                     <?= $form->field($model, 'prod_title')->input('text'); ?>
                     <?= $form->field($model, 'prod_alias')->input('text'); ?>
                     <div class="form-group">
-                        <label for="input_file">Обложка</label>
+                        <label for="input_file">Фотографии</label>
                         <div class="input-group">
                             <div class="custom-file">
-                                <?=Html::activeFileInput($files, 'image', ['class' => 'custom-file-input', 'id' => 'input_file']) ?>
-                                <label class="custom-file-label" for="input_file"><?=$model->prod_image;?></label>
+                                <?=Html::activeFileInput($files, 'images[]', ['class' => 'custom-file-input', 'id' => 'add_images', 'multiple' => true]) ?>
+                                <label class="custom-file-label" for="add_images"><?=$model->prod_image;?></label>
+                            </div>
+
+                            <div class="attachments" data-dir="products">
+                                <?if($model->prod_images) {
+                                    echo $this->render('/attachments/images', [
+                                        'files' => $files,
+                                        'dir' => 'products'
+                                    ]);
+                                }?>
                             </div>
                         </div>
                     </div>
