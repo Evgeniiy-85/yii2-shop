@@ -47,7 +47,6 @@ class CategoriesController extends Controller {
             'cat_parent' => $category->cat_id,
         ])->all();
 
-        $products = null;
         if (!$subcategories) {
             $query = Product::find()->where([
                 'prod_status' => [Product::STATUS_ACTIVE],
@@ -55,6 +54,8 @@ class CategoriesController extends Controller {
             ]);
 
             $filter = new ProductFilter();
+            $filter->prod_category = $category->cat_id;
+
             if ($filter->load(Yii::$app->request->get()) && $filter->validate()) {
                 $filter->add($query);
             }
@@ -70,7 +71,6 @@ class CategoriesController extends Controller {
         return $this->render('category', [
             'category' => $category,
             'subcategories' => $subcategories,
-            'products' => $products,
         ]);
     }
 }

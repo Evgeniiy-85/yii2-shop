@@ -15,8 +15,8 @@ use yii\helpers\Html;?>
         <div class="filter-group_wrap">
             <div class="filter-name">Цена</div>
             <div class="filter-group">
-                <?= $form->field($filter, 'min_price', ['template' => '{input}'])->input('text', ['placeholder' => "от {$filter->min_price}"]); ?>
-                <?= $form->field($filter, 'max_price', ['template' => '{input}'])->input('text', ['placeholder' => "до {$filter->max_price}"]); ?>
+                <?= $form->field($filter, 'min_price', ['template' => '{input}'])->input('text', ['placeholder' => $filter->getAttributeLabel('min_price')]); ?>
+                <?= $form->field($filter, 'max_price', ['template' => '{input}'])->input('text', ['placeholder' => $filter->getAttributeLabel('max_price')]); ?>
             </div>
         </div>
     </div>

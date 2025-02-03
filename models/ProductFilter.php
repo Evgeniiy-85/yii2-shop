@@ -4,18 +4,20 @@ namespace app\models;
 use app\components\Helpers;
 use app\models\Product;
 use Yii;
+use yii\base\Model;
 
 class ProductFilter extends Product {
     public $min_price;
     public $max_price;
+    public $prod_category;
     public $is_filter;
     private $filter_name = 'ProductFilter';
 
 
     public function rules() {
         return [
-            [['min_price', 'max_price',], 'safe'],
-            [['min_price', 'max_price',], 'integer'],
+            [['min_price', 'max_price', 'prod_category'], 'safe'],
+            [['min_price', 'max_price', 'prod_category'], 'integer'],
         ];
     }
 
@@ -25,25 +27,29 @@ class ProductFilter extends Product {
      */
     public function attributeLabels() {
         return [
-            'min_price' => '',
-            'max_price' => '',
+            'min_price' => 'от '.Product::find()->where(['prod_status' => Product::STATUS_ACTIVE, 'prod_category' => $this->prod_category])->min('prod_price'),
+            'max_price' => 'до '.Product::find()->where(['prod_status' => Product::STATUS_ACTIVE, 'prod_category' => $this->prod_category])->max('prod_price'),
         ];
     }
 
-    /**
-     * @return void
-     */
     public function init() {
-        if (Yii::$app->request->post('filter') && Yii::$app->request->post('filter') != 'reset') {
-            $this->load(Yii::$app->request->post());
+        parent::init();
+        if (Yii::$app->request->get('filter') && Yii::$app->request->get('filter') != 'reset') {
+            $this->load(Yii::$app->request->get());
         }
-        if (!$this->min_price) {
-            //$this->min_price = Product::find()->where(['prod_status' => [Product::STATUS_ACTIVE]])->min('prod_price');
+    }
+
+    /**
+     * @param $data
+     * @param $formName
+     * @return bool
+     */
+    public function load($data, $formName = null) {
+        if (!isset($data['filter']) || $data['filter'] == 'reset') {
+            return false;
         }
 
-        if (!$this->max_price) {
-            //$this->max_price = Product::find()->where(['prod_status' => [Product::STATUS_ACTIVE]])->max('prod_price');
-        }
+        return parent::load($data, $formName);
     }
 
     /**

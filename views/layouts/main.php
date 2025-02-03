@@ -63,14 +63,14 @@ AppAsset::register($this);?>
             <div class="header-right">
                 <div class="header-buttons">
                     <div class="btn-wrap">
-                        <a href="<?=Url::to(['products/favorites']);?>" class="btn-favourites">
+                        <a href="<?=Url::to(['/favorites']);?>" class="btn-favourites">
                             <i class="btn-icon"></i>
                             <span class="btn-title">Избранное</span>
                         </a>
                     </div>
 
                     <div class="btn-wrap">
-                        <a href="javascript:void(0);" class="btn-cart">
+                        <a href="<?=Url::to(['/cart']);?>" class="btn-cart">
                             <i class="btn-icon"></i>
                             <i class="count-products-icon hidden"></i>
                             <span class="btn-title">
