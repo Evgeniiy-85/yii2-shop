@@ -26,27 +26,37 @@ AppAsset::register($this);?>
 
 
 <header>
-    <nav id="w0" class="navbar navbar-expand-md navbar-white bg-white fixed-top">
-        <div class="container">
-            <div class="header-left"></div>
-            <div class="header-center">
-
-            <div id="w0-collapse" class="collapse navbar-collapse">
-                <ul id="w1" class="navbar-nav nav">
-                    <li class="nav-item">
-                          <a href="#">&nbsp</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#">&nbsp</a>
-                    </li>
-                </ul>
+    <div class="header-top">
+        <nav id="w0" class="navbar navbar-expand-md navbar-white bg-white fixed-top">
+            <div class="container">
+                <div class="header-center">
+                    <div id="w0-collapse" class="collapse navbar-collapse">
+                        <ul id="w1" class="navbar-nav nav">
+                            <li class="nav-item">
+                                  <a href="#">&nbsp</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#">&nbsp</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
+    </div>
 
     <div class="header-bottom bg-white">
         <div class="container">
-            <div class="header-left"></div>
+            <div class="header-left">
+                <div class="logo-wrap">
+                    <img src="/images/icons/logo.svg">
+                </div>
+
+                <div class="catalog-menu-wrap">
+                    <a href="/catalog" class="catalog-menu">Каталог</a>
+                </div>
+            </div>
+
             <div class="header-center">
                 <div class="search">
                     <div class="search-wrap">
