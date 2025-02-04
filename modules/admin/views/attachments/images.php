@@ -1,14 +1,26 @@
 <?php
-use yii\helpers\Html;?>
+use yii\helpers\Html;
+use yii\jui\Sortable;
+
+$items = [];?>
 
 <?if($files->files):
     foreach ($files->files as $image):?>
-        <div class="attach-wrap bg-transparent">
-            <a class="attach" href="#">
-                <img src="<?=Yii::getAlias("/load/{$files->dir}/$image");?>">
-            </a>
-        </div>
-        <?=Html::activeInput('hidden', $files, 'files[]', ['value' => $image]);?>
-    <?endforeach;;
+        <?$items[] = [
+            'content' => $this->render('part_images', [
+                'files' => $files,
+                'dir' => 'products',
+                'image' => $image
+            ]),
+            'options' => ['tag' => 'div', 'class' => 'attach-wrap bg-transparent sortable-handle'],
+        ];
+    endforeach;
 endif;?>
+
+<?=Sortable::widget([
+    'items' => $items,
+    'options' => ['tag' => 'div', 'id' => 'attachments', 'class' => 'attachments',],
+    'itemOptions' => ['tag' => 'div'],
+    'clientOptions' => ['cursor' => 'move'],
+]);?>
 

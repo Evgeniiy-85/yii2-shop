@@ -3,6 +3,7 @@ use yii\widgets\ActiveForm;
 use yii\helpers\Html;
 use app\models\Product;
 use app\models\Category;
+use yii\jui\Sortable;
 
 $this->title = 'Редактировать продукт';
 $this->params['breadcrumbs'][] = ['label' => 'Список продуктов', 'url' => ['/admin/'.Yii::$app->controller->id]];

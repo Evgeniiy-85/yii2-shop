@@ -6,6 +6,7 @@ use app\models\Product;
 use app\modules\admin\models\Files;
 use app\modules\admin\models\ProductFilter;
 use Yii;
+use yii\data\ActiveDataProvider;
 use yii\data\Pagination;
 use yii\web\HttpException;
 use app\modules\admin\models\Notices;
