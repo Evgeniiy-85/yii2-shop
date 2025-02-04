@@ -2,6 +2,7 @@
 use yii\helpers\Html;
 use app\components\Helpers;
 use app\models\Product;
+use yii\helpers\Url;
 
 $this->title = $product['prod_title'];
 $this->params['breadcrumbs'] = Product::getBreadCrumbs($category, $product);?>
@@ -10,8 +11,26 @@ $this->params['breadcrumbs'] = Product::getBreadCrumbs($category, $product);?>
     <h1><?= Html::encode($this->title) ?></h1>
 
     <div class="product-card">
-        <div class="product-cover">
-            <img src="/load/products/<?=$product['prod_image'];?>">
+        <div class="product-images-slider">
+            <div class="images-thumbs">
+                <?if($product['prod_images']):
+                    foreach($product['prod_images'] as $key => $prod_image):?>
+                        <div data-img_src="/load/products/<?=$prod_image;?>" class="image-thumb<?=$key == 0 ? ' active' : '';?>">
+                            <?=Html::img(
+                                "@web/load/products/{$prod_image}",
+                                ['alt' => $product['prod_title']]
+                            );?>
+                        </div>
+                    <?endforeach;
+                endif;?>
+            </div>
+
+            <div class="images-main">
+                <?=Html::img(
+                    "@web/load/products/{$product['prod_image']}",
+                    ['alt' => $product['prod_title']]
+                );?>
+            </div>
         </div>
 
         <div class="product-center">
