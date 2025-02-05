@@ -75,6 +75,10 @@ class ProductsController extends AdminController {
         $model = new Product();
         $files = new Files();
 
+        if ($files->load(Yii::$app->request->post())) {
+            $model->setAttributes(['prod_images' => $files->files]);
+        }
+
         if ($post = Yii::$app->request->post('Product')) {
             $model->load(Yii::$app->request->post());
             $model->save() ? Notices::addSuccess('Успешно') : Notices::addWarning('Ошибка при сохранении');

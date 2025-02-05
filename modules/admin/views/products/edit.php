@@ -48,12 +48,10 @@ $categories = Category::find()
                                 <?=Html::activeFileInput($files, 'images[]', ['class' => 'custom-file-input hidden', 'id' => 'add_images', 'multiple' => true]) ?>
                             </label>
 
-                            <?if($model->prod_images) {
-                                echo $this->render('/attachments/images', [
-                                    'files' => $files,
-                                    'dir' => 'products'
-                                ]);
-                            }?>
+                            <?=$this->render('/attachments/images', [
+                                'files' => $files,
+                                'dir' => 'products'
+                            ]);?>
                         </div>
                     </div>
                     <?= $form->field($model, 'prod_article')->input('text'); ?>

@@ -1,7 +1,6 @@
 <?php
 use yii\helpers\Html;
 use yii\jui\Sortable;
-
 $items = [];?>
 
 <?if($files->files):

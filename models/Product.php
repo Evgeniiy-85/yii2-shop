@@ -80,10 +80,11 @@ class Product extends ActiveRecord {
                 $this->prod_alias = Helpers::generateUniqueAlias($this->prod_alias, $this, 'prod_alias');
             }
 
-            if ($this->prod_images != $this->getOldAttribute('prod_images')) {
-                $new_files = json_decode($this->prod_images, true);
-                $old_files = json_decode($this->getOldAttribute('prod_images'), true);
-                if ($del_files = array_diff($old_files, $new_files)) {
+            if (($old_files = $this->getOldAttribute('prod_images')) && $old_files != $this->prod_images) {
+                $old_files = json_decode($old_files, true);
+                $files = $this->prod_images ? json_decode($this->prod_images, true) : [];
+
+                if ($del_files = array_diff($old_files, $files)) {
                     Files::delFiles($del_files, 'products');
                 }
             }

@@ -37,12 +37,17 @@ $categories = Category::find()
                     <?= $form->field($model, 'prod_title')->input('text'); ?>
                     <?= $form->field($model, 'prod_alias')->input('text'); ?>
                     <div class="form-group">
-                        <label for="input_file">Обложка</label>
+                        <label>Фотографии</label>
                         <div class="input-group">
-                            <div class="custom-file">
-                                <?=Html::activeFileInput($files, 'image', ['class' => 'custom-file-input', 'id' => 'input_file']) ?>
-                                <label class="custom-file-label" for="input_file"><?=$model->prod_image;?></label>
-                            </div>
+                            <label class="btn bg-purple input-file" for="add_images">
+                                <text><span class="fa fa-cloud-upload"></span>&nbsp; Загрузить изображения</text>
+                                <?=Html::activeFileInput($files, 'images[]', ['class' => 'custom-file-input hidden', 'id' => 'add_images', 'multiple' => true]) ?>
+                            </label>
+
+                            <?=$this->render('/attachments/images', [
+                                'files' => $files,
+                                'dir' => 'products'
+                            ]);?>
                         </div>
                     </div>
                     <?= $form->field($model, 'prod_article')->input('text'); ?>
