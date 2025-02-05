@@ -12,14 +12,14 @@ $items = [];?>
                 'dir' => 'products',
                 'image' => $image
             ]),
-            'options' => ['tag' => 'div', 'class' => 'attach-wrap bg-transparent sortable-handle'],
+            'options' => ['tag' => 'div', 'class' => 'attach-wrap sortable-handle'],
         ];
     endforeach;
 endif;?>
 
 <?=Sortable::widget([
     'items' => $items,
-    'options' => ['tag' => 'div', 'id' => 'attachments', 'class' => 'attachments', 'data-dir' => $dir],
+    'options' => isset($dir) ? ['tag' => 'div', 'id' => 'attachments', 'class' => 'attachments', 'data-dir' => $dir] : ['tag' => false],
     'itemOptions' => ['tag' => 'div'],
     'clientOptions' => ['cursor' => 'move'],
 ]);?>
