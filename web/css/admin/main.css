@@ -165,6 +165,9 @@ table.table tbody tr td {
     height: 90px;
     margin: 5px;
 }
+.attach-wrap:hover {
+    cursor: move;
+}
 .attach {
     height: 100%;
 }

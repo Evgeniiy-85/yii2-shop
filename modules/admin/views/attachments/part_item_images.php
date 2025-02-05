@@ -5,7 +5,7 @@ use yii\jui\Sortable;?>
     <span class="fa fa-remove"></span>
 </div>
 
-<a class="attach" href="#">
+<div class="attach" href="#">
     <img src="<?=Yii::getAlias("/load/{$files->dir}/$image");?>">
-</a>
+</div>
 <?=Html::activeInput('hidden', $files, 'files[]', ['value' => $image]);?>
