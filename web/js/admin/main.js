@@ -24,7 +24,7 @@ $(function(){
         $label.data('placeholder', $label.find('text').html());
 
         $input_file.on('change', function(){
-            if( $(this).val() ){
+            if ($(this).val()) {
                 $label.find('text').html('<i class="fa fa-file-o"></i>&nbsp; ' + $(this).val().replace(/.*?([^\/|\\]+)$/, '$1'));
             } else {
                 $label.find('text').html($label.data('placeholder'));
@@ -34,7 +34,7 @@ $(function(){
 
     /* Сustom-file */
     $(".custom-file-label").each(function(){
-        let $label = $(this); console.log($label);
+        let $label = $(this);
         let $input_file = $(this).closest('.custom-file').children('[type="file"]');
         $input_file.on('change', function(){
             $label.html($input_file.val().replace(/.*?([^\/|\\]+)$/, '$1'));

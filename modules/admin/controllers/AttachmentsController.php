@@ -21,6 +21,7 @@ class AttachmentsController extends AdminController {
 
             return $this->renderAjax('images', [
                 'files' => $files,
+                'without_container' => true,
             ]);
         }
     }

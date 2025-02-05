@@ -82,6 +82,8 @@ class Notices {
         } elseif(self::$result['error']) {
             echo self::alertError();
         }
+
+        Yii::$app->session->remove(self::SAVE_KEY);
     }
 
 

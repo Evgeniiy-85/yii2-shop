@@ -8,7 +8,6 @@ $items = [];?>
         <?$items[] = [
             'content' => $this->render('part_item_images', [
                 'files' => $files,
-                'dir' => 'products',
                 'image' => $image
             ]),
             'options' => ['tag' => 'div', 'class' => 'attach-wrap sortable-handle'],
@@ -16,9 +15,10 @@ $items = [];?>
     endforeach;
 endif;?>
 
-<?=Sortable::widget([
+<?$options = !isset($without_container) ? ['tag' => 'div', 'id' => 'attachments', 'class' => 'attachments', 'data-dir' => $files->dir] : ['tag' => false];
+echo Sortable::widget([
     'items' => $items,
-    'options' => isset($dir) ? ['tag' => 'div', 'id' => 'attachments', 'class' => 'attachments', 'data-dir' => $dir] : ['tag' => false],
+    'options' => $options,
     'itemOptions' => ['tag' => 'div'],
     'clientOptions' => ['cursor' => 'move'],
 ]);?>

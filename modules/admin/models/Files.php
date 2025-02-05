@@ -10,6 +10,7 @@ class Files extends Model {
     public $image;
     public $images;
     public $files = [];
+    public $file;
     public $dir;
 
     /**
@@ -17,7 +18,7 @@ class Files extends Model {
      */
     public function rules() {
         return [
-            [['files', 'dir'], 'safe'],
+            [['files', 'dir', 'file'], 'safe'],
             [['dir'], 'required'],
             [['image'], 'file', 'extensions' => 'jpg,jpeg,webp,png', 'maxFiles' => 1, 'skipOnEmpty' => false],
             [['images'], 'file', 'extensions' => 'jpg,jpeg,webp,png', 'maxFiles' => 10, 'skipOnEmpty' => false]
@@ -35,14 +36,14 @@ class Files extends Model {
     }
 
 
-    /**
+    /***
      * @param $dir
      * @return false|string
      */
-    public function uploadImage() {
+    public function uploadImage($dir) {
         $this->image = UploadedFile::getInstance($this, 'image');
         if (!empty($this->image) && $this->validate()) {
-            $path = Yii::getAlias("@webroot/load/{$this->dir}/{$this->image->name}");
+            $path = Yii::getAlias("@webroot/load/$dir/{$this->image->name}");
             return $this->image->saveAs($path) ? $this->image->name : false;
         }
 
@@ -50,7 +51,6 @@ class Files extends Model {
     }
 
     /**
-     * @param $dir
      * @return bool
      */
     public function uploadImages() {
@@ -59,7 +59,7 @@ class Files extends Model {
         if (!empty($this->images) && $this->validate()) {
             $dir_path = Yii::getAlias("@webroot/load/{$this->dir}");
 
-            foreach ($this->images as $key => $image) {
+            foreach ($this->images as $image) {
                 $path = "$dir_path/{$image->name}";
                 if ($image->saveAs($path)) {
                     $this->files[] = $image->name;

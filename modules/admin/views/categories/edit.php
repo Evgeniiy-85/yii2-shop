@@ -42,10 +42,15 @@ $categories = Category::find()
                     <div class="form-group">
                         <label for="input_file">Обложка</label>
                         <div class="input-group">
-                            <div class="custom-file">
-                                <?=Html::activeFileInput($files, 'image', ['class' => 'custom-file-input', 'id' => 'input_file']) ?>
-                                <label class="custom-file-label" for="input_file"><?=$model->cat_image;?></label>
-                            </div>
+                            <label class="btn bg-purple input-file" for="add_images">
+                                <text><span class="fa fa-cloud-upload"></span>&nbsp; Загрузить изображение</text>
+                                <?=Html::activeFileInput($files, 'image', ['class' => 'custom-file-input hidden', 'id' => 'add_images']) ?>
+                            </label>
+
+                            <?=$this->render('/attachments/image', [
+                                'file' => $model->cat_image,
+                                'dir' => 'categories'
+                            ]);?>
                         </div>
                     </div>
                     <?= $form->field($model, 'cat_sort')->input('number'); ?>

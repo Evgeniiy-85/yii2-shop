@@ -44,12 +44,11 @@ class CategoriesController extends AdminController {
      */
     public function actionEdit($ID = false) {
         $model = is_numeric($ID) ? Category::findOne((int) $ID) : false;
-        $files = new Files();
-
         if (!$model) {
             throw new HttpException(404, "Страница не найдена.");
         }
 
+        $files = new Files();
         if (Yii::$app->request->post('Category')) {
             $model->load(Yii::$app->request->post());
             $model->save() ? Notices::addSuccess('Успешно') : Notices::addWarning('Ошибка при сохранении');

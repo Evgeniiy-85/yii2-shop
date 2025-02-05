@@ -6,7 +6,6 @@ use app\models\Product;
 use app\modules\admin\models\Files;
 use app\modules\admin\models\ProductFilter;
 use Yii;
-use yii\data\ActiveDataProvider;
 use yii\data\Pagination;
 use yii\web\HttpException;
 use app\modules\admin\models\Notices;
@@ -52,16 +51,18 @@ class ProductsController extends AdminController {
         }
 
         $files = new Files();
-        $files->setAttributes(['files' => $model->prod_images]);
-        $files->setAttributes(['dir' => 'products']);
+        $files->setAttributes(['files' => $model->prod_images, 'dir' => 'products']);
 
-        if ($files->load(Yii::$app->request->post())) {
-            $model->setAttributes(['prod_images' => $files->files]);
-        }
+        if (Yii::$app->request->post('Product')) {
+            $model->load(Yii::$app->request->post());
+            $files->load(Yii::$app->request->post());
 
-        if ($model->load(Yii::$app->request->post())) {
-            $model->save() ? Notices::addSuccess('Успешно') : Notices::addWarning('Ошибка при сохранении');
-            return $this->redirect(['/admin/products']);
+            if ($model->validate() && $files->validate()) {
+                $model->setAttributes(['prod_images' => $files->files]);
+                $model->save() ? Notices::addSuccess('Успешно') : Notices::addWarning('Ошибка при сохранении');
+
+                return $this->redirect(['/admin/products']);
+            }
         }
 
         return $this->render('edit', [
@@ -79,9 +80,9 @@ class ProductsController extends AdminController {
             $model->setAttributes(['prod_images' => $files->files]);
         }
 
-        if ($post = Yii::$app->request->post('Product')) {
+        if (Yii::$app->request->post('Product')) {
             $model->load(Yii::$app->request->post());
-            $model->save() ? Notices::addSuccess('Успешно') : Notices::addWarning('Ошибка при сохранении');
+            $model->validate() && $model->save() ? Notices::addSuccess('Успешно') : Notices::addWarning('Ошибка при сохранении');
             return $this->redirect(['/admin/products']);
         }
 

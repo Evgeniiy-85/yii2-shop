@@ -61,7 +61,8 @@ class Category extends ActiveRecord {
 
         if (parent::beforeSave($insert)) {
             $files = new Files();
-            $this->cat_image = $files->upload('categories') ?: $this->cat_image;
+            $this->cat_image = $files->uploadImage('categories') ?: $this->cat_image;
+
             if (!$this->cat_alias) {
                 $this->cat_alias = Helpers::Translit($this->cat_title);
             }
