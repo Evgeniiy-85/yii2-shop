@@ -71,4 +71,28 @@ class Files extends Model {
 
         return false;
     }
+
+
+    /**
+     * @param $files
+     * @param $dir
+     * @return bool
+     */
+    public static function delFiles($files, $dir) {
+        $success = [];
+
+        if ($files) {
+            $dir_path = Yii::getAlias("@webroot/load/{$dir}");
+            foreach ($files as $file_name) {
+                $path = "$dir_path/{$file_name}";
+                if (unlink($path)) {
+                    $success[] = true;
+                }
+            }
+
+            return count($files) == count($success);
+        }
+
+        return true;
+    }
 }

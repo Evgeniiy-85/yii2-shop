@@ -16,6 +16,7 @@ class AdminAsset extends AssetBundle {
 
     public $js = [
         'js/admin/main.js',
+        'js/admin/attachments.js',
     ];
 
     public $depends = [

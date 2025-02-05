@@ -41,21 +41,19 @@ $categories = Category::find()
                     <?= $form->field($model, 'prod_title')->input('text'); ?>
                     <?= $form->field($model, 'prod_alias')->input('text'); ?>
                     <div class="form-group">
-                        <label for="input_file">Фотографии</label>
+                        <label>Фотографии</label>
                         <div class="input-group">
-                            <div class="custom-file">
-                                <?=Html::activeFileInput($files, 'images[]', ['class' => 'custom-file-input', 'id' => 'add_images', 'multiple' => true]) ?>
-                                <label class="custom-file-label" for="add_images"><?=$model->prod_image;?></label>
-                            </div>
+                            <label class="btn bg-purple input-file" for="add_images">
+                                <text><span class="fa fa-cloud-upload"></span>&nbsp; Загрузить изображения</text>
+                                <?=Html::activeFileInput($files, 'images[]', ['class' => 'custom-file-input hidden', 'id' => 'add_images', 'multiple' => true]) ?>
+                            </label>
 
-                            <div class="attachments" data-dir="products">
-                                <?if($model->prod_images) {
-                                    echo $this->render('/attachments/images', [
-                                        'files' => $files,
-                                        'dir' => 'products'
-                                    ]);
-                                }?>
-                            </div>
+                            <?if($model->prod_images) {
+                                echo $this->render('/attachments/images', [
+                                    'files' => $files,
+                                    'dir' => 'products'
+                                ]);
+                            }?>
                         </div>
                     </div>
                     <?= $form->field($model, 'prod_article')->input('text'); ?>

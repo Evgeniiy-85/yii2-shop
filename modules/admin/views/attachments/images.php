@@ -7,7 +7,7 @@ $items = [];?>
 <?if($files->files):
     foreach ($files->files as $image):?>
         <?$items[] = [
-            'content' => $this->render('part_images', [
+            'content' => $this->render('part_item_images', [
                 'files' => $files,
                 'dir' => 'products',
                 'image' => $image
@@ -19,7 +19,7 @@ endif;?>
 
 <?=Sortable::widget([
     'items' => $items,
-    'options' => ['tag' => 'div', 'id' => 'attachments', 'class' => 'attachments',],
+    'options' => ['tag' => 'div', 'id' => 'attachments', 'class' => 'attachments', 'data-dir' => $dir],
     'itemOptions' => ['tag' => 'div'],
     'clientOptions' => ['cursor' => 'move'],
 ]);?>

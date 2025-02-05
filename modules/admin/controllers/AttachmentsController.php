@@ -24,4 +24,20 @@ class AttachmentsController extends AdminController {
             ]);
         }
     }
+
+
+    public function actionDelete() {
+        $resp = [
+            'status' => false,
+        ];
+
+        if (Yii::$app->request->isAjax && $data = Yii::$app->request->post()) {
+            $this->layout = false;
+            $path = Yii::getAlias("@webroot/load/{$data['dir']}/{$data['file']}");
+            $resp['status'] = unlink($path);
+        }
+
+        header("Content-type: application/json; charset=utf-8");
+        exit(json_encode($resp, JSON_UNESCAPED_UNICODE));
+    }
 }
