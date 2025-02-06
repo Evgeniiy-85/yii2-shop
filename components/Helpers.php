@@ -61,6 +61,16 @@ class Helpers extends Component {
         ) : '';
     }
 
+    /**
+     * Возвращает название месяца на русском языке
+     * @param $month_number
+     * @return string
+     */
+    public static function getMonthNameByNum($month_number) {
+        $monthes = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
+
+        return $monthes[$month_number-1];
+    }
 
     /**
     *  Возвращает размер в удобночитаемом формате
