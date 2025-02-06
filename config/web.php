@@ -60,8 +60,10 @@ $config = [
                 '/login' => 'site/login',
 
                 '/admin/products/<ID:\d+>' => 'admin/products/edit',
+                '/admin/products/delete/<ID:\d+>' => 'admin/products/delete',
                 '/admin/users/<ID:\d+>' => 'admin/users/edit',
                 '/admin/categories/<ID:\d+>' => 'admin/categories/edit',
+                '/admin/categories/delete/<ID:\d+>' => 'admin/categories/delete',
                 '/admin/settings/payments' => 'admin/payments/index',
                 '/admin/settings/payments/<ID:\d+>' => 'admin/payments/edit',
             ],

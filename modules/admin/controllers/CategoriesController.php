@@ -11,6 +11,9 @@ use yii\data\Pagination;
 use yii\web\HttpException;
 class CategoriesController extends AdminController {
 
+    /*
+     * Страница списка категорий
+     */
     public function actionIndex() {
         $page_size = 36;
 
@@ -36,11 +39,8 @@ class CategoriesController extends AdminController {
     }
 
 
-    /**
-     * @param $ID
-     * @return string
-     * @throws HttpException
-     * @throws \yii\db\Exception
+    /*
+     * Редактирование категории
      */
     public function actionEdit($ID = false) {
         $model = is_numeric($ID) ? Category::findOne((int) $ID) : false;
@@ -49,9 +49,15 @@ class CategoriesController extends AdminController {
         }
 
         $files = new Files();
+        $files->setAttributes(['file' => $model->cat_image, 'dir' => 'categories']);
+
         if (Yii::$app->request->post('Category')) {
             $model->load(Yii::$app->request->post());
-            $model->save() ? Notices::addSuccess('Успешно') : Notices::addWarning('Ошибка при сохранении');
+            if ($image = $files->uploadImage()) {
+                $model->setAttribute('cat_image', $image);
+            }
+            $model->validate() && $model->save() ? Notices::addSuccess('Успешно') : Notices::addWarning('Ошибка при сохранении');
+
             return $this->redirect(['/admin/categories']);
         }
 
@@ -62,13 +68,21 @@ class CategoriesController extends AdminController {
     }
 
 
+    /*
+     * Добавление категории
+     */
     public function actionAdd() {
         $model = new Category();
         $files = new Files();
+        $files->setAttributes(['file' => $model->cat_image, 'dir' => 'categories']);
 
-        if ($post = Yii::$app->request->post('Category')) {
+        if (Yii::$app->request->post('Category')) {
             $model->load(Yii::$app->request->post());
-            $model->save() ? Notices::addSuccess('Успешно') : Notices::addWarning('Ошибка при сохранении');
+            if ($image = $files->uploadImage()) {
+                $model->setAttribute('cat_image', $image);
+            }
+            $model->validate() && $model->save() ? Notices::addSuccess('Успешно') : Notices::addWarning('Ошибка при сохранении');
+
             return $this->redirect(['/admin/categories']);
         }
 
@@ -76,5 +90,19 @@ class CategoriesController extends AdminController {
             'model' => $model,
             'files' => $files,
         ]);
+    }
+
+    /*
+     * Удаление категории
+     */
+    public function actionDelete($ID) {
+        $model = is_numeric($ID) ? Category::findOne((int) $ID) : false;
+        if (!$model) {
+            throw new HttpException(404, "Страница не найдена.");
+        }
+
+        $model->validate() && $model->delete() ? Notices::addSuccess('Успешно') : Notices::addWarning('Ошибка при удалении');
+
+        return $this->redirect(['/admin/categories']);
     }
 }

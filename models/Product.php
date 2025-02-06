@@ -107,6 +107,17 @@ class Product extends ActiveRecord {
     }
 
     /**
+     * @return void
+     */
+    public function afterDelete() {
+        parent::afterDelete();
+
+        if ($this->prod_images) {
+            Files::delFiles(json_decode($this->prod_images, true), 'products');
+        }
+    }
+
+    /**
      * @param $status
      * @return int|int[]
      */

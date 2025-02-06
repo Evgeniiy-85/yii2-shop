@@ -7,7 +7,7 @@ use yii\helpers\Html;;?>
             <span class="fa fa-remove"></span>
         </div>
         <div class="attach">
-            <?=Html::img("/load/{$dir}/{$file}") ?>
+            <?=Html::img("/load/{$files->dir}/{$files->file}") ?>
         </div>
     </div>
 </div>

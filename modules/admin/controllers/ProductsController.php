@@ -12,6 +12,9 @@ use app\modules\admin\models\Notices;
 
 class ProductsController extends AdminController {
 
+    /*
+     * Страница списка товаров
+     */
     public function actionIndex() {
         $page_size = 36;
 
@@ -38,11 +41,8 @@ class ProductsController extends AdminController {
     }
 
 
-    /**
-     * @param $ID
-     * @return string
-     * @throws HttpException
-     * @throws \yii\db\Exception
+    /*
+     * Редактирование товара
      */
     public function actionEdit($ID = false) {
         $model = is_numeric($ID) ? Product::findOne((int) $ID) : false;
@@ -72,23 +72,44 @@ class ProductsController extends AdminController {
     }
 
 
+    /*
+     * Добавление товара
+     */
     public function actionAdd() {
         $model = new Product();
         $files = new Files();
-
-        if ($files->load(Yii::$app->request->post())) {
-            $model->setAttributes(['prod_images' => $files->files]);
-        }
+        $files->setAttributes(['files' => $model->prod_images, 'dir' => 'products']);
 
         if (Yii::$app->request->post('Product')) {
             $model->load(Yii::$app->request->post());
-            $model->validate() && $model->save() ? Notices::addSuccess('Успешно') : Notices::addWarning('Ошибка при сохранении');
-            return $this->redirect(['/admin/products']);
+            $files->load(Yii::$app->request->post());
+
+            if ($model->validate() && $files->validate()) {
+                $model->setAttributes(['prod_images' => $files->files]);
+                $model->save() ? Notices::addSuccess('Успешно') : Notices::addWarning('Ошибка при сохранении');
+
+                return $this->redirect(['/admin/products']);
+            }
         }
 
         return $this->render('add', [
             'model' => $model,
             'files' => $files,
         ]);
+    }
+
+
+    /*
+     * Удаление товара
+     */
+    public function actionDelete($ID) {
+        $model = is_numeric($ID) ? Product::findOne((int) $ID) : false;
+        if (!$model) {
+            throw new HttpException(404, "Страница не найдена.");
+        }
+
+        $model->validate() && $model->delete() ? Notices::addSuccess('Успешно') : Notices::addWarning('Ошибка при удалении');
+
+        return $this->redirect(['/admin/products']);
     }
 }

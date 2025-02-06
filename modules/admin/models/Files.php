@@ -36,14 +36,13 @@ class Files extends Model {
     }
 
 
-    /***
-     * @param $dir
-     * @return false|string
+    /**
+     * @return void
      */
-    public function uploadImage($dir) {
+    public function uploadImage() {
         $this->image = UploadedFile::getInstance($this, 'image');
         if (!empty($this->image) && $this->validate()) {
-            $path = Yii::getAlias("@webroot/load/$dir/{$this->image->name}");
+            $path = Yii::getAlias("@webroot/load/{$this->dir}/{$this->image->name}");
             return $this->image->saveAs($path) ? $this->image->name : false;
         }
 

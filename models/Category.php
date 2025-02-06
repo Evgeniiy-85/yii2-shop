@@ -60,9 +60,6 @@ class Category extends ActiveRecord {
         $this->cat_parent = (int)$this->cat_parent;
 
         if (parent::beforeSave($insert)) {
-            $files = new Files();
-            $this->cat_image = $files->uploadImage('categories') ?: $this->cat_image;
-
             if (!$this->cat_alias) {
                 $this->cat_alias = Helpers::Translit($this->cat_title);
             }
@@ -75,6 +72,16 @@ class Category extends ActiveRecord {
         }
 
         return false;
+    }
+
+    /**
+     * @return void
+     */
+    public function afterDelete() {
+        parent::afterDelete();
+        if ($this->cat_image) {
+            Files::delFiles([$this->cat_image], 'categories');
+        }
     }
 
     /**
