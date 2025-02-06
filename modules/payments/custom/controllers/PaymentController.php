@@ -5,11 +5,11 @@ namespace app\modules\payments\custom\controllers;
 use app\models\Order;
 use app\modules\admin\models\Notices;
 use app\modules\payments\custom\models\PayCustom;
-use yii\web\Controller;
+use app\controllers\BaseController;
 use Yii;
 
 
-class PaymentController extends Controller {
+class PaymentController extends BaseController {
 
     /**
      * @param $order_id

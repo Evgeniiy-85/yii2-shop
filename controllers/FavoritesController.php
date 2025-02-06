@@ -7,11 +7,11 @@ use app\models\Favorites;
 use app\models\Product;
 use app\models\ProductFilter;
 use yii\data\Pagination;
-use yii\web\Controller;
+use app\controllers\BaseController;
 use yii\web\HttpException;
 use Yii;
 
-class FavoritesController extends Controller {
+class FavoritesController extends BaseController {
 
     public function actionIndex() {
         $favorites = new Favorites();

@@ -21,11 +21,10 @@ header {
       padding-bottom: 10px;
 
       .header-left {
-        width: 318px;
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-right: 15px;
+        margin-right: auto;
 
         .logo-wrap {
           height: 32px;
@@ -67,6 +66,7 @@ header {
 
       .header-center {
         width: 100%;
+        margin-left: 15px;
 
         .search {
           .search-wrap {

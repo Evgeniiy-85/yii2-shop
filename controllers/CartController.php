@@ -6,10 +6,9 @@ use app\models\OrderItems;
 use app\models\Product;
 use Yii;
 use app\models\Cart;
-use yii\web\Controller;
-use yii\web\HttpException;
+use app\controllers\BaseController;
 
-class CartController extends Controller {
+class CartController extends BaseController {
 
     public function actionIndex() {
         $cart = new Cart();
@@ -83,6 +82,8 @@ class CartController extends Controller {
     }
 
     public function actionCheckout() {
+        $this->setShowHeaderMenu(false);
+
         $cart = new Cart();
         $cart->loadCart();
         $order = new Order();

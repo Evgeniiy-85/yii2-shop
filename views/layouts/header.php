@@ -1,50 +1,85 @@
+<?php
+use yii\bootstrap4\Html;
+use yii\helpers\Url;
+
+!$is_hidden = Yii::$app->request->getPathInfo() == 'cart/checkout';?>
+
 <header>
-    <div id="header-desktop" class="header-desktop" data-cy="test-header-desktop">
-        <div class="top-banner" id="top-banner">
-            <div id="top-banner__close-wrapper" class="top-banner__close">
-                <div class="top-banner__close-btn"></div>
-            </div>
-        </div>
-        
-        <div class="header-top">
-            <div class="header-top__container">
-                <div class="header-top-menu">
-                    <ul class="header-top-menu__common-list">
-                        <li class="header-top-menu__common-item">
-                            <a class="header-top-menu__common-link" href="https://www.dns-shop.ru/actions/">Акции 
-                                <svg class="header-top-menu__dot-svg" width="5" height="5" viewBox="0 0 5 5" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <rect width="5" height="5" rx="2.5" fill="#FFA319"></rect>
-                                </svg>
-                            </a>
-                        </li>
-                        
-                        <li class="header-top-menu__common-item header-top-menu__common-item_dropdown menu-dropdown">
-                            <p class="header-top-menu__common-link" rel="false" data-commerce-target="MENU_FOR_BUYERS">Покупателям 
-                                <svg class="header-top-menu__arrow-svg" width="24" height="24" viewBox="0 0 24 24" fill="black" xmlns="http://www.w3.org/2000/svg"><path d="M16.594 8.578L18 9.984L12 15.984L6 9.984L7.406 8.578L12 13.172L16.594 8.578Z" fill="#afafaf"></path></svg>
-                            </p>
-                            <span class="dns-icon_chevron_down_alt header-top-menu__dropdown-icon"></span>
-                        </li>
-                    </ul>
+    <div class="header-top">
+        <nav id="w0" class="navbar navbar-expand-md navbar-white bg-white fixed-top">
+            <div class="container">
+                <div class="header-center">
+                    <div id="w0-collapse" class="collapse navbar-collapse">
+                        <ul id="w1" class="navbar-nav nav">
+                            <li class="nav-item">
+                                <a href="#">&nbsp</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#">&nbsp</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-                
-                <ul data-cy="test-header-top-menu-info-contact" class="header-top__profile-list" style="">
-                    <li class="header-top-menu__info header-top__info" style="position: relative;">
-                        <a href="tel:8-800-77-07-999" class="header-top__contact" data-cy="test-header-contact">8-800-77-07-999</a>
-                        <div class="base-ui-tooltip_1FZ base-ui-tooltip_center-bottom_p6M">
-                            <div class="base-ui-tooltip__tooltip_B7e base-ui-tooltip__tooltip_dark_kUd">
-                                <span class="header-top-menu__work-info header-top__work-info">с 04:00 до 23:00</span>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
             </div>
-        </div>
-        
-        <nav id="header-search" class="header-bottom header-bottom_with-shadow slide">
-            <div class="header-bottom__container">
-                <div class="presearch header-presearch header-bottom__presearch-wrapper" data-cy="test-desktop-search-bar">
-                    <div class="presearch__wrapper">
-                        <input class="presearch__input" name="q" type="search" enterkeyhint="search" placeholder="Поиск по сайту" autocomplete="off" data-input="input-in-focus" value="">
+        </nav>
+    </div>
+
+    <div class="header-bottom bg-white">
+        <div class="container">
+            <div class="header-left">
+                <div class="logo-wrap">
+                    <img src="/images/icons/logo.svg">
+                </div>
+
+                <?if($this->context->isShowHeaderMenu()):?>
+                    <div class="catalog-menu-wrap">
+                        <a href="/catalog" class="catalog-menu">Каталог</a>
+                    </div>
+                <?endif;?>
+            </div>
+
+            <?if($this->context->isShowHeaderMenu()):?>
+                <div class="header-center">
+                    <div class="search">
+                        <div class="search-wrap">
+                            <?=Html::beginForm(['/search'], 'get', ['id' => 'form-search']) ?>
+                            <div class="input-group">
+                                <?=Html::input('text', 'q', urldecode( Yii::$app->request->get('q')), ['placeholder' => 'Поиск по сайту']);?>
+                                <?=Html::submitButton('',['class' => 'btn-search']);?>
+                            </div>
+                            <?=Html::endForm();?>
+                        </div>
+                    </div>
+                </div>
+            <?endif;?>
+
+            <div class="header-right">
+                <div class="header-buttons">
+                    <?if($this->context->isShowHeaderMenu()):?>
+                        <div class="btn-wrap">
+                            <a href="<?=Url::to(['/favorites']);?>" class="btn-favourites">
+                                <i class="btn-icon"></i>
+                                <span class="btn-title">Избранное</span>
+                            </a>
+                        </div>
+
+                        <div class="btn-wrap">
+                            <a href="<?=Url::to(['/cart']);?>" class="btn-cart">
+                                <i class="btn-icon"></i>
+                                <i class="count-products-icon hidden"></i>
+                                <span class="btn-title">
+                                    <span>Корзина</span>
+                                </span>
+                            </a>
+                            <?=$this->render('//products/cart_modal');?>
+                        </div>
+                    <?endif;?>
+
+                    <div class="btn-wrap">
+                        <a href="" class="btn-login">
+                            <i class="btn-icon"></i>
+                            <span class="btn-title">Войти</span>
+                        </a>
                     </div>
                 </div>
             </div>

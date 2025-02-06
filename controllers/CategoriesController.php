@@ -6,11 +6,11 @@ use app\models\Category;
 use app\models\Product;
 use app\models\ProductFilter;
 use yii\data\Pagination;
-use yii\web\Controller;
+use app\controllers\BaseController;
 use yii\web\HttpException;
 use Yii;
 
-class CategoriesController extends Controller {
+class CategoriesController extends BaseController {
 
     public function actionIndex() {
         $page_size = 36;

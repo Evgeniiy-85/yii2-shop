@@ -2,17 +2,20 @@
 
 namespace app\controllers;
 
+use app\models\Cart;
 use app\models\Order;
 use app\models\OrderItems;
 use app\models\Payment;
 use app\models\Product;
-use yii\web\Controller;
+use app\controllers\BaseController;
 use yii\web\HttpException;
 use Yii;
 
-class OrderController extends Controller {
+class OrderController extends BaseController {
 
     public function actionBuy($alias) {
+        $this->setShowHeaderMenu(false);
+
         $product = Product::find()->where(['prod_alias' => $alias])->one();
         if (!$product) {
             throw new HttpException(404, "Страница не найдена.");
@@ -51,6 +54,8 @@ class OrderController extends Controller {
      * @throws HttpException
      */
     public function actionPay($ID) {
+        $this->setShowHeaderMenu(false);
+
         $order = Order::find()->where(['order_id' => $ID, 'order_status' => Order::STATUS_NO_PAID])->one();
         if (!$order) {
             throw new HttpException(404, "Страница не найдена.");
@@ -58,6 +63,9 @@ class OrderController extends Controller {
 
         $order_items = OrderItems::find()->where(['order_id' => $ID])->all();
         $payments = Payment::find()->where(['pay_status' => Payment::STATUS_ACTIVE])->all();
+
+        $cart = new Cart();
+        $cart->remove();
 
         return $this->render('pay', [
             'order' => $order,
