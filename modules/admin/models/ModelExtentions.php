@@ -48,7 +48,7 @@ trait ModelExtentions {
      *  Генерирует сообщение об успешном завершении
      */
     public function alertSuccess($class = '') {
-        return $this->renderMessage($this->success, $class ? $class : 'callout callout-success');
+        return $this->renderMessage($this->success, $class ?: 'callout callout-success');
     }
 
     /**
@@ -59,14 +59,14 @@ trait ModelExtentions {
     }
 
     public function alertWarning($class = '') {
-        return $this->renderMessage($this->warnings, $class ? $class : 'callout callout-warning');
+        return $this->renderMessage($this->warnings, $class ?: 'callout callout-warning');
     }
 
     /**
      *  Генерирует сообщение об успешном завершении
      */
     public function alertErrors($class = '') {
-        return $this->renderMessage($this->errors, $class ? $class : 'callout callout-danger');
+        return $this->renderMessage($this->errors, $class ?: 'callout callout-danger');
     }
 
     /**
@@ -86,7 +86,7 @@ trait ModelExtentions {
      * @param $class
      * @return string
      */
-    public function renderMessage( $m, $class) {
+    public function renderMessage($m, $class) {
         $html = '';
         foreach ($m as $key => $val) {
             if (method_exists($this, 'attributeLabels')) {
@@ -101,6 +101,6 @@ trait ModelExtentions {
             $html .= Html::tag('div', (!empty($attribute) ? Html::tag('strong', "{$attribute}: ") : '') . $val);
         }
 
-        return Html::tag('div', $html, ['class' => ($class ? $class : '')]);
+        return Html::tag('div', $html, ['class' => ($class ?: '')]);
     }
 }

@@ -93,7 +93,7 @@ class Notices {
      * @return string
      */
     public static function renderMessage($message, $class) {
-        $html = Html::tag('div', Html::tag('strong', "{$message}: "));
+        $html = Html::tag('div', Html::tag('strong', $message));
         $html = Html::tag('div', $html, ['class' => ($class ? $class : ''), 'id' => 'saveModelStatus']);
         $html .= '<script>window.setTimeout(function(){$("#saveModelStatus").hide();}, 3000);</script>';
         return $html;
