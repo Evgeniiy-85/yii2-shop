@@ -4,42 +4,40 @@ namespace app\modules\admin\controllers;
 
 use app\models\Payment;
 use app\models\Product;
+use app\modules\admin\models\Files;
 use app\modules\admin\models\ProductFilter;
+use app\models\Settings;
 use yii\data\Pagination;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
 use Yii;
+use app\modules\admin\models\Notices;
 
 /**
  * Default controller for the `admin` module
  */
 class SettingsController extends AdminController {
 
-    /**
-     * @param $action
-     * @return bool
-     * @throws \yii\web\BadRequestHttpException
-     */
-    public function beforeAction($action) {
-        return parent::beforeAction($action);
-    }
-
-    public function afterAction($action, $result){
-        return parent::afterAction($action, $result);
-    }
-
-
-    /**
-     * Renders the index view for the module
-     * @return string
-     */
     public function actionIndex() {
-        return $this->render('index');
-    }
+        $settings = Settings::findOne(1);
+        if (!$settings) {
+            $settings = new Settings();
+        }
 
-    public function actionMain() {
-        return $this->render('main');
+        $files = new Files();
+
+        if (Yii::$app->request->post('Settings')) {
+            $settings->load(Yii::$app->request->post());
+            $settings->validate() && $settings->save() ? Notices::addSuccess('Успешно') : Notices::addWarning('Ошибка при сохранении');
+
+            return $this->redirect(['/admin']);
+        }
+
+        return $this->render('index', [
+            'settings' => $settings,
+            'files' => $files,
+        ]);
     }
 
     public function actionAppearance() {

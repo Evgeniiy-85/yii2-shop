@@ -1,3 +1,9 @@
+<?php
+use app\components\Helpers;
+use app\modules\admin\models\Notices;?>
+
+<?=Notices::showNotices();?>
+
 <div class="container-fluid">
     <!-- Small boxes (Stat box) -->
     <div class="row">
@@ -33,7 +39,7 @@
             <!-- small box -->
             <div class="small-box bg-warning">
                 <div class="inner">
-                    <h3><?=$statistics['new_orders_sum'];?></h3>
+                    <h3><?=Helpers::formatPrice($statistics['new_orders_sum']);?> р.</h3>
                     <p>Заработано</p>
                 </div>
             </div>
@@ -53,7 +59,7 @@
 
     <div class="row">
         <!-- Left col -->
-        <section class="col-lg-7 connectedSortable">
+        <section class="col-lg-12 connectedSortable">
             <!-- Custom tabs (Charts with tabs)-->
             <div class="card">
                 <div class="card-header">
