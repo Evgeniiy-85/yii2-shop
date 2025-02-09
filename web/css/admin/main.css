@@ -10,6 +10,15 @@ table td {
     white-space: normal;
     vertical-align: middle;
 }
+.sidebar .user-panel {
+    border-bottom: none;
+}
+.sidebar .nav-sidebar > .nav-item  {
+    /*border-bottom: 1px solid #4b545c;*/
+}
+.sidebar .nav-item.has-treeview .nav-item:last-child {
+    padding-bottom: 15px;
+}
 .overflow-x-auto {
     overflow-x: auto !important;
     overflow-y: hidden;
