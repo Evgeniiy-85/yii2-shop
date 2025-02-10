@@ -9,10 +9,8 @@ use yii\web\UploadedFile;
 class Files extends Model {
     public $image;
     public $images;
-    public $files = [];
-    public $file;
-    public $dir;
     public $logo;
+    public $files = [];
     public $favicon;
     public $avatar;
 
@@ -61,7 +59,7 @@ class Files extends Model {
      */
     public function rules() {
         return [
-            [['files', 'dir', 'file'], 'safe'],
+            [['files'], 'safe'],
             [['image'], 'file', 'extensions' => 'jpg,jpeg,webp,png', 'maxFiles' => 1, 'skipOnEmpty' => false],
             [['images'], 'file', 'extensions' => 'jpg,jpeg,webp,png', 'maxFiles' => 10, 'skipOnEmpty' => false],
             [['logo'], 'file', 'extensions' => 'png,svg', 'maxFiles' => 1, 'skipOnEmpty' => false],
