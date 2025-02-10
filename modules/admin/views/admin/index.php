@@ -1,6 +1,8 @@
 <?php
 use app\components\Helpers;
-use app\modules\admin\models\Notices;?>
+use app\modules\admin\models\Notices;
+
+$this->registerJsFile('js/admin/chart.js');?>
 
 <?=Notices::showNotices();?>
 

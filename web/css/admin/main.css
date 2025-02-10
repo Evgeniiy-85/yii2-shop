@@ -157,6 +157,16 @@ table.table tbody tr td {
 .bg-transparent {
     background: #ffffff url('../../images/icons/attach-icon.png') repeat
 }
+.input-file {
+    max-width: 242px;
+}
+.input-file text {
+    display: block;
+    word-break: break-all;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
 .attachments {
     width: 100%;
     display: flex;
@@ -173,6 +183,10 @@ table.table tbody tr td {
     width: 90px;
     height: 90px;
     margin: 5px;
+}
+.attach-wrap.image-type_favicon {
+    width: 45px;
+    height: 45px;
 }
 .attach-wrap:hover {
     cursor: move;

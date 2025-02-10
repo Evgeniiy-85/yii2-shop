@@ -73,22 +73,16 @@ $this->params['breadcrumbs'][] = strip_tags($this->title);?>
                     <div class="tab-pane fade" id="tab_4" role="tabpanel" aria-labelledby="tab_link_4">
                         <div class="overlay-wrapper">
                             <div class="form-group">
-                                <label for="input_file">Аватар (в панели управления)</label>
-                                <div class="input-group">
-                                    <label class="btn bg-purple input-file">
-                                        <text><span class="fa fa-cloud-upload"></span>&nbsp; Загрузить изображение</text>
-                                        <?=Html::activeFileInput($files, 'image', ['class' => 'custom-file-input hidden']) ?>
-                                    </label>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
                                 <label for="input_file">Favicon</label>
                                 <div class="input-group">
                                     <label class="btn bg-purple input-file">
                                         <text><span class="fa fa-cloud-upload"></span>&nbsp; Загрузить изображение</text>
-                                        <?=Html::activeFileInput($files, 'image', ['class' => 'custom-file-input hidden']) ?>
+                                        <?=Html::activeFileInput($files, 'favicon', ['class' => 'custom-file-input hidden']) ?>
                                     </label>
+                                    <?=$this->render('/attachments/image', [
+                                        'type' => 'favicon',
+                                        'image' => $settings->favicon
+                                    ]);?>
                                 </div>
                             </div>
 
@@ -97,8 +91,12 @@ $this->params['breadcrumbs'][] = strip_tags($this->title);?>
                                 <div class="input-group">
                                     <label class="btn bg-purple input-file">
                                         <text><span class="fa fa-cloud-upload"></span>&nbsp; Загрузить изображение</text>
-                                        <?=Html::activeFileInput($files, 'image', ['class' => 'custom-file-input hidden']) ?>
+                                        <?=Html::activeFileInput($files, 'logo', ['class' => 'custom-file-input hidden']) ?>
                                     </label>
+                                    <?=$this->render('/attachments/image', [
+                                        'type' => 'logo',
+                                        'image' => $settings->logo
+                                    ]);?>
                                 </div>
                             </div>
                         </div>

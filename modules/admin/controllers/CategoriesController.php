@@ -49,11 +49,9 @@ class CategoriesController extends AdminController {
         }
 
         $files = new Files();
-        $files->setAttributes(['file' => $model->cat_image, 'dir' => 'categories']);
-
         if (Yii::$app->request->post('Category')) {
             $model->load(Yii::$app->request->post());
-            if ($image = $files->uploadImage()) {
+            if ($image = $files->uploadImage('category')) {
                 $model->setAttribute('cat_image', $image);
             }
             $model->validate() && $model->save() ? Notices::addSuccess('Успешно') : Notices::addWarning('Ошибка при сохранении');
@@ -78,7 +76,7 @@ class CategoriesController extends AdminController {
 
         if (Yii::$app->request->post('Category')) {
             $model->load(Yii::$app->request->post());
-            if ($image = $files->uploadImage()) {
+            if ($image = $files->uploadImage('category')) {
                 $model->setAttribute('cat_image', $image);
             }
             $model->validate() && $model->save() ? Notices::addSuccess('Успешно') : Notices::addWarning('Ошибка при сохранении');

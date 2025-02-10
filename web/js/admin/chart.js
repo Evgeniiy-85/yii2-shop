@@ -7,13 +7,13 @@
 
 /* global moment:false, Chart:false, Sparkline:false */
 
-$(function () {
+document.addEventListener('DOMContentLoaded', function() {
   /* Chart.js Charts */
   // Sales chart
   let salesChartCanvas = document.getElementById('revenue-chart-canvas').getContext('2d')
 
   let chart = $('#revenue-chart').data('chart');
-  console.log(chart);
+
   let salesChartData = {
     labels: chart['months'],
     datasets: [
@@ -58,4 +58,4 @@ $(function () {
     data: salesChartData,
     options: salesChartOptions
   });
-})
+}, false);

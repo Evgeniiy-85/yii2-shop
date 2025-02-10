@@ -48,7 +48,8 @@ $categories = Category::find()
                             </label>
 
                             <?=$this->render('/attachments/image', [
-                                'files' => $files,
+                                'type' => 'category',
+                                'image' => $model->cat_image
                             ]);?>
                         </div>
                     </div>

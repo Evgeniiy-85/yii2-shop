@@ -16,11 +16,12 @@ class AttachmentsController extends AdminController {
         if (Yii::$app->request->isAjax && $data = Yii::$app->request->post()) {
             $this->layout = false;
             $files = new Files();
-            $files->setAttributes(['dir' => $data['dir']]);
-            $files->uploadImages();
+            $files->uploadImages($data['type']);
 
             return $this->renderAjax('images', [
                 'files' => $files,
+                'type' => $data['type'],
+                'images' => $files->files,
                 'without_container' => true,
             ]);
         }

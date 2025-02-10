@@ -51,8 +51,6 @@ class ProductsController extends AdminController {
         }
 
         $files = new Files();
-        $files->setAttributes(['files' => $model->prod_images, 'dir' => 'products']);
-
         if (Yii::$app->request->post('Product')) {
             $model->load(Yii::$app->request->post());
             $files->load(Yii::$app->request->post());
@@ -78,7 +76,6 @@ class ProductsController extends AdminController {
     public function actionAdd() {
         $model = new Product();
         $files = new Files();
-        $files->setAttributes(['files' => $model->prod_images, 'dir' => 'products']);
 
         if (Yii::$app->request->post('Product')) {
             $model->load(Yii::$app->request->post());

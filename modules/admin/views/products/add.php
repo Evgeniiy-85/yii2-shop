@@ -43,10 +43,10 @@ $categories = Category::find()
                                 <text><span class="fa fa-cloud-upload"></span>&nbsp; Загрузить изображения</text>
                                 <?=Html::activeFileInput($files, 'images[]', ['class' => 'custom-file-input hidden', 'id' => 'add_images', 'multiple' => true]) ?>
                             </label>
-
                             <?=$this->render('/attachments/images', [
-                                'files' => $files,
-                                'dir' => 'products'
+                                'type' => 'product',
+                                'images' => $model->prod_images,
+                                'files' => $files
                             ]);?>
                         </div>
                     </div>

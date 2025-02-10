@@ -10,12 +10,12 @@ $(function(){
     function download_files(input) {
         let formData = new FormData;
         let $container = $(input).closest('label').next('.attachments');
-        let dir = $container.data('dir');
+        let type = $container.data('type');
 
         for (let file in $(input)[0].files) {
             formData.append($(input).attr('name'),  $(input)[0].files[file]);
         }
-        formData.append('dir',  dir);
+        formData.append('type',  type);
 
         $.ajax({
             url: '/admin/attachments/add',

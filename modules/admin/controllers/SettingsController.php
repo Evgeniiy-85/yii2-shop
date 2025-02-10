@@ -3,14 +3,9 @@
 namespace app\modules\admin\controllers;
 
 use app\models\Payment;
-use app\models\Product;
 use app\modules\admin\models\Files;
-use app\modules\admin\models\ProductFilter;
+use app\modules\admin\models\PaymentFilter;
 use app\models\Settings;
-use yii\data\Pagination;
-use yii\filters\AccessControl;
-use yii\filters\VerbFilter;
-use yii\web\Controller;
 use Yii;
 use app\modules\admin\models\Notices;
 
@@ -29,6 +24,12 @@ class SettingsController extends AdminController {
 
         if (Yii::$app->request->post('Settings')) {
             $settings->load(Yii::$app->request->post());
+            if ($image = $files->uploadLogo()) {
+                $settings->setAttribute('logo', $image);
+            }
+            if ($image = $files->uploadFavicon()) {
+                $settings->setAttribute('favicon', $image);
+            }
             $settings->validate() && $settings->save() ? Notices::addSuccess('Успешно') : Notices::addWarning('Ошибка при сохранении');
 
             return $this->redirect(['/admin']);
@@ -48,7 +49,7 @@ class SettingsController extends AdminController {
         $page_size = 36;
 
         $query = Payment::find();
-        $filter = new ProductFilter();
+        $filter = new PaymentFilter();
         $filter->add($query);
 
         $query

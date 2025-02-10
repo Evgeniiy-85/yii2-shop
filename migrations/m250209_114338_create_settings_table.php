@@ -15,8 +15,8 @@ class m250209_114338_create_settings_table extends Migration
         $this->createTable('{{%settings}}', [
             'id' => $this->primaryKey(),
             'site_name' => $this->string()->notNull(),
-            'avatar' => $this->string(),
-            'favicon' => $this->string(),
+            'favicon' => $this->string(32),
+            'logo' => $this->string(32),
             'currency' => $this->string(64)->notNull(),
             'admin_email' => $this->string()->defaultValue(null),
             'page_count_entries' => $this->tinyInteger()->notNull()->defaultValue(20),
