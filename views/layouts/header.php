@@ -27,9 +27,9 @@ use yii\helpers\Url;
     <div class="header-bottom bg-white">
         <div class="container">
             <div class="header-left">
-                <div class="logo-wrap">
+                <a class="logo-wrap" href="/">
                     <img src="/images/icons/logo.svg">
-                </div>
+                </a>
 
                 <?if($this->context->isShowHeaderMenu()):?>
                     <div class="catalog-menu-wrap">
