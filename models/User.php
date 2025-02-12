@@ -251,4 +251,20 @@ class User extends ActiveRecord implements IdentityInterface {
     public function validatePassword($password) {
         return Yii::$app->security->validatePassword($password, $this->user_password_hash);
     }
+
+    /**
+     * @param $user
+     * @param $is_short_surname
+     * @return string
+     */
+    public static function getUserFullName($user, $is_short_surname = false) {
+        if (!isset($user->user_id)) {
+            return 'Пользователь удален';
+        }
+
+        $user_name = mb_ucfirst($user->user_name);
+        $surname = ucfirst($is_short_surname ? mb_substr($user->user_surname, 0, 1).'.' : $user->user_surname);
+
+        return "$user_name $surname";
+    }
 }

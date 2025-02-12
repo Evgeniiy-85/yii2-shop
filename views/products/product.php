@@ -3,6 +3,7 @@ use yii\helpers\Html;
 use app\components\Helpers;
 use app\models\Product;
 use yii\helpers\Url;
+use app\widgets\ReviewWidget;
 
 $this->title = $product['prod_title'];
 $this->params['breadcrumbs'] = Product::getBreadCrumbs($category, $product);?>
@@ -45,5 +46,9 @@ $this->params['breadcrumbs'] = Product::getBreadCrumbs($category, $product);?>
             </div>
             <div class="product-bottom">Наличите: в наличии</div>
         </div>
+    </div>
+
+    <div class="products-reviews_wrap">
+        <?=ReviewWidget::widget(['prod_id' => $product['prod_id']]);?>
     </div>
 </div>

@@ -4133,7 +4133,7 @@ class scss_parser {
 		if (!isset($from)) $from = $this->count;
 
 		$r = '/'.$regex.'/Ais';
-		$result = preg_match($r, $this->buffer, $out, null, $from);
+		$result = preg_match($r, $this->buffer, $out, 0, $from);
 
 		return $result;
 	}

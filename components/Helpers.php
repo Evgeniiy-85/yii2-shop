@@ -171,4 +171,13 @@ class Helpers extends Component {
     public static function formatPrice($price) {
         return $price ? number_format($price, 0, ',', ' ') : 0;
     }
+
+
+    /**
+     * @param $count
+     * @return string
+     */
+    public static function formatQuantity($count) {
+        return $count < 1000 ? $count : number_format($count / 1000, 1).'k';
+    }
 }
