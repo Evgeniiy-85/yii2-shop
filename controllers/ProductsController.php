@@ -49,13 +49,19 @@ class ProductsController extends BaseController {
             $category = Category::find()->where(['cat_id' => $product['prod_category']])->one();
         }
 
-        $product_rating = 5;
         $count_reviews = ProductReview::find()
             ->where([
                 'prod_id' => $product['prod_id'],
                 'review_status' => ProductReview::STATUS_ACTIVE
             ])
             ->count('review_id');
+
+        $product_rating = $count_reviews ? round(ProductReview::find()
+                ->where([
+                    'prod_id' => $product['prod_id'],
+                    'review_status' => ProductReview::STATUS_ACTIVE
+                ])
+                ->sum('review_rating') / $count_reviews) : false;
 
         return $this->render('product', [
             'product' => $product,
