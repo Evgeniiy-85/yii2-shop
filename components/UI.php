@@ -95,15 +95,32 @@ class UI extends Component {
      * @return string
      */
     static function rating($rating) {
-        $img = Html::tag('img','', ['class' => 'sale', 'src' => '/images/icons/rating-star.svg',]);
-        $item = Html::tag('div', $img, ['class' => 'rating-item']);
-        $html = str_repeat($item, $rating);
-
-        if (($repeat = 5 - $rating) > 0) {
-            $img = Html::tag('img','', ['class' => 'sale', 'src' => '/images/icons/rating-star-empty.svg',]);
-            $item = Html::tag('div', $img, ['class' => 'rating-item']);
-            $html .= str_repeat($item, $repeat);
+        $count_starts = intval($rating);
+        if ($rating - $count_starts > 0.6) {
+            $count_starts += 1;
         }
-        return Html::tag('div', $html, ['class' => 'rating']);
+
+        $html = '';
+        $count_empty_stars = 5 - $count_starts;
+
+        if ($count_starts) {
+            $img = Html::tag('img','', ['src' => '/images/icons/rating-star.svg',]);
+            $item = Html::tag('div', $img, ['class' => 'rating-item']);
+            $html = str_repeat($item, $count_starts);
+        }
+
+        if ($rating - $count_starts > 0.3) {
+            $img = Html::tag('img','', ['src' => '/images/icons/rating-star-half.svg',]);
+            $html .= Html::tag('div', $img, ['class' => 'rating-item']);
+            $count_empty_stars -= 1;
+        }
+
+        if ($count_empty_stars > 0) {
+            $img = Html::tag('img','', ['src' => '/images/icons/rating-star-empty.svg',]);
+            $item = Html::tag('div', $img, ['class' => 'rating-item']);
+            $html .= str_repeat($item, $count_empty_stars);
+        }
+
+        return Html::tag('div', $html, ['class' => 'rating', 'data-rating' => $rating]);
     }
 }

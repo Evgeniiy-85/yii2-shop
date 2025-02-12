@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\components\Helpers;
 use app\models\Category;
 use app\models\Favorites;
 use app\models\Product;
@@ -56,12 +57,12 @@ class ProductsController extends BaseController {
             ])
             ->count('review_id');
 
-        $product_rating = $count_reviews ? round(ProductReview::find()
+        $product_rating = $count_reviews ? number_format(ProductReview::find()
                 ->where([
                     'prod_id' => $product['prod_id'],
                     'review_status' => ProductReview::STATUS_ACTIVE
                 ])
-                ->sum('review_rating') / $count_reviews) : false;
+                ->sum('review_rating') / $count_reviews, 1) : false;
 
         return $this->render('product', [
             'product' => $product,
