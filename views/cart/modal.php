@@ -50,9 +50,6 @@ use yii\helpers\Url;?>
         </div>
 
         <div class="cart-footer_right">
-            <button type="button" class="button button-ui btn_a-secondary button-small" data-dismiss="modal">
-                Продолжить покупки
-            </button>
             <a href="/cart" class="button button-ui btn_a-outline-primary button-small">
                 Оформить заказ
             </a>
