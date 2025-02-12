@@ -44,7 +44,7 @@ use yii\helpers\Url;
                         <div class="search-wrap">
                             <?=Html::beginForm(['/search'], 'get', ['id' => 'form-search']) ?>
                             <div class="input-group">
-                                <?=Html::input('text', 'q', urldecode( Yii::$app->request->get('q')), ['placeholder' => 'Поиск по сайту']);?>
+                                <?=Html::input('text', 'q', urldecode((string)Yii::$app->request->get('q')), ['placeholder' => 'Поиск по сайту']);?>
                                 <?=Html::submitButton('',['class' => 'btn-search']);?>
                             </div>
                             <?=Html::endForm();?>

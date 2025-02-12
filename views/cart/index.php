@@ -12,7 +12,6 @@ $this->title = 'Корзина';?>
     <div class="row">
         <div class="col-md-9">
             <?=$this->render('cart_products', [
-                'order' => $order,
                 'cart' => $cart,
             ]);?>
         </div>

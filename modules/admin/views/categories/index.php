@@ -53,7 +53,11 @@ $this->params['breadcrumbs'][] = strip_tags($this->title);?>
                                         <a href="/admin/categories/<?=$category->cat_id;?>"><?=$category->cat_title;?></a>
                                     </td>
                                     <td>
-                                        <a href="/admin/categories/<?=$category->cat_parent;?>"><?=$category->parentCategory->cat_title;?></a>
+                                        <?if($category->parentCategory):?>
+                                            <a href="/admin/categories/<?=$category->cat_parent;?>"><?=$category->parentCategory->cat_title;?></a>
+                                        <?else:?>
+                                            <span>--</span>
+                                        <?endif;?>
                                     </td>
                                     <td><?=$category->cat_sort;?></td>
 

@@ -68,7 +68,7 @@ $this->params['breadcrumbs'][] = strip_tags($this->title);?>
                                                 [
                                                     'icon' => 'fa-sign-in',
                                                     'text' => 'Войти под пользователем',
-                                                    'href' => Yii::$app->params['panelHost'] . "/login/{$user->user_auth_key}",
+                                                    'href' => "/login/{$user->user_auth_key}",
                                                     'target' => '_blank',
                                                 ],
                                                 [

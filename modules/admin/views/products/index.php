@@ -60,7 +60,11 @@ $this->params['breadcrumbs'][] = strip_tags($this->title);?>
                                             <div style="width:140px;" class="text-truncate"><?=$product->prod_article;?></div>
                                         </td>
                                         <td>
-                                            <a href="/admin/categories/<?=$product->prod_category;?>"><?=$product->categories->cat_title;?></a>
+                                            <?if($product->categories):?>
+                                                <a href="/admin/categories/<?=$product->prod_category;?>"><?=$product->categories->cat_title;?></a>
+                                            <?else:?>
+                                                <span>--</span>
+                                            <?endif;?>
                                         </td>
                                         <td><?=Helpers::formatPrice($product->prod_price);?></td>
                                         <td><?=$product->prod_quantity;?></td>

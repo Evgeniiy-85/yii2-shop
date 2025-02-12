@@ -36,7 +36,7 @@ class CategoriesController extends BaseController {
         ]);
     }
 
-    public function actionCategory($parent_cat_alias = '', $alias) {
+    public function actionCategory($parent_cat_alias = '', $alias = '') {
         $category = Category::find()->where(['cat_alias' => $alias])->one();
         if (!$category) {
             throw new HttpException(404, "Страница не найдена.");
