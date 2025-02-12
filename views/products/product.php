@@ -42,7 +42,20 @@ $this->params['breadcrumbs'] = Product::getBreadCrumbs($category, $product);?>
                     <?=Helpers::formatPrice($product['prod_price']);?> ₽
                 </div>
 
-                <a class="button button-ui btn_a-outline-primary" href="/buy/<?=$product['prod_alias'];?>">Купить</a>
+                <div class="product-buttons">
+                    <div class="product-favorites">
+                        <?=Html::button('', [
+                            'class' => ['button', 'button-ui', 'btn_a-grey'],
+                            'type' => 'button',
+                            'data' => [
+                                'prod_id' => $product['prod_id'],
+                                'action_type' => 'add',
+                            ],
+                        ]);?>
+                    </div>
+
+                    <a class="button button-ui btn_a-outline-primary" href="/buy/<?=$product['prod_alias'];?>">Купить</a>
+                </div>
             </div>
             <div class="product-bottom">Наличите: в наличии</div>
         </div>

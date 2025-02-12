@@ -1,7 +1,8 @@
 <?php
 use app\components\Helpers;
 use app\models\User;
-use app\components\UI;?>
+use app\components\UI;
+use yii\helpers\Html;?>
 
 <div class="product-reviews">
     <div class="reviews-header">
@@ -36,21 +37,21 @@ use app\components\UI;?>
                         <?if($review['review_advantage']):?>
                             <div class="review-item">
                                 <div class="review-title">Достоинства</div>
-                                <div class="review-text"><?=$review['review_advantage'];?></div>
+                                <div class="review-text"><?=Html::encode($review['review_advantage']);?></div>
                             </div>
                         <?endif;?>
 
                         <?if($review['review_disadvantage']):?>
                             <div class="review-item">
                                 <div class="review-title">Недостатки</div>
-                                <div class="review-text"><?=$review['review_disadvantage'];?></div>
+                                <div class="review-text"><?=Html::encode($review['review_disadvantage']);?></div>
                             </div>
                         <?endif;?>
 
                         <?if($review['review_comment']):?>
                             <div class="review-item">
                                 <div class="review-title">Комментарий</div>
-                                <div class="review-text"><?=$review['review_comment'];?></div>
+                                <div class="review-text"><?=Html::encode($review['review_comment']);?></div>
                             </div>
                         <?endif;?>
                     </div>

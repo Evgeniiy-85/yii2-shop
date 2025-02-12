@@ -90,11 +90,20 @@ class UI extends Component {
     }
 
 
+    /**
+     * @param $rating
+     * @return string
+     */
     static function rating($rating) {
-        $img = Html::tag('img','', ['class' => 'sale', 'src' => '/images/icons/rating-item.svg',] );
+        $img = Html::tag('img','', ['class' => 'sale', 'src' => '/images/icons/rating-star.svg',]);
         $item = Html::tag('div', $img, ['class' => 'rating-item']);
         $html = str_repeat($item, $rating);
 
+        if (($repeat = 5 - $rating) > 0) {
+            $img = Html::tag('img','', ['class' => 'sale', 'src' => '/images/icons/rating-star-empty.svg',]);
+            $item = Html::tag('div', $img, ['class' => 'rating-item']);
+            $html .= str_repeat($item, $repeat);
+        }
         return Html::tag('div', $html, ['class' => 'rating']);
     }
 }

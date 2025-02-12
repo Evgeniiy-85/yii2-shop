@@ -30,7 +30,6 @@
         //background-color: #f6f6f6;
         //border-radius: 16px;
         padding: 16px;
-        border-bottom: 1px solid #d9d9d9;
 
         .review-top {
           display: flex;
@@ -98,10 +97,15 @@
           }
         }
 
+        &:not(:last-child) {
+          border-bottom: 1px solid #d9d9d9;
+        }
+
         &+.review {
           margin-top: 20px;
         }
       }
+
     }
   }
 }
