@@ -4,6 +4,7 @@ use app\components\Helpers;
 use app\models\Product;
 use yii\helpers\Url;
 use app\widgets\ReviewWidget;
+use app\components\UI;
 
 $this->title = $product['prod_title'];
 $this->params['breadcrumbs'] = Product::getBreadCrumbs($category, $product);?>
@@ -35,7 +36,20 @@ $this->params['breadcrumbs'] = Product::getBreadCrumbs($category, $product);?>
         </div>
 
         <div class="product-center">
-            <a class="product-title" href="/products/<?=$product['prod_alias'];?>"><?=$product['prod_title'];?></a>
+            <div class="product-title" href="/products/<?=$product['prod_alias'];?>"><?=$product['prod_title'];?></div>
+
+            <div class="product-stat">
+                <a class="product-rating" href="#product_reviews">
+                    <?if($count_reviews):?>
+                        <?=UI::rating($product_rating);?>
+                        <?="&nbsp;{$count_reviews} ".Helpers::addTermination($count_reviews, 'отзыв[TRMNT]');?>
+                    <?else:
+                        $img = Html::tag('img','', ['class' => 'sale', 'src' => '/images/icons/rating-star-empty.svg',]);
+                        echo Html::tag('div', $img, ['class' => 'rating-item']);
+                        echo "&nbsp;нет отзывов"?>
+                    <?endif;?>
+                </a>
+            </div>
 
             <div class="product-by product-by-one_line">
                 <div class="product-price">
@@ -61,7 +75,7 @@ $this->params['breadcrumbs'] = Product::getBreadCrumbs($category, $product);?>
         </div>
     </div>
 
-    <div class="products-reviews_wrap">
+    <div class="products-reviews_wrap" id="product_reviews">
         <?=ReviewWidget::widget(['prod_id' => $product['prod_id']]);?>
     </div>
 </div>

@@ -10,6 +10,7 @@ use yii\data\Pagination;
 use app\controllers\BaseController;
 use yii\web\HttpException;
 use Yii;
+use app\models\ProductReview;
 
 class ProductsController extends BaseController {
 
@@ -48,9 +49,19 @@ class ProductsController extends BaseController {
             $category = Category::find()->where(['cat_id' => $product['prod_category']])->one();
         }
 
+        $product_rating = 5;
+        $count_reviews = ProductReview::find()
+            ->where([
+                'prod_id' => $product['prod_id'],
+                'review_status' => ProductReview::STATUS_ACTIVE
+            ])
+            ->count('review_id');
+
         return $this->render('product', [
             'product' => $product,
             'category' => $category,
+            'product_rating' => $product_rating,
+            'count_reviews' => $count_reviews,
         ]);
     }
 
