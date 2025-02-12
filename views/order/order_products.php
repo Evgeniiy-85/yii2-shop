@@ -12,10 +12,6 @@ use app\models\Product;?>
     <div class="block-body">
         <?foreach($order_items as $key => $order_item):
             $product = Product::find()->where(['prod_id' => $order_item->prod_id])->one();?>
-            <?if($key !== 0):?>
-                <hr>
-            <?endif;?>
-
             <div class="product">
                 <div class="product-cover">
                     <img src="/load/products/<?=$product->prod_image;?>">
@@ -27,7 +23,7 @@ use app\models\Product;?>
                     </div>
                     <div class="product-price"><nobr><?=Helpers::formatPrice($order_item->prod_price * $order_item->quantity);?> ₽</nobr></div>
                 </div>
-            </div>
+            </div><hr>
         <?endforeach;?>
     </div>
 

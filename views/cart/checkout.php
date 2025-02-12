@@ -15,10 +15,12 @@ $this->title = 'Оформление заказа';?>
             ]);?>
         </div>
 
-        <div class="col-xl-7 col-lg-8">
-            <?=$this->render('/order/checkout_form', [
-                'order' => $order,
-            ]);?>
-        </div>
+        <?if($cart->products):?>
+            <div class="col-xl-7 col-lg-8">
+                <?=$this->render('/order/checkout_form', [
+                    'order' => $order,
+                ]);?>
+            </div>
+        <?endif;?>
     </div>
 </div>

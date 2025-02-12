@@ -11,13 +11,8 @@ use app\models\Product;?>
         </div>
 
         <div class="block-body">
-            <?$first_key = array_key_first($cart->products);
-            foreach($cart->products as $prod_id => $product):
-                $quantity = $cart->quantity[$prod_id];;?>
-                <?if($prod_id !== $first_key):?>
-                    <hr>
-                <?endif;?>
-
+            <?foreach($cart->products as $prod_id => $product):
+                $quantity = $cart->quantity[$prod_id];?>
                 <div class="product">
                     <div class="product-cover">
                         <img src="/load/products/<?=$product->prod_image;?>">
@@ -29,7 +24,7 @@ use app\models\Product;?>
                         </div>
                         <div class="product-price"><nobr><?=Helpers::formatPrice($product->prod_price * $quantity);?> ₽</nobr></div>
                     </div>
-                </div>
+                </div><hr>
             <?endforeach;?>
         </div>
 

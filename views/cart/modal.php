@@ -9,12 +9,8 @@ use yii\helpers\Url;?>
     </div>
 
     <div class="cart-body cart-products" data-count_products="<?=$cart->count_products;?>">
-        <?$first_key = array_key_first($cart->products);
-        foreach($cart->products as $prod_id => $product):
+        <?foreach($cart->products as $prod_id => $product):
             $quantity = $cart->quantity[$prod_id];?>
-            <?if($prod_id !== $first_key):?>
-                <hr>
-            <?endif;?>
 
             <div class="cart-product" data-prod_id="<?=$product->prod_id;?>">
                 <div class="cart-product-cover">
@@ -43,7 +39,7 @@ use yii\helpers\Url;?>
                         </svg>
                     </a>
                 </div>
-            </div>
+            </div><hr>
         <?endforeach;?>
     </div>
 
